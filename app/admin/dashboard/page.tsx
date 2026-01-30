@@ -101,21 +101,21 @@ export default function AdminDashboard() {
   const getStatusColor = (status?: string) => {
     switch (status) {
       case 'resolved':
-        return 'bg-green-500/20 text-green-400 border-green-500/50'
+        return 'bg-green-100 text-green-700 border-green-300'
       case 'reviewed':
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/50'
+        return 'bg-blue-100 text-blue-700 border-blue-300'
       default:
-        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50'
+        return 'bg-yellow-100 text-yellow-700 border-yellow-300'
     }
   }
 
   return (
-    <div className="min-h-screen bg-black py-8 px-4">
+    <div className="min-h-screen bg-[#f9f6ef] py-8 px-4">
       {/* Back to Home Link */}
       <div className="max-w-7xl mx-auto mb-4">
         <Link 
           href="/" 
-          className="text-sm text-gray-500 hover:text-gold-metallic transition-colors inline-block"
+          className="text-sm text-[#35063e] hover:text-gold-metallic transition-colors inline-block"
         >
           ← back to home
         </Link>
@@ -123,19 +123,19 @@ export default function AdminDashboard() {
       
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="glass-card rounded-2xl p-6 mb-6">
+        <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 mb-6 shadow-lg">
           <div className="flex justify-between items-center flex-wrap gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gold-metallic mb-2">
                 Admin Dashboard
               </h1>
-              <p className="text-gray-300">
+              <p className="text-[#35063e]/70">
                 View and manage form submissions
               </p>
             </div>
             <button
               onClick={handleLogout}
-              className="btn-gold-outline"
+              className="px-4 py-2 border-2 border-gold-metallic text-gold-metallic rounded-lg hover:bg-gold-metallic hover:text-black transition-colors font-semibold"
             >
               Logout
             </button>
@@ -149,7 +149,7 @@ export default function AdminDashboard() {
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="form-input appearance-none bg-black/80 text-white cursor-pointer max-w-xs"
+              className="px-4 py-3 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] cursor-pointer max-w-xs appearance-none focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
             >
               <option value="all">All Submissions</option>
               <option value="immigration-fraud">Immigration Fraud</option>
@@ -157,29 +157,31 @@ export default function AdminDashboard() {
               <option value="education-support">Education Support</option>
               <option value="bts-student">BTS Student</option>
               <option value="bts-tutor">BTS Tutor</option>
+              <option value="contact">Contact</option>
+              <option value="nurses-applications">Nurses Applications</option>
             </select>
           </div>
         </div>
 
         {/* Submissions List */}
         {isLoading ? (
-          <div className="glass-card rounded-2xl p-12 text-center">
+          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
             <p className="text-gold-metallic">Loading submissions...</p>
           </div>
         ) : error ? (
-          <div className="glass-card rounded-2xl p-12 text-center">
-            <p className="text-red-400">{error}</p>
+          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
+            <p className="text-red-600">{error}</p>
           </div>
         ) : submissions.length === 0 ? (
-          <div className="glass-card rounded-2xl p-12 text-center">
-            <p className="text-gray-300">No submissions found</p>
+          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
+            <p className="text-[#35063e]/70">No submissions found</p>
           </div>
         ) : (
           <div className="space-y-4">
             {submissions.map((submission) => (
               <div
                 key={submission.id}
-                className="glass-card rounded-2xl p-6 hover:border-gold-metallic/60 transition-all"
+                className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 hover:border-gold-metallic/60 transition-all shadow-lg"
               >
                 <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
                   <div>
@@ -195,7 +197,7 @@ export default function AdminDashboard() {
                         {submission.status || 'pending'}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-[#35063e]/60">
                       Submitted: {new Date(submission.submittedAt).toLocaleString()}
                     </p>
                   </div>
@@ -205,7 +207,7 @@ export default function AdminDashboard() {
                       onChange={(e) =>
                         updateStatus(submission.type, submission.id, e.target.value)
                       }
-                      className="form-input appearance-none bg-black/80 text-white cursor-pointer text-sm"
+                      className="px-3 py-2 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] cursor-pointer text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
                     >
                       <option value="pending">Pending</option>
                       <option value="reviewed">Reviewed</option>
@@ -213,7 +215,7 @@ export default function AdminDashboard() {
                     </select>
                     <button
                       onClick={() => deleteSubmission(submission.type, submission.id)}
-                      className="btn-gold-outline text-sm px-4"
+                      className="px-4 py-2 border-2 border-gold-metallic text-gold-metallic rounded-lg hover:bg-gold-metallic hover:text-black transition-colors font-semibold text-sm"
                     >
                       Delete
                     </button>
@@ -221,14 +223,14 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Submission Data */}
-                <div className="bg-black/30 rounded-lg p-4 mt-4">
+                <div className="bg-[#f3efe6]/50 rounded-lg p-4 mt-4 border border-[#35063e]/10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {Object.entries(submission.data).map(([key, value]) => (
                       <div key={key}>
-                        <p className="text-xs text-gold-metallic/70 uppercase mb-1">
+                        <p className="text-xs text-gold-metallic/80 uppercase mb-1 font-semibold">
                           {key.replace(/([A-Z])/g, ' $1').trim()}
                         </p>
-                        <p className="text-gray-300 break-words">
+                        <p className="text-[#35063e] break-words">
                           {typeof value === 'object' && value !== null
                             ? JSON.stringify(value)
                             : String(value)}

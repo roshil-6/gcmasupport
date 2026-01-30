@@ -108,6 +108,22 @@ export default function Hero() {
             About Us
           </Link>
 
+          {/* PR Calculator Tagline */}
+          <Link
+            href="/calculators/pr-calculator"
+            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
+          >
+            PR Calculator
+          </Link>
+
+          {/* Canada Points Calculator Tagline */}
+          <Link
+            href="/calculators/canada-points"
+            className="text-gold-metallic hover:text-gold-bright font-semibold text-sm md:text-base transition-colors px-4 py-2"
+          >
+            Canada Points Calculator
+          </Link>
+
           {/* Services Tagline with Dropdown */}
           <div className="relative">
             <button
@@ -130,7 +146,7 @@ export default function Hero() {
               <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gold-metallic/50 rounded-lg shadow-xl z-40">
                 <div className="py-2">
                   <Link
-                    href="/services#social-support"
+                    href="/charity-support"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
@@ -144,60 +160,60 @@ export default function Hero() {
                     Report Immigration Fraud
                   </Link>
                   <Link
-                    href="/services#education-support"
+                    href="/study-abroad"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Study Abroad Advice
                   </Link>
                   <Link
-                    href="/services#migration-advice"
+                    href="/migration-advice"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Migration Advice
                   </Link>
                   <Link
-                    href="/services#visit-visa"
+                    href="/visit-visa"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Visit Visa
                   </Link>
                   <Link
-                    href="/services#travel"
+                    href="/travel"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Travel
                   </Link>
                   <Link
-                    href="/services#english-govt-students"
+                    href="/english-classes/govt-students"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     English Speaking Classes - Govt School Students
                   </Link>
                   <Link
-                    href="/services#english-private-students"
+                    href="/english-classes/private-students"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     English Speaking Classes - Private School Students
                   </Link>
                   <Link
-                    href="/services#english-adults"
+                    href="/english-classes/adults"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
-                    English Speaking Classes - Adults
+                    English Academy
                   </Link>
                   <Link
-                    href="/services#tutors"
+                    href="/tutors"
                     onClick={() => setShowServicesMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
-                    Serve society with GCMA - tutors
+                    Serve society with GCMA - Tutors
                   </Link>
                 </div>
               </div>
@@ -226,67 +242,67 @@ export default function Hero() {
               <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gold-metallic/50 rounded-lg shadow-xl z-40">
                 <div className="py-2">
                   <Link
-                    href="/services#nursing-australia"
+                    href="/nurses/australia"
                     onClick={() => setShowNursingMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Australia
                   </Link>
                   <Link
-                    href="/services#nursing-germany"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Germany
-                  </Link>
-                  <Link
-                    href="/services#nursing-ireland"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Ireland
-                  </Link>
-                  <Link
-                    href="/services#nursing-malta"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    Malta
-                  </Link>
-                  <Link
-                    href="/services#nursing-newzealand"
-                    onClick={() => setShowNursingMenu(false)}
-                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
-                  >
-                    New Zealand
-                  </Link>
-                  <Link
-                    href="/services#nursing-canada"
+                    href="/nurses/canada"
                     onClick={() => setShowNursingMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     Canada
                   </Link>
                   <Link
-                    href="/services#nursing-usa"
+                    href="/nurses/new-zealand"
                     onClick={() => setShowNursingMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
-                    USA
+                    New Zealand
                   </Link>
                   <Link
-                    href="/services#nursing-uk"
+                    href="/nurses/germany"
                     onClick={() => setShowNursingMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
-                    UK
+                    Germany
                   </Link>
                   <Link
-                    href="/services#nursing-uae"
+                    href="/nurses/malta"
+                    onClick={() => setShowNursingMenu(false)}
+                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
+                  >
+                    Malta
+                  </Link>
+                  <Link
+                    href="/nurses/denmark"
+                    onClick={() => setShowNursingMenu(false)}
+                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
+                  >
+                    Denmark
+                  </Link>
+                  <Link
+                    href="/nurses/united-kingdom"
+                    onClick={() => setShowNursingMenu(false)}
+                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
+                  >
+                    United Kingdom
+                  </Link>
+                  <Link
+                    href="/nurses/uae"
                     onClick={() => setShowNursingMenu(false)}
                     className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
                   >
                     UAE
+                  </Link>
+                  <Link
+                    href="/nurses/usa"
+                    onClick={() => setShowNursingMenu(false)}
+                    className="block px-4 py-2 text-gold-metallic hover:text-gold-bright hover:bg-gold-metallic/10 transition-colors text-sm font-medium"
+                  >
+                    USA
                   </Link>
                 </div>
               </div>
@@ -306,7 +322,7 @@ export default function Hero() {
       {/* Close dropdown when clicking outside */}
       {(showServicesMenu || showNursingMenu) && (
         <div 
-          className="fixed inset-0 z-30" 
+          className="fixed inset-0 z-20" 
           onClick={() => {
             setShowServicesMenu(false)
             setShowNursingMenu(false)

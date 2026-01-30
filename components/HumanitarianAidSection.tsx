@@ -539,7 +539,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.educationLevel}
           onChange={handleInputChange}
-          className="form-input appearance-none bg-black/80 text-white cursor-pointer"
+          className="form-input appearance-none cursor-pointer"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a961' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -548,12 +548,12 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           }}
           disabled={isSubmitting || submitSuccess}
         >
-          <option value="" className="bg-black text-white">Select education level</option>
-          <option value="primary" className="bg-black text-white">Primary School</option>
-          <option value="secondary" className="bg-black text-white">Secondary School</option>
-          <option value="higher-secondary" className="bg-black text-white">Higher Secondary</option>
-          <option value="undergraduate" className="bg-black text-white">Undergraduate</option>
-          <option value="graduate" className="bg-black text-white">Graduate</option>
+          <option value="">Select education level</option>
+          <option value="primary">Primary School</option>
+          <option value="secondary">Secondary School</option>
+          <option value="higher-secondary">Higher Secondary</option>
+          <option value="undergraduate">Undergraduate</option>
+          <option value="graduate">Graduate</option>
         </select>
       </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 
 export default function BreakTheSilenceSection() {
@@ -24,6 +25,22 @@ export default function BreakTheSilenceSection() {
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
+    }
+
+    // Check URL on mount and auto-open form if requested
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const applyType = urlParams.get('apply')
+      if (applyType === 'student' || applyType === 'tutor') {
+        setTimeout(() => {
+          setSelectedOption(applyType as 'student' | 'tutor')
+          // Scroll to form
+          const formElement = document.getElementById('break-the-silence')
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 500)
+      }
     }
 
     return () => observer.disconnect()
@@ -171,7 +188,20 @@ export default function BreakTheSilenceSection() {
           </div>
 
           {selectedOption === 'student' && (
-            <StudentForm onClose={() => setSelectedOption(null)} />
+            <div>
+              <StudentForm onClose={() => setSelectedOption(null)} />
+              <div className="mt-6 text-center">
+                <Link
+                  href="/break-the-silence/student-tutor"
+                  className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors"
+                >
+                  <span>Be a Child Tutor</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           )}
 
           {selectedOption === 'tutor' && (
@@ -191,6 +221,7 @@ function StudentForm({ onClose }: { onClose: () => void }) {
     name: '',
     contactNumber: '',
     learningGoals: '',
+    roleType: 'student', // 'student' or 'student-tutor'
   })
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -213,6 +244,7 @@ function StudentForm({ onClose }: { onClose: () => void }) {
       formDataToSend.append('name', formData.name)
       formDataToSend.append('contactNumber', formData.contactNumber)
       formDataToSend.append('learningGoals', formData.learningGoals)
+      formDataToSend.append('roleType', formData.roleType)
       
       const response = await fetch(BTS_STUDENT_API_ENDPOINT, {
         method: 'POST',
@@ -227,6 +259,7 @@ function StudentForm({ onClose }: { onClose: () => void }) {
           name: '',
           contactNumber: '',
           learningGoals: '',
+          roleType: 'student',
         })
         
         setTimeout(() => {
@@ -256,6 +289,22 @@ function StudentForm({ onClose }: { onClose: () => void }) {
             </p>
           </div>
         )}
+        <div>
+          <label className="block text-sm font-medium text-gold-metallic mb-2">
+            I Am a *
+          </label>
+          <select
+            name="roleType"
+            required
+            value={formData.roleType}
+            onChange={(e) => setFormData((prev) => ({ ...prev, roleType: e.target.value }))}
+            className="form-input"
+            disabled={isSubmitting || submitSuccess}
+          >
+            <option value="student">Student</option>
+            <option value="student-tutor">Student Tutor</option>
+          </select>
+        </div>
         <div>
           <label className="block text-sm font-medium text-gold-metallic mb-2">
             Name *

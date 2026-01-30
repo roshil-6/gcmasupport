@@ -39,29 +39,29 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#f9f6ef] px-4">
       {/* Back to Home Link */}
       <div className="absolute top-6 left-4 z-20">
         <Link 
           href="/" 
-          className="text-sm text-gray-500 hover:text-gold-metallic transition-colors"
+          className="text-sm text-[#35063e] hover:text-gold-metallic transition-colors"
         >
           ← back to home
         </Link>
       </div>
       
-      <div className="glass-card rounded-2xl p-8 md:p-12 max-w-md w-full">
+      <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-8 md:p-12 max-w-md w-full shadow-lg">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gold-metallic mb-2">
             Admin Login
           </h1>
-          <p className="text-gray-300">Access the admin dashboard</p>
+          <p className="text-[#35063e]/70">Access the admin dashboard</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4">
-              <p className="text-red-400 text-sm">{error}</p>
+            <div className="bg-red-100 border border-red-300 rounded-lg p-4">
+              <p className="text-red-600 text-sm">{error}</p>
             </div>
           )}
 
@@ -73,7 +73,7 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="form-input w-full"
+              className="w-full px-4 py-3 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] placeholder:text-[#35063e]/50 focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
               placeholder="Enter admin password"
               required
               disabled={isLoading}
@@ -82,7 +82,7 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="btn-gold w-full"
+            className="w-full bg-gold-metallic text-black font-semibold py-3 px-6 rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
             {isLoading ? 'Logging in...' : 'Login'}

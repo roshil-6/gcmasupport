@@ -131,11 +131,42 @@ body.theme-light .hero-subtitle {
 }
 
 /* Light theme text visibility overrides */
-body.theme-light .text-gray-300 { color: #2b2738 !important; }
-body.theme-light .text-gray-400 { color: #3a344b !important; }
-body.theme-light .text-gray-500 { color: #4a435d !important; }
+body.theme-light .text-gray-200 { color: #35063e !important; }
+body.theme-light .text-gray-300 { color: #35063e !important; }
+body.theme-light .text-gray-400 { color: #35063e !important; }
+body.theme-light .text-gray-500 { color: #35063e !important; }
+body.theme-light .text-gray-600 { color: #35063e !important; }
+body.theme-light .text-white { color: #35063e !important; }
 body.theme-light .text-gold-metallic { color: #9b7b2a !important; }
 body.theme-light .text-gold-metallic\/90 { color: rgba(155, 123, 42, 0.9) !important; }
+body.theme-light .text-gold-metallic\/70 { color: rgba(155, 123, 42, 0.7) !important; }
+body.theme-light .text-gold-metallic\/80 { color: rgba(155, 123, 42, 0.8) !important; }
+
+/* Fix dark backgrounds in light theme */
+body.theme-light .bg-black\/30 { 
+  background: rgba(243, 239, 230, 0.5) !important; 
+  border-color: rgba(201, 169, 97, 0.3) !important;
+}
+
+/* Keep white text on dark cards - override light theme violet text */
+body.theme-light .bg-black\/70 .text-white,
+body.theme-light .bg-black\/70 h3.text-white,
+body.theme-light .bg-black\/70 p.text-white,
+body.theme-light .bg-black\/70 h4.text-white,
+body.theme-light .bg-black\/70 h2.text-white,
+body.theme-light .bg-black\/70 h1.text-white,
+body.theme-light [class*="bg-black"] .text-white,
+body.theme-light .rounded-2xl.bg-black\/70 .text-white,
+body.theme-light .rounded-2xl.bg-black\/70 h3,
+body.theme-light .rounded-2xl.bg-black\/70 p {
+  color: #ffffff !important;
+}
+body.theme-light .bg-black\/80 { 
+  background: rgba(243, 239, 230, 0.9) !important; 
+}
+body.theme-light .bg-black\/30 p { 
+  color: #35063e !important; 
+}
 
 /* Glassmorphism utility classes */
 .glass-card {

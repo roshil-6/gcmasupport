@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -24,36 +24,61 @@ export default function AdminDashboard() {
   const [error, setError] = useState('')
   const router = useRouter()
 
+  const loadSubmissions = useCallback(
+    async (signal?: AbortSignal) => {
+      setIsLoading(true)
+      setError('')
+      try {
+        const url =
+          selectedType === 'all'
+            ? '/api/admin/submissions'
+            : `/api/admin/submissions?type=${encodeURIComponent(selectedType)}`
+
+        const response = await fetch(url, signal ? { signal } : undefined)
+
+        if (response.status === 401) {
+          if (!signal?.aborted) router.push('/admin/login')
+          return
+        }
+
+        const data = await response.json()
+        if (signal?.aborted) return
+
+        if (!response.ok) {
+          setSubmissions([])
+          setError(data.error || 'Failed to load submissions')
+          return
+        }
+
+        if (data.submissions) {
+          setSubmissions(data.submissions)
+        } else {
+          setSubmissions([])
+          setError(data.error || 'Failed to load submissions')
+        }
+      } catch (err: unknown) {
+        if (
+          signal?.aborted ||
+          (err instanceof DOMException && err.name === 'AbortError')
+        ) {
+          return
+        }
+        setSubmissions([])
+        setError('Failed to load submissions')
+      } finally {
+        if (!signal?.aborted) {
+          setIsLoading(false)
+        }
+      }
+    },
+    [selectedType, router]
+  )
+
   useEffect(() => {
-    fetchSubmissions()
-  }, [selectedType])
-
-  const fetchSubmissions = async () => {
-    setIsLoading(true)
-    try {
-      const url = selectedType === 'all' 
-        ? '/api/admin/submissions'
-        : `/api/admin/submissions?type=${selectedType}`
-      
-      const response = await fetch(url)
-      
-      if (response.status === 401) {
-        router.push('/admin/login')
-        return
-      }
-
-      const data = await response.json()
-      if (data.submissions) {
-        setSubmissions(data.submissions)
-      } else {
-        setError(data.error || 'Failed to load submissions')
-      }
-    } catch (error) {
-      setError('Failed to load submissions')
-    } finally {
-      setIsLoading(false)
-    }
-  }
+    const ac = new AbortController()
+    loadSubmissions(ac.signal)
+    return () => ac.abort()
+  }, [loadSubmissions])
 
   const handleLogout = async () => {
     await fetch('/api/admin/login', { method: 'DELETE' })
@@ -71,7 +96,7 @@ export default function AdminDashboard() {
       })
 
       if (response.ok) {
-        fetchSubmissions()
+        await loadSubmissions()
       }
     } catch (error) {
       console.error('Error updating status:', error)
@@ -84,12 +109,13 @@ export default function AdminDashboard() {
     }
 
     try {
-      const response = await fetch(`/api/admin/submissions?type=${type}&id=${id}`, {
-        method: 'DELETE',
-      })
+      const response = await fetch(
+        `/api/admin/submissions?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`,
+        { method: 'DELETE' }
+      )
 
       if (response.ok) {
-        fetchSubmissions()
+        await loadSubmissions()
       }
     } catch (error) {
       console.error('Error deleting submission:', error)
@@ -214,7 +240,7 @@ export default function AdminDashboard() {
           <div className="space-y-4">
             {submissions.map((submission) => (
               <div
-                key={submission.id}
+                key={`${submission.type}:${submission.id}`}
                 className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 hover:border-gold-metallic/60 transition-all shadow-lg"
               >
                 <div className="flex justify-between items-start mb-4 flex-wrap gap-4">

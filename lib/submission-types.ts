@@ -41,6 +41,10 @@ export const SUBMISSION_TYPE_LABELS: Record<SubmissionType, string> = {
   'study-abroad-consultation': 'Study abroad consultation',
 }
 
+export function isSubmissionType(value: string): value is SubmissionType {
+  return (SUBMISSION_TYPES as readonly string[]).includes(value)
+}
+
 export function getSubmissionTypeLabel(type: string): string {
   if (type in SUBMISSION_TYPE_LABELS) {
     return SUBMISSION_TYPE_LABELS[type as SubmissionType]

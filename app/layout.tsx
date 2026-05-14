@@ -25,6 +25,9 @@ const fontDisplay = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
+  verification: {
+    google: 'xt1N8fjtwtrOGlq3ZgJLsjz872dVCyUvnI0bYlbV4RE',
+  },
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg',

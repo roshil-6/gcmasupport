@@ -124,6 +124,12 @@ export default function AdminDashboard() {
 
   const formatType = (type: string) => getSubmissionTypeLabel(type)
 
+  const formatFieldLabel = (key: string) =>
+    key
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, (s) => s.toUpperCase())
+      .trim()
+
   const getStatusColor = (status?: string) => {
     switch (status) {
       case 'resolved':
@@ -149,7 +155,7 @@ export default function AdminDashboard() {
       
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-6 bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 shadow-lg">
+        <div className="mb-6 rounded-2xl border border-[#35063e]/20 bg-white p-6 shadow-md">
           <div className="flex justify-between items-center flex-wrap gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gold-metallic mb-2">
@@ -225,74 +231,80 @@ export default function AdminDashboard() {
 
             {/* Submissions List */}
         {isLoading ? (
-          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
-            <p className="text-gold-metallic">Loading submissions...</p>
+          <div className="rounded-2xl border border-[#35063e]/20 bg-white p-12 text-center shadow-md">
+            <p className="font-medium text-[#35063e]">Loading submissions...</p>
           </div>
         ) : error ? (
-          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
-            <p className="text-red-600">{error}</p>
+          <div className="rounded-2xl border border-[#35063e]/20 bg-white p-12 text-center shadow-md">
+            <p className="text-red-700">{error}</p>
           </div>
         ) : submissions.length === 0 ? (
-          <div className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-12 text-center shadow-lg">
-            <p className="text-[#35063e]/70">No submissions found</p>
+          <div className="rounded-2xl border border-[#35063e]/20 bg-white p-12 text-center shadow-md">
+            <p className="text-[#35063e]/80">No submissions found</p>
           </div>
         ) : (
           <div className="space-y-4">
             {submissions.map((submission) => (
               <div
                 key={`${submission.type}:${submission.id}`}
-                className="bg-white/75 backdrop-blur-md border border-[#35063e]/15 rounded-2xl p-6 hover:border-gold-metallic/60 transition-all shadow-lg"
+                className="rounded-2xl border border-[#35063e]/25 bg-white p-6 shadow-md transition-colors hover:border-[#35063e]/40"
               >
-                <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-gold-metallic">
+                <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-2 flex flex-wrap items-center gap-3">
+                      <h3 className="font-display text-xl font-bold text-[#35063e]">
                         {formatType(submission.type)}
                       </h3>
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(
+                        className={`rounded-full border px-3 py-1 text-xs font-semibold ${getStatusColor(
                           submission.status
                         )}`}
                       >
                         {submission.status || 'pending'}
                       </span>
                     </div>
-                    <p className="text-sm text-[#35063e]/60">
-                      Submitted: {new Date(submission.submittedAt).toLocaleString()}
+                    <p className="text-sm font-medium text-[#35063e]/85">
+                      Submitted:{' '}
+                      <span className="text-[#1a1a1a]">
+                        {new Date(submission.submittedAt).toLocaleString()}
+                      </span>
                     </p>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex shrink-0 flex-wrap gap-2">
                     <select
                       value={submission.status || 'pending'}
                       onChange={(e) =>
                         updateStatus(submission.type, submission.id, e.target.value)
                       }
-                      className="px-3 py-2 bg-[#f3efe6] border border-[#35063e]/25 rounded-lg text-[#35063e] cursor-pointer text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-gold-metallic focus:border-transparent transition-all"
+                      className="cursor-pointer rounded-lg border border-[#35063e]/30 bg-[#f8f5ef] px-3 py-2 text-sm font-medium text-[#35063e] focus:border-gold-metallic focus:outline-none focus:ring-2 focus:ring-gold-metallic/40"
                     >
                       <option value="pending">Pending</option>
                       <option value="reviewed">Reviewed</option>
                       <option value="resolved">Resolved</option>
                     </select>
                     <button
+                      type="button"
                       onClick={() => deleteSubmission(submission.type, submission.id)}
-                      className="px-4 py-2 border-2 border-gold-metallic text-gold-metallic rounded-lg hover:bg-gold-metallic hover:text-black transition-colors font-semibold text-sm"
+                      className="rounded-lg border-2 border-[#35063e]/40 px-4 py-2 text-sm font-semibold text-[#35063e] transition-colors hover:border-gold-metallic hover:bg-gold-metallic/15"
                     >
                       Delete
                     </button>
                   </div>
                 </div>
 
-                {/* Submission Data */}
-                <div className="bg-[#f3efe6]/50 rounded-lg p-4 mt-4 border border-[#35063e]/10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="rounded-xl border border-[#35063e]/15 bg-[#f8f5ef] p-5">
+                  <div className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
                     {Object.entries(submission.data).map(([key, value]) => (
-                      <div key={key}>
-                        <p className="text-xs text-gold-metallic/80 uppercase mb-1 font-semibold">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                      <div
+                        key={key}
+                        className="flex flex-col gap-1.5 border-b border-[#35063e]/10 pb-4 last:border-b-0 sm:border-b-0 sm:pb-0"
+                      >
+                        <p className="text-[11px] font-bold uppercase tracking-wide text-[#35063e]">
+                          {formatFieldLabel(key)}
                         </p>
-                        <p className="text-[#35063e] break-words">
+                        <p className="text-base leading-relaxed text-[#1a1a1a] break-words">
                           {typeof value === 'object' && value !== null
-                            ? JSON.stringify(value)
+                            ? JSON.stringify(value, null, 2)
                             : String(value)}
                         </p>
                       </div>

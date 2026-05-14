@@ -432,12 +432,20 @@ body.theme-light [class*='bg-black'] h3,
 body.theme-light [class*='bg-black'] h4,
 body.theme-light [class*='rounded-2xl'][class*='bg-black'] .text-white,
 body.theme-light [class*='rounded-xl'][class*='bg-black'] .text-white,
-body.theme-light [class*='backdrop-blur'] .text-white,
-body.theme-light [class*='backdrop-blur'] p,
 body.theme-light div[class*='bg-black'] .text-white,
 body.theme-light section[class*='bg-black'] .text-white {
   color: #ffffff !important;
-  /* White inside dark containers */
+  /* White inside dark containers only — not every backdrop-blur (admin uses blur on light cards) */
+}
+
+/* Blur + dark background on same element */
+body.theme-light [class*='backdrop-blur'][class*='bg-black'] .text-white,
+body.theme-light [class*='backdrop-blur'][class*='bg-black'] p,
+body.theme-light [class*='backdrop-blur'][class*='bg-black'] span,
+body.theme-light [class*='bg-black'][class*='backdrop-blur'] .text-white,
+body.theme-light [class*='bg-black'][class*='backdrop-blur'] p,
+body.theme-light [class*='bg-black'][class*='backdrop-blur'] span {
+  color: #ffffff !important;
 }
 
 /*

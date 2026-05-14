@@ -55,7 +55,16 @@ export default function ContactPage() {
           relationshipStatus: 'Single'
         })
       } else {
-        setSubmitMessage('There was an error submitting your form. Please try again.')
+        let detail = 'There was an error submitting your form. Please try again.'
+        try {
+          const data = await response.json()
+          if (data && typeof data.message === 'string' && data.message.trim()) {
+            detail = data.message
+          }
+        } catch {
+          /* ignore */
+        }
+        setSubmitMessage(detail)
       }
     } catch (error) {
       setSubmitMessage('There was an error submitting your form. Please try again.')

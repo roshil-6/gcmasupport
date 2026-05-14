@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getSubmissions, updateSubmissionStatus, deleteSubmission, SubmissionType } from '@/lib/submissions'
+import {
+  getSubmissions,
+  updateSubmissionStatus,
+  deleteSubmission,
+  SubmissionType,
+  isSubmissionType,
+} from '@/lib/submissions'
 import { cookies } from 'next/headers'
 
 // Simple authentication check
@@ -18,9 +24,17 @@ export async function GET(request: NextRequest) {
 
   try {
     const { searchParams } = new URL(request.url)
-    const type = searchParams.get('type') as SubmissionType | null
+    const raw = searchParams.get('type')
+    if (raw !== null && raw !== '' && !isSubmissionType(raw)) {
+      return NextResponse.json(
+        { error: 'Invalid submission type', submissions: [] },
+        { status: 400 }
+      )
+    }
+    const type: SubmissionType | undefined =
+      raw && isSubmissionType(raw) ? raw : undefined
 
-    const submissions = getSubmissions(type || undefined)
+    const submissions = await getSubmissions(type)
     return NextResponse.json({ submissions })
   } catch (error) {
     console.error('Error fetching submissions:', error)
@@ -47,7 +61,11 @@ export async function PATCH(request: NextRequest) {
       )
     }
 
-    const success = updateSubmissionStatus(type, id, status)
+    if (!isSubmissionType(type)) {
+      return NextResponse.json({ error: 'Invalid submission type' }, { status: 400 })
+    }
+
+    const success = await updateSubmissionStatus(type, id, status)
     
     if (success) {
       return NextResponse.json({ success: true })
@@ -83,7 +101,11 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    const success = deleteSubmission(type, id)
+    if (!isSubmissionType(type)) {
+      return NextResponse.json({ error: 'Invalid submission type' }, { status: 400 })
+    }
+
+    const success = await deleteSubmission(type, id)
     
     if (success) {
       return NextResponse.json({ success: true })

@@ -34,16 +34,16 @@ export default function GetInTouchSection() {
       <div className="max-w-4xl mx-auto">
         {/* Image Section */}
         <div className="mb-8 glass-card rounded-2xl overflow-hidden">
-          <div className="relative h-64 md:h-96">
+          <div className="relative h-64 overflow-hidden md:h-96">
             <img
               src="/about/get-in-touch.jpg"
               alt="Get In Touch - Community and Connection"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
               loading="lazy"
             />
             <Link
               href="/contact"
-              className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center hover:bg-[#333333]/40 transition-colors"
+              className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50 transition-colors hover:bg-[#333333]/40"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 Get In Touch

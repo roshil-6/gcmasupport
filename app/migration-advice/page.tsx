@@ -27,8 +27,8 @@ export default function MigrationAdvicePage() {
         <div className="max-w-7xl mx-auto">
           <div className="relative w-full h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl mb-8">
             <Image
-              src="/migration-advice/banner.jpg"
-              alt="Migration Advice"
+              src="/migration-advice/hero-migration.jpg"
+              alt="Global migration and destination planning"
               fill
               className="object-cover"
               priority
@@ -185,7 +185,7 @@ export default function MigrationAdvicePage() {
           {/* CTA Section */}
           <div className="text-center bg-gold-metallic/10 border border-gold-metallic/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gold-metallic mb-4">Ready to Start Your Migration Journey?</h3>
-            <p className="text-white mb-6 max-w-2xl mx-auto">
+            <p className="mb-6 max-w-2xl mx-auto text-[#0f0c14]">
               Contact our migration experts today to discuss your options and get personalized guidance for your migration pathway.
             </p>
             <Link

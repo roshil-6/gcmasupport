@@ -37,14 +37,14 @@ export default function VisionMissionSection() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Mission Card */}
           <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
-            <div className="relative h-48">
+            <div className="relative h-48 overflow-hidden">
               <img
                 src="/about/mission.jpg"
                 alt="Mission - Empowering Migrants and Human Rights"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[#333333]/45 flex items-center justify-center">
+              <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/45">
                 <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                   Mission
                 </h3>
@@ -60,14 +60,14 @@ export default function VisionMissionSection() {
 
           {/* Vision Card */}
           <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
-            <div className="relative h-48">
+            <div className="relative h-48 overflow-hidden">
               <img
                 src="/about/vision.jpg"
                 alt="Vision - Global Leadership and Migration Awareness"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[#333333]/45 flex items-center justify-center">
+              <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/45">
                 <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                   Vision
                 </h3>

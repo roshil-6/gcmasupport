@@ -371,8 +371,8 @@ export default function PRCalculatorPage() {
               {result !== null && (
                 <div className="mt-6 p-6 rounded-lg bg-gold-metallic/10 border border-gold-metallic/40 text-center">
                   <p className="text-gold-metallic font-semibold mb-2">Estimated CRS score</p>
-                  <p className="text-4xl font-bold text-white">{result} points</p>
-                  <p className="text-sm text-white mt-4">
+                  <p className="text-4xl font-bold text-[#0f0c14]">{result} points</p>
+                  <p className="mt-4 text-sm text-[#0f0c14]/85">
                     {result >= 470
                       ? 'Strong score range for many draws — confirm with the official CRS tool.'
                       : result >= 400

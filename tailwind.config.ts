@@ -32,6 +32,7 @@ const config: Config = {
           900: '#ff8f00',
           DEFAULT: '#d4af37',
           metallic: '#c9a961',
+          rich: '#b8860b',
         },
       },
       backgroundImage: {

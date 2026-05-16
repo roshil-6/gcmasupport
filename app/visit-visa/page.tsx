@@ -263,10 +263,10 @@ export default function VisitVisaPage() {
           {/* CTA Section */}
           <div className="text-center bg-gold-metallic/10 border border-gold-metallic/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gold-metallic mb-4">Ready to Start Your Journey?</h3>
-            <p className="text-white mb-2 max-w-2xl mx-auto">
+            <p className="mb-2 max-w-2xl mx-auto text-[#0f0c14]">
               Contact our visa experts today to discuss your visit visa requirements and get personalized guidance.
             </p>
-            <p className="text-white/80 text-sm mb-6 max-w-2xl mx-auto">
+            <p className="mb-6 max-w-2xl mx-auto text-sm leading-relaxed text-[#0f0c14]/85">
               We offer free consultations to assess your eligibility and provide detailed information about the application process, required documents, and processing times for your destination.
             </p>
             <Link

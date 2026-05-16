@@ -350,7 +350,7 @@ export default function EnglishAcademyPage() {
             />
             <div className="flex flex-col justify-center text-center">
               <h3 className="mb-4 text-2xl font-bold text-gold-metallic">Prefer to email or visit?</h3>
-              <p className="mx-auto mb-6 max-w-md text-white">
+              <p className="mx-auto mb-6 max-w-md text-[#0f0c14]">
                 Use the contact page for full details or visit us — we will match you to the right batch and exam track.
               </p>
               <Link

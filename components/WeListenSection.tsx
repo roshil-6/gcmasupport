@@ -32,14 +32,14 @@ export default function WeListenSection() {
       <div className="max-w-4xl mx-auto">
         {/* Image Section */}
         <div className="mb-8 glass-card rounded-2xl overflow-hidden">
-          <div className="relative h-64 md:h-96">
+          <div className="relative h-64 overflow-hidden md:h-96">
             <img
               src="/home/we-listen.jpg"
               alt="We Listen. We Care. - Empathy and Support"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
+            <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
               <div className="text-center px-4">
                 <h2 className="text-4xl md:text-5xl font-bold text-gold-metallic mb-4 drop-shadow-lg">
                   We Listen. We Care.

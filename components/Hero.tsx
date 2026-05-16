@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import HeroMobileParticles from '@/components/HeroMobileParticles'
 
 const heroImageCandidates = [
   '/logo_statue.png',
@@ -9,12 +10,18 @@ const heroImageCandidates = [
   '/hero-background.jpeg',
 ]
 
-const primaryLinks = [
+type PrimaryNavLink = { href: string; label: string; compactLabel?: string }
+
+const primaryLinks: PrimaryNavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
-  { href: '/gcma-projects', label: 'GCMA Projects' },
-  { href: '/calculators/pr-calculator', label: 'PR Calculator' },
-  { href: '/calculators/canada-points', label: 'Canada Points Calculator' },
+  { href: '/gcma-projects', label: 'GCMA Projects', compactLabel: 'Projects' },
+  { href: '/calculators/pr-calculator', label: 'PR Calculator', compactLabel: 'PR calc' },
+  {
+    href: '/calculators/canada-points',
+    label: 'Canada Points Calculator',
+    compactLabel: 'Canada points',
+  },
   { href: '/contact', label: 'Contact Us' },
 ]
 
@@ -44,10 +51,10 @@ const nursingLinks = [
 ]
 
 const navLinkClass =
-  'shrink-0 whitespace-nowrap px-3 py-2 text-xs font-semibold text-gold-metallic drop-shadow-md transition-colors hover:text-gold-bright sm:px-4 sm:text-sm md:text-base'
+  'shrink-0 whitespace-nowrap rounded-md px-1.5 py-1.5 text-xs font-semibold text-gold-rich transition-colors hover:text-gold hover:underline hover:decoration-gold-rich/90 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-rich/50 sm:px-2 sm:py-1.5 sm:text-sm lg:px-2.5 lg:py-2 lg:text-base'
 
 const mobileNavLinkClass =
-  'block rounded-lg border border-gold-metallic/25 px-4 py-3 text-sm font-semibold text-gold-metallic transition-colors hover:bg-gold-metallic/10'
+  'block rounded-lg border border-gold-rich/30 px-4 py-3 text-sm font-semibold text-gold-rich transition-colors hover:bg-gold-rich/10'
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -96,16 +103,21 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative z-10 min-h-[100dvh] overflow-hidden hero-background md:h-screen md:min-h-screen"
+      className="relative z-10 min-h-[100dvh] overflow-hidden md:overflow-visible hero-background md:h-screen md:min-h-screen"
     >
-      <div className="absolute left-0 right-0 top-0 z-40 border-b border-gold-metallic/25 bg-[#f9f2e7]/95 px-3 py-3 backdrop-blur md:hidden">
+      {/* Desktop: pure white band behind nav */}
+      <div
+        className="hero-header-luxe absolute inset-x-0 top-0 z-20 hidden h-[5.75rem] md:block"
+        aria-hidden
+      />
+      <div className="hero-header-luxe absolute left-0 right-0 top-0 z-40 px-3 py-3 md:hidden">
         <div className="flex items-center justify-between gap-3">
-          <Link href="/" className="text-sm font-bold text-gold-metallic" onClick={closeMobileMenu}>
+          <Link href="/" className="text-sm font-bold text-gold-rich" onClick={closeMobileMenu}>
             GCMA
           </Link>
           <button
             type="button"
-            className="rounded-lg border border-gold-metallic/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-metallic"
+            className="rounded-lg border border-gold-rich/45 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-rich"
             aria-expanded={mobileMenuOpen}
             aria-controls="hero-mobile-menu"
             onClick={() => setMobileMenuOpen((open) => !open)}
@@ -166,91 +178,108 @@ export default function Hero() {
         </div>
       ) : null}
 
-      <nav className="absolute left-0 right-0 top-6 z-30 hidden px-8 md:block">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-6">
-          {primaryLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={navLinkClass}>
-              {link.label}
-            </Link>
-          ))}
-
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setShowServicesMenu(!showServicesMenu)}
-              className={`${navLinkClass} flex items-center gap-2`}
-            >
-              Services
-              <svg
-                className={`h-4 w-4 transition-transform ${showServicesMenu ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {showServicesMenu ? (
-              <div className="absolute left-0 top-full z-40 mt-2 w-56 rounded-lg border border-gold-metallic/50 bg-white shadow-xl">
-                <div className="py-2">
-                  {serviceLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setShowServicesMenu(false)}
-                      className="block px-4 py-2 text-sm font-medium text-gold-metallic transition-colors hover:bg-gold-metallic/10 hover:text-gold-bright"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
+      <nav className="absolute left-0 right-0 top-6 z-30 hidden px-4 md:block">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="flex min-w-0 items-center justify-start gap-x-1 sm:gap-x-2">
+            <div className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="mx-auto flex w-max flex-nowrap items-center justify-start gap-x-1 sm:gap-x-2">
+                {primaryLinks.map((link) => (
+                  <Link key={link.href} href={link.href} className={navLinkClass}>
+                    {link.compactLabel ? (
+                      <>
+                        <span className="xl:hidden">{link.compactLabel}</span>
+                        <span className="hidden xl:inline">{link.label}</span>
+                      </>
+                    ) : (
+                      link.label
+                    )}
+                  </Link>
+                ))}
               </div>
-            ) : null}
-          </div>
+            </div>
 
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setShowNursingMenu(!showNursingMenu)}
-              className={`${navLinkClass} flex items-center gap-2`}
-            >
-              Global nursing registration
-              <svg
-                className={`h-4 w-4 transition-transform ${showNursingMenu ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <div className="relative shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowServicesMenu(!showServicesMenu)}
+                className={`${navLinkClass} flex items-center gap-1`}
+                aria-expanded={showServicesMenu}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+                Services
+                <svg
+                  className={`h-3.5 w-3.5 shrink-0 transition-transform sm:h-4 sm:w-4 ${showServicesMenu ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
 
-            {showNursingMenu ? (
-              <div className="absolute left-0 top-full z-40 mt-2 w-56 rounded-lg border border-gold-metallic/50 bg-white shadow-xl">
-                <div className="py-2">
-                  {nursingLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setShowNursingMenu(false)}
-                      className="block px-4 py-2 text-sm font-medium text-gold-metallic transition-colors hover:bg-gold-metallic/10 hover:text-gold-bright"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+              {showServicesMenu ? (
+                <div className="absolute left-0 top-full z-50 mt-2 max-h-[70vh] w-[min(18rem,calc(100vw-2rem))] overflow-y-auto rounded-lg border border-gold-metallic/50 bg-white shadow-xl sm:w-72">
+                  <div className="py-2">
+                    {serviceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setShowServicesMenu(false)}
+                        className="block px-4 py-2 text-sm font-medium text-gold-rich transition-colors hover:bg-gold-rich/10 hover:text-gold"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
+
+            <div className="relative shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowNursingMenu(!showNursingMenu)}
+                className={`${navLinkClass} flex items-center gap-1`}
+                aria-label="Global nursing registration"
+                aria-expanded={showNursingMenu}
+              >
+                <span className="hidden lg:inline">Global nursing registration</span>
+                <span className="lg:hidden">Nursing</span>
+                <svg
+                  className={`h-3.5 w-3.5 shrink-0 transition-transform sm:h-4 sm:w-4 ${showNursingMenu ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {showNursingMenu ? (
+                <div className="absolute right-0 top-full z-50 mt-2 w-56 rounded-lg border border-gold-metallic/50 bg-white shadow-xl lg:left-0 lg:right-auto">
+                  <div className="py-2">
+                    {nursingLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setShowNursingMenu(false)}
+                        className="block px-4 py-2 text-sm font-medium text-gold-rich transition-colors hover:bg-gold-rich/10 hover:text-gold"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </nav>
 
       {(showServicesMenu || showNursingMenu) && (
         <div
-          className="fixed inset-0 z-20 hidden md:block"
+          className="fixed inset-0 z-[25] hidden md:block"
           onClick={() => {
             setShowServicesMenu(false)
             setShowNursingMenu(false)
@@ -260,11 +289,13 @@ export default function Hero() {
 
       {hasHeroImage ? (
         <>
-          <div className="absolute inset-0 hidden md:block">
+          {/* Desktop: start image below floating nav (nav is absolute top-6 + pill height) so it does not cover the hero focal point */}
+          <div className="absolute inset-x-0 bottom-0 top-[5.75rem] z-0 hidden md:block">
+            <div className="hero-ledge-feather" aria-hidden />
             <img
               src={heroImage}
               alt="GCMA Hero"
-              className="h-full w-full object-cover object-center"
+              className="relative z-0 h-full w-full object-cover object-center"
               loading="eager"
               fetchPriority="high"
               decoding="async"
@@ -272,17 +303,18 @@ export default function Hero() {
                 setHeroImageIndex((current) => current + 1)
               }}
             />
-            <div className="absolute bottom-12 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
-              <Link href="/services#immigration-fraud" className="btn-gold block w-full px-8 py-4 text-center text-lg">
+            <div className="absolute bottom-5 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
+              <Link href="/services#immigration-fraud" className="btn-gold btn-gold-lighter block w-full px-8 py-4 text-center text-lg">
                 Report scam
               </Link>
             </div>
           </div>
 
-          <div className="flex min-h-[100dvh] flex-col bg-[#f9f2e7] md:hidden">
+          <div className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#f9f2e7] md:hidden">
+            <HeroMobileParticles />
             <div className="h-14 shrink-0" aria-hidden="true" />
 
-            <div className="flex flex-1 flex-col px-4 pb-28 pt-4">
+            <div className="relative z-10 flex flex-1 flex-col px-4 pb-28 pt-4">
               <div className="mx-auto flex w-full max-w-md justify-center">
                 <img
                   src={heroImageCandidates[0]}
@@ -322,10 +354,10 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-gold-metallic/20 bg-[#f9f2e7]/95 px-4 py-3 backdrop-blur">
+            <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-gold-metallic/20 bg-[#f9f2e7]/95 px-4 pb-3 pt-7 backdrop-blur">
               <Link
                 href="/services#immigration-fraud"
-                className="btn-gold block w-full px-6 py-3 text-center text-base"
+                className="btn-gold btn-gold-lighter block w-full px-6 py-3 text-center text-base"
                 onClick={closeMobileMenu}
               >
                 Report scam

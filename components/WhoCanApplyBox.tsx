@@ -33,9 +33,14 @@ export default function WhoCanApplyBox({
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Inline image card (not a full-width boxed section) */}
         <div className="lg:col-span-4 rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#f9f2e7] shadow-xl">
-          <div className="relative h-56 md:h-72">
-            <Image src={imageSrc} alt={`Who can apply - ${country}`} fill className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/20 via-[#333333]/0 to-transparent" />
+          <div className="relative h-56 md:h-72 overflow-hidden">
+            <Image
+              src={imageSrc}
+              alt={`Who can apply - ${country}`}
+              fill
+              className="object-cover object-center scale-[1.03]"
+            />
+            <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/20 via-[#333333]/0 to-transparent" />
           </div>
           <div className="p-5">
             <p className="text-sm text-black">

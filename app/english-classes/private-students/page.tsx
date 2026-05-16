@@ -117,7 +117,7 @@ export default function EnglishClassesPrivateStudentsPage() {
             />
             <div className="flex flex-col justify-center text-center rounded-2xl border border-gold-metallic/30 bg-gold-metallic/10 p-8">
               <h3 className="text-2xl font-bold text-gold-metallic mb-4">Break the Silence — student signup</h3>
-              <p className="text-white mb-6 max-w-xl mx-auto">
+              <p className="mb-6 max-w-xl mx-auto text-[#0f0c14]">
                 For the volunteer student pairing program, apply on the home page.
               </p>
               <Link

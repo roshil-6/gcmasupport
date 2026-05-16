@@ -33,14 +33,14 @@ export default function AboutGCMSection() {
       <div className="max-w-4xl mx-auto">
         {/* Image Section */}
         <div className="mb-8 glass-card rounded-2xl overflow-hidden">
-          <div className="relative h-64 md:h-96">
+          <div className="relative h-64 overflow-hidden md:h-96">
             <img
               src="/about/about-gcm.jpg"
               alt="About GCMA - Humanitarian Organization"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
+            <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
               <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 About GCMA
               </h2>

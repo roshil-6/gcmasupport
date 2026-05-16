@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      // Avoid Search Console / crawlers hitting a non-canonical path and getting HTML (404 page)
+      { source: '/sitemap', destination: '/sitemap.xml', permanent: true },
+    ]
+  },
   async rewrites() {
     return [{ source: '/favicon.ico', destination: '/favicon.svg' }]
   },

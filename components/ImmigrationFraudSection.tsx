@@ -135,14 +135,14 @@ export default function ImmigrationFraudSection() {
             tabIndex={0}
             aria-label="Click to view details about Legal Protection & Justice"
           >
-            <div className="relative h-64 md:h-96">
+            <div className="relative h-64 overflow-hidden md:h-96">
               <img
                 src="/about/immigration-fraud.jpg"
                 alt="Legal Protection & Justice - Immigration Fraud Complaint"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[#333333]/50 flex items-center justify-center">
+              <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
                 <div className="text-center p-8">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -100,7 +100,7 @@ export default function MigrationScamReportForm() {
                 value={formData.contactNumber}
                 onChange={handleInputChange}
                 className="form-input"
-                placeholder="e.g., +1 234 567 8900"
+                placeholder="Phone number (include country code)"
               />
             </div>
 

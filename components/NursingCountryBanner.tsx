@@ -15,10 +15,16 @@ export default function NursingCountryBanner({
 }) {
   return (
     <div className="relative w-full h-[260px] md:h-[340px] rounded-3xl overflow-hidden shadow-2xl">
-      <Image src={bannerSrc} alt={`Nursing banner - ${country}`} fill className="object-cover" priority />
+      <Image
+        src={bannerSrc}
+        alt={`Nursing banner - ${country}`}
+        fill
+        className="object-cover object-center scale-[1.03]"
+        priority
+      />
       {/* Keep image visible: use lighter overlays (no heavy darkening) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/35 via-[#333333]/10 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/35 via-[#333333]/0 to-transparent" />
+      <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-r from-[#333333]/35 via-[#333333]/10 to-transparent" />
+      <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/35 via-[#333333]/0 to-transparent" />
 
       <div className="absolute inset-0 flex items-end md:items-center">
         <div className="w-full px-5 md:px-10 pb-6 md:pb-0 max-w-7xl mx-auto">

@@ -116,7 +116,7 @@ export default function TutorsPage() {
           {/* CTA Section */}
           <div className="text-center bg-gold-metallic/10 border border-gold-metallic/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gold-metallic mb-4">Join Our Mission</h3>
-            <p className="text-white mb-6 max-w-2xl mx-auto">
+            <p className="mb-6 max-w-2xl mx-auto text-[#0f0c14]">
               Become a GCMA tutor and help us serve society through education. Contact us to learn more about joining our tutor program.
             </p>
             <Link

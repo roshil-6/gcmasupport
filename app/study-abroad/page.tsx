@@ -632,8 +632,8 @@ export default function StudyAbroadPage() {
               </div>
               <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
                 <Image
-                  src="/study-abroad/banner.jpg"
-                  alt="Connect with us"
+                  src="/study-abroad/consultation.jpg"
+                  alt="Students consulting with a study abroad advisor"
                   fill
                   className="object-cover"
                 />

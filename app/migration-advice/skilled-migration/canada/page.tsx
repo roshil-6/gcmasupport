@@ -172,7 +172,7 @@ export default function CanadaSkilledMigrationPage() {
           {/* CTA Section */}
           <div className="text-center bg-gold-metallic/10 border border-gold-metallic/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gold-metallic mb-4">Ready to Migrate to Canada?</h3>
-            <p className="text-white mb-6 max-w-2xl mx-auto">
+            <p className="mb-6 max-w-2xl mx-auto text-[#0f0c14]">
               Our expert migration advisors can help you navigate Canada's Express Entry system. Contact us for a comprehensive CRS assessment and personalized guidance.
             </p>
             <Link

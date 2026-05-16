@@ -19,6 +19,7 @@ const IMAGES = [
   { dest: 'study-abroad/pexels-6147369.jpg', url: 'https://images.pexels.com/photos/6147369/pexels-photo-6147369.jpeg' },
   { dest: 'study-abroad/pexels-267885.jpg', url: 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg' },
   { dest: 'study-abroad/multi-country-options.jpg', url: 'https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg' },
+  { dest: 'migration-advice/hero-migration.jpg', url: 'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop' },
   { dest: 'study-abroad/document-support.jpg', url: 'https://images.pexels.com/photos/5905883/pexels-photo-5905883.jpeg' },
   { dest: 'study-abroad/career-counseling.jpg', url: 'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg' },
   { dest: 'study-abroad/accommodation-help.jpg', url: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg' },
@@ -82,6 +83,7 @@ const IMAGES = [
   { dest: 'english-classes/adults/tracks/pte-academics.jpg', url: 'https://images.pexels.com/photos/8197554/pexels-photo-8197554.jpeg' },
   { dest: 'english-classes/adults/tracks/ielts-general.jpg', url: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg' },
   { dest: 'english-classes/adults/tracks/ielts-academics.jpg', url: 'https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg' },
+  { dest: 'english-classes/govt-students/feature1.jpg', url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200' },
 ]
 
 function download(url, dest) {

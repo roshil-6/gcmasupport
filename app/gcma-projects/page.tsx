@@ -133,7 +133,7 @@ export default function GCMAProjectsPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-gold-metallic/10 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Project Goals</h4>
-                <ul className="space-y-2 text-white">
+                <ul className="space-y-2 text-[#0f0c14]">
                   <li className="flex items-start gap-2">
                     <span className="text-gold-metallic mt-1">✓</span>
                     <span>Provide safe and secure shelter</span>
@@ -154,10 +154,10 @@ export default function GCMAProjectsPage() {
               </div>
               <div className="bg-gold-metallic/10 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Impact</h4>
-                <p className="text-white mb-4">
+                <p className="mb-4 text-[#0f0c14]">
                   Through Aswasabhavan, we have touched hundreds of lives, providing hope and a pathway to dignity. Our dedicated team works tirelessly to ensure every resident receives personalized care and support.
                 </p>
-                <p className="text-white">
+                <p className="text-[#0f0c14]">
                   The project stands as a testament to our commitment to humanitarian service and social welfare.
                 </p>
               </div>
@@ -357,7 +357,7 @@ export default function GCMAProjectsPage() {
                   </div>
                   <div className="p-4 text-center">
                     <h4 className="text-lg font-semibold text-gold-metallic mb-2">Global Reach</h4>
-                    <p className="text-white/80 text-sm leading-relaxed">Supporting migrants across continents with localized expertise</p>
+                    <p className="text-sm leading-relaxed text-[#0f0c14]/85">Supporting migrants across continents with localized expertise</p>
                   </div>
                 </div>
 
@@ -373,7 +373,7 @@ export default function GCMAProjectsPage() {
                   </div>
                   <div className="p-4 text-center">
                     <h4 className="text-lg font-semibold text-gold-metallic mb-2">Human Rights</h4>
-                    <p className="text-white/80 text-sm leading-relaxed">Championing dignity and protection for all individuals</p>
+                    <p className="text-sm leading-relaxed text-[#0f0c14]/85">Championing dignity and protection for all individuals</p>
                   </div>
                 </div>
 
@@ -389,7 +389,7 @@ export default function GCMAProjectsPage() {
                   </div>
                   <div className="p-4 text-center">
                     <h4 className="text-lg font-semibold text-gold-metallic mb-2">Education</h4>
-                    <p className="text-white/80 text-sm leading-relaxed">Empowering through knowledge and awareness programs</p>
+                    <p className="text-sm leading-relaxed text-[#0f0c14]/85">Empowering through knowledge and awareness programs</p>
                   </div>
                 </div>
               </div>

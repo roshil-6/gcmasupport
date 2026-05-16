@@ -15,7 +15,6 @@ type CoreService = {
   explanationTitle: string
   explanationContent: string
   features: string[]
-  quote: string
   supportHeading: string
   supportText: string
   ctaLabel: string
@@ -39,8 +38,6 @@ const coreServices: CoreService[] = [
       'Clear explanation of lawful routes, timelines, and documentation',
       'Warnings about unrealistic promises and unethical recruitment practices',
     ],
-    quote:
-      'GCMA helped me understand which migration routes were genuine before I committed time or money.',
     supportHeading: 'How GCMA supports',
     supportText:
       'We answer migration questions with transparent guidance, practical next steps, and referrals to trusted services when specialist help is needed.',
@@ -62,8 +59,6 @@ const coreServices: CoreService[] = [
       'Structured intake so key facts are captured clearly and safely',
       'Awareness support that helps others avoid similar exploitation',
     ],
-    quote:
-      'I finally had a safe place to report what happened without fear of being dismissed.',
     supportHeading: 'How GCMA supports',
     supportText:
       'We document concerns responsibly, guide you through what to report, and connect reports to awareness and accountability efforts that protect migrants.',
@@ -85,8 +80,6 @@ const coreServices: CoreService[] = [
       'Responsible guidance before you sign agreements or pay fees',
       'Support for families and workers facing urgent migration questions',
     ],
-    quote:
-      'The advisory conversation gave me clarity on my options and what to do next.',
     supportHeading: 'How GCMA supports',
     supportText:
       'Our advisory team helps you ask the right questions, understand legal boundaries, and move forward with informed decisions instead of pressure.',
@@ -176,10 +169,10 @@ export default function CoreServicesSection() {
                 <img
                   src={service.imageSrc}
                   alt={service.imageAlt}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-[#333333]/50" />
+                <div className="absolute -bottom-px left-0 right-0 top-0 bg-[#333333]/50" />
                 <div className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold-metallic/50 bg-gold-metallic/20 backdrop-blur-md">
                   <ServiceIcon serviceId={service.id} />
                 </div>
@@ -213,11 +206,6 @@ export default function CoreServicesSection() {
                     ))}
                   </ul>
                 </div>
-
-                <blockquote className="rounded-xl border border-gold-metallic/25 bg-gold-metallic/10 px-4 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-metallic/80">Support quote</p>
-                  <p className="mt-2 text-sm italic leading-relaxed">&ldquo;{service.quote}&rdquo;</p>
-                </blockquote>
 
                 <div>
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-metallic/85">

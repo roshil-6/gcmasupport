@@ -178,7 +178,7 @@ export default function HexagonBackground() {
       const maxDistanceSq = maxDistance * maxDistance
       const parallaxIntensity = isMobileRef.current ? 18 : 28
       const repulsionStrength = isMobileRef.current ? 26 : 36
-      const animateFloat = !reduceMotionRef.current && !isScrollingRef.current
+      const animateFloat = !reduceMotionRef.current && !isScrollingRef.current && !isMobileRef.current
 
       hexagonsRef.current.forEach((hex, index) => {
         const dx = mouseX - hex.baseX
@@ -189,7 +189,7 @@ export default function HexagonBackground() {
         let offsetY = 0
         let glowOpacity = hex.opacity
 
-        if (distanceSq < maxDistanceSq && distanceSq > 0) {
+        if (!isMobileRef.current && distanceSq < maxDistanceSq && distanceSq > 0) {
           const distance = Math.sqrt(distanceSq)
           const influence = 1 - distance / maxDistance
           const repulsionFactor = Math.min(1, repulsionStrength / distance)
@@ -222,7 +222,7 @@ export default function HexagonBackground() {
         let y = spark.y
         let opacity = spark.opacity
 
-        if (distanceSq < maxDistanceSq && distanceSq > 0) {
+        if (!isMobileRef.current && distanceSq < maxDistanceSq && distanceSq > 0) {
           const distance = Math.sqrt(distanceSq)
           const influence = 1 - distance / maxDistance
           const push = influence * 0.35
@@ -271,23 +271,19 @@ export default function HexagonBackground() {
     }
 
     const onResize = () => resizeCanvas()
-    const onPointerMove = (event: PointerEvent) => handlePointerEvent(event.clientX, event.clientY)
-    const onTouchMove = (event: TouchEvent) => {
-      if (event.touches.length > 0) {
-        handlePointerEvent(event.touches[0].clientX, event.touches[0].clientY)
-      }
+    const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return
+      handlePointerEvent(event.clientX, event.clientY)
     }
 
     window.addEventListener('resize', onResize)
     window.addEventListener('pointermove', onPointerMove, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
     window.addEventListener('scroll', handleScroll, { passive: true })
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
       window.removeEventListener('resize', onResize)
       window.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('touchmove', onTouchMove)
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('visibilitychange', handleVisibility)
       if (animationFrameRef.current) {

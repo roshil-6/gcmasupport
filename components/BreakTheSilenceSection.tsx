@@ -104,14 +104,14 @@ export default function BreakTheSilenceSection() {
             tabIndex={0}
             aria-label="Click to view details about Communication & Confidence"
           >
-            <div className="relative h-64 md:h-80">
+            <div className="relative h-64 overflow-hidden md:h-80">
               <img
                 src="/home/break-silence-main.jpg"
                 alt="Break the Silence - English Communication and Learning"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-[#333333]/70 flex items-center justify-center">
+              <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/70">
                 <div className="text-center p-8 relative w-full h-full flex items-center justify-center">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50 backdrop-blur-sm">
                     <svg className="w-12 h-12 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,14 +153,14 @@ export default function BreakTheSilenceSection() {
                 : 'border-gold-metallic/30 hover:border-gold-metallic/60'
                 }`}
             >
-              <div className="relative h-32">
+              <div className="relative h-32 overflow-hidden">
                 <img
                   src="/home/break-silence-student.jpg"
                   alt="I Am a Student - English Learning"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-[#333333]/40"></div>
+                <div className="absolute -bottom-px left-0 right-0 top-0 bg-[#333333]/40"></div>
               </div>
               <div className="p-6 bg-[#333333]/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">
@@ -180,14 +180,14 @@ export default function BreakTheSilenceSection() {
                 : 'border-gold-metallic/30 hover:border-gold-metallic/60'
                 }`}
             >
-              <div className="relative h-32">
+              <div className="relative h-32 overflow-hidden">
                 <img
                   src="/home/break-silence-tutor.jpg"
                   alt="I Am a Tutor - Volunteer Teaching"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-[#333333]/40"></div>
+                <div className="absolute -bottom-px left-0 right-0 top-0 bg-[#333333]/40"></div>
               </div>
               <div className="p-6 bg-[#333333]/75">
                 <h3 className="text-2xl font-bold text-gold-metallic mb-2">

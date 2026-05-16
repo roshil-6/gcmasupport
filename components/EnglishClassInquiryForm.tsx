@@ -101,7 +101,7 @@ export default function EnglishClassInquiryForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={inputClass}
-            placeholder="you@example.com"
+            placeholder="Email address"
             disabled={isSubmitting || success}
           />
         </div>

@@ -51,7 +51,7 @@ export default function WelfareProgramCard({
       className="group flex flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-[#333333]/80 shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
     >
       <div
-        className="relative h-52 md:h-56 cursor-pointer"
+        className="relative h-52 md:h-56 cursor-pointer overflow-hidden"
         onClick={() => onToggleExplanation(!showExplanation)}
         onKeyDown={(event) => {
           if (event.key === 'Enter' || event.key === ' ') {
@@ -66,10 +66,11 @@ export default function WelfareProgramCard({
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/90 via-[#333333]/45 to-[#333333]/10" />
+        {/* -bottom-px + taller image: removes hairline gap where light page bg showed under overlay */}
+        <div className="pointer-events-none absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/45 to-[#333333]/10" />
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6">
           <div className="min-w-0">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">

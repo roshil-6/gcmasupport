@@ -32,6 +32,7 @@ const routes = [
   '/break-the-silence/student-tutor',
   '/calculators/canada-points',
   '/calculators/pr-calculator',
+  '/gcma-projects',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

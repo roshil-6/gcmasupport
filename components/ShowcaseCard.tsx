@@ -111,20 +111,15 @@ export default function ShowcaseCard({
     <div
       className={`rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333] shadow-xl ${href ? 'hover:border-gold-metallic transition-all' : ''} ${className}`}
     >
-      <div
-        className={`relative isolate overflow-hidden w-full ${isFlagImage ? 'h-56 bg-[#0b121f]' : 'h-48'}`}
-        style={{ position: 'relative' }}
-      >
+      <div className="relative isolate h-48 w-full overflow-hidden" style={{ position: 'relative' }}>
         {isFlagImage ? (
-          <div className="flex h-full items-center justify-center px-6 pt-5 pb-20">
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className="max-h-28 w-auto max-w-full object-contain"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="lazy"
+            decoding="async"
+          />
         ) : (
           <Image
             src={imageSrc}
@@ -132,19 +127,29 @@ export default function ShowcaseCard({
             fill
             sizes="(max-width: 768px) 100vw, 320px"
             loading="lazy"
-            className="object-cover"
+            className="object-cover object-center scale-[1.03]"
           />
         )}
         {isFlagImage ? (
-          <div className="absolute inset-x-0 bottom-0 z-10 border-t border-gold-metallic/25 bg-[#333333]/95 px-4 py-3">
-            {eyebrow ? (
-              <p className="text-sm font-bold text-white mb-1">{eyebrow}</p>
-            ) : null}
-            <h3 className="text-2xl font-extrabold text-white">{title}</h3>
-          </div>
+          <>
+            <div
+              className="pointer-events-none absolute -bottom-px left-0 right-0 top-0 z-[1] bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+              aria-hidden
+            />
+            <div className="absolute bottom-4 left-4 right-4 z-10">
+              {eyebrow ? (
+                <p className="mb-1 text-sm font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                  {eyebrow}
+                </p>
+              ) : null}
+              <h3 className="text-2xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                {title}
+              </h3>
+            </div>
+          </>
         ) : (
           <>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/70 to-[#333333]/35" />
+            <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/70 to-[#333333]/35" />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
                 <p className="text-sm font-bold text-white mb-1 drop-shadow-2xl">{eyebrow}</p>

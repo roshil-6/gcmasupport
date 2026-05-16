@@ -15,26 +15,6 @@ const serviceLinks = [
   { href: '/tutors', label: 'Volunteer tutors' },
 ]
 
-const supportQuotes = [
-  {
-    quote:
-      'GCMA gave me clear answers before I paid anyone, and that honesty made all the difference.',
-    label: 'Skilled worker guidance',
-  },
-  {
-    quote:
-      'Knowing where to report fraud helped our family warn others and avoid the same trap.',
-    label: 'Migration awareness support',
-  },
-]
-
-const gcmaFeatures = [
-  'Ethical migration guidance without false promises',
-  'Confidential reporting for immigration fraud and scams',
-  'Study abroad, nursing, and skilled migration pathways',
-  'Humanitarian aid, English learning, and volunteer support',
-]
-
 const gcmaSupportPoints = [
   {
     title: 'Awareness first',
@@ -48,6 +28,13 @@ const gcmaSupportPoints = [
     title: 'Ongoing welfare support',
     text: 'From travel planning to charity assistance, GCMA stays focused on people, not profit.',
   },
+]
+
+const gcmaFeatures = [
+  'Ethical migration guidance without false promises',
+  'Confidential reporting for immigration fraud and scams',
+  'Study abroad, nursing, and skilled migration pathways',
+  'Humanitarian aid, English learning, and volunteer support',
 ]
 
 function MobileSection({
@@ -83,28 +70,27 @@ export default function HomeSeoIntro() {
   return (
     <section aria-labelledby="gcma-home-intro" className="relative z-10 px-3 py-5 sm:px-4 sm:py-6 md:py-8">
       <div className="glass-card mx-auto max-w-7xl overflow-hidden rounded-2xl">
-        <div className="relative h-40 sm:h-48 md:h-60">
+        <div className="relative h-40 overflow-hidden sm:h-48 md:h-60">
           <img
             src="/home/seo-intro.jpg"
             alt="Community members and volunteers supporting migration awareness and social welfare"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/55 via-[#333333]/15 to-transparent" />
+          <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/55 via-[#333333]/15 to-transparent" />
         </div>
 
         <div className="grid gap-5 p-4 sm:gap-6 sm:p-5 md:p-6 lg:grid-cols-3 lg:items-stretch lg:gap-0 lg:divide-x lg:divide-gold-metallic/20">
-          <MobileSection title="Voices from the community" className="order-2 lg:order-1 lg:pr-6">
+          <MobileSection title="What we focus on" className="order-2 lg:order-1 lg:pr-6">
             <div className="flex flex-col gap-4">
-              {supportQuotes.map((item) => (
-                <blockquote
-                  key={item.label}
+              {gcmaSupportPoints.map((item) => (
+                <div
+                  key={item.title}
                   className="rounded-xl border border-gold-metallic/25 bg-gold-metallic/10 px-4 py-4"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-metallic/80">Support quote</p>
-                  <p className="mt-2 text-sm italic leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
-                  <p className="mt-3 text-xs font-medium text-gold-metallic/85">{item.label}</p>
-                </blockquote>
+                  <p className="text-sm font-semibold text-gold-metallic">{item.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed">{item.text}</p>
+                </div>
               ))}
             </div>
           </MobileSection>
@@ -147,15 +133,6 @@ export default function HomeSeoIntro() {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-4 space-y-4 border-t border-gold-metallic/20 pt-4">
-              {gcmaSupportPoints.map((point) => (
-                <div key={point.title}>
-                  <p className="text-sm font-semibold text-gold-metallic">{point.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed">{point.text}</p>
-                </div>
-              ))}
-            </div>
           </MobileSection>
         </div>
 
@@ -165,13 +142,13 @@ export default function HomeSeoIntro() {
           </p>
           <nav
             aria-label="Primary service areas"
-            className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:flex lg:flex-wrap lg:gap-3 xl:gap-4"
+            className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-3 xl:gap-4"
           >
             {serviceLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="btn-gold-outline inline-flex min-h-11 w-full items-center justify-center px-3 py-2.5 text-center text-xs sm:px-4 sm:text-sm lg:w-auto lg:min-h-0"
+                className="btn-gold-outline flex min-h-11 w-full items-center justify-center px-3 py-2.5 text-center text-xs sm:px-4 sm:text-sm"
               >
                 {link.label}
               </Link>

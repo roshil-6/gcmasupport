@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { thankYouPathFromSubmissionsApi } from '@/lib/thank-you-path'
 
 type EnglishClassInquiryFormProps = {
   apiEndpoint: string
@@ -13,12 +15,12 @@ export default function EnglishClassInquiryForm({
   headline,
   subline,
 }: EnglishClassInquiryFormProps) {
+  const router = useRouter()
   const [fullName, setFullName] = useState('')
   const [contactNumber, setContactNumber] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,12 +36,11 @@ export default function EnglishClassInquiryForm({
       const res = await fetch(apiEndpoint, { method: 'POST', body: fd })
       const data = await res.json()
       if (res.ok && data.success) {
-        setSuccess(true)
         setFullName('')
         setContactNumber('')
         setEmail('')
         setMessage('')
-        setTimeout(() => setSuccess(false), 4000)
+        router.push(thankYouPathFromSubmissionsApi(apiEndpoint) ?? '/thank-you')
       } else {
         throw new Error(data.error || 'Something went wrong')
       }
@@ -58,11 +59,6 @@ export default function EnglishClassInquiryForm({
       <h3 className="mb-1 text-xl font-bold text-gold-metallic md:text-2xl">{headline}</h3>
       {subline ? <p className="mb-6 text-sm text-slate-200 md:text-base">{subline}</p> : null}
 
-      {success ? (
-        <p className="mb-4 rounded-lg border border-gold-metallic/50 bg-gold-metallic/15 py-3 text-center font-semibold text-gold-metallic">
-          Thank you — we will contact you soon.
-        </p>
-      ) : null}
       {error ? (
         <p className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 py-3 text-center text-sm text-red-200">
           {error}
@@ -79,7 +75,7 @@ export default function EnglishClassInquiryForm({
             onChange={(e) => setFullName(e.target.value)}
             className={inputClass}
             placeholder="Your name"
-            disabled={isSubmitting || success}
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -91,7 +87,7 @@ export default function EnglishClassInquiryForm({
             onChange={(e) => setContactNumber(e.target.value)}
             className={inputClass}
             placeholder="Contact number"
-            disabled={isSubmitting || success}
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -102,7 +98,7 @@ export default function EnglishClassInquiryForm({
             onChange={(e) => setEmail(e.target.value)}
             className={inputClass}
             placeholder="Email address"
-            disabled={isSubmitting || success}
+            disabled={isSubmitting}
           />
         </div>
         <div>
@@ -113,12 +109,12 @@ export default function EnglishClassInquiryForm({
             rows={3}
             className={`${inputClass} resize-none`}
             placeholder="Class level, preferred timing, or questions"
-            disabled={isSubmitting || success}
+            disabled={isSubmitting}
           />
         </div>
         <button
           type="submit"
-          disabled={isSubmitting || success}
+          disabled={isSubmitting}
           className="w-full rounded-lg bg-gold-metallic py-3 font-semibold text-black transition hover:bg-gold-bright disabled:opacity-50"
         >
           {isSubmitting ? 'Sending…' : 'Send inquiry'}

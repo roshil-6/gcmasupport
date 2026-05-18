@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { scrollIntoViewSafe } from '@/lib/scroll'
+import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 
 export default function BreakTheSilenceSection() {
@@ -251,13 +253,13 @@ function StudentForm({
   onClose: () => void
   initialRoleType?: 'student' | 'student-tutor'
 }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
     learningGoals: '',
     roleType: initialRoleType,
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -286,26 +288,24 @@ function StudentForm({
       formDataToSend.append('learningGoals', formData.learningGoals)
       formDataToSend.append('roleType', formData.roleType)
 
+      const body = await prepareSubmissionFormData(formDataToSend, 'bts-student')
+
       const response = await fetch(BTS_STUDENT_API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
 
       const data = await response.json()
 
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           name: '',
           contactNumber: '',
           learningGoals: '',
           roleType: initialRoleType,
         })
-
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          onClose()
-        }, 3000)
+        onClose()
+        router.push(thankYouSearchPath('bts-student'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -322,13 +322,6 @@ function StudentForm({
         Student Application Form
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {submitSuccess && (
-          <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-            <p className="text-gold-metallic font-semibold text-center">
-              ✓ Application submitted successfully! Thank you for your submission.
-            </p>
-          </div>
-        )}
         <div>
           <label className="block text-sm font-medium text-gold-metallic mb-2">
             I Am a *
@@ -344,7 +337,7 @@ function StudentForm({
               }))
             }
             className="form-input"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           >
             <option value="student">Student</option>
             <option value="student-tutor">Student Tutor</option>
@@ -362,7 +355,7 @@ function StudentForm({
             onChange={handleInputChange}
             className="form-input"
             placeholder="Enter your full name"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -378,7 +371,7 @@ function StudentForm({
             onChange={handleInputChange}
             className="form-input"
             placeholder="Enter your contact number"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -394,13 +387,13 @@ function StudentForm({
             rows={4}
             className="form-input resize-none"
             placeholder="Describe your learning goals and what you hope to achieve"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
         <div className="flex gap-3">
-          <button type="submit" className="btn-gold flex-1" disabled={isSubmitting || submitSuccess}>
-            {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+          <button type="submit" className="btn-gold flex-1" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit Application'}
           </button>
           <button
             type="button"
@@ -419,13 +412,13 @@ function StudentForm({
 const BTS_TUTOR_API_ENDPOINT = '/api/submissions/bts-tutor'
 
 function TutorForm({ onClose }: { onClose: () => void }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
     areaOfExpertise: '',
     availability: '',
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -448,26 +441,24 @@ function TutorForm({ onClose }: { onClose: () => void }) {
       formDataToSend.append('areaOfExpertise', formData.areaOfExpertise)
       formDataToSend.append('availability', formData.availability)
 
+      const body = await prepareSubmissionFormData(formDataToSend, 'bts-tutor')
+
       const response = await fetch(BTS_TUTOR_API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
 
       const data = await response.json()
 
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           name: '',
           contactNumber: '',
           areaOfExpertise: '',
           availability: '',
         })
-
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          onClose()
-        }, 3000)
+        onClose()
+        router.push(thankYouSearchPath('bts-tutor'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -490,13 +481,6 @@ function TutorForm({ onClose }: { onClose: () => void }) {
         Tutor Application Form
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {submitSuccess && (
-          <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-            <p className="text-gold-metallic font-semibold text-center">
-              ✓ Application submitted successfully! Thank you for your submission.
-            </p>
-          </div>
-        )}
         <div>
           <label className="block text-sm font-medium text-gold-metallic mb-2">
             Name *
@@ -509,7 +493,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
             onChange={handleInputChange}
             className="form-input"
             placeholder="Enter your full name"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -525,7 +509,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
             onChange={handleInputChange}
             className="form-input"
             placeholder="Enter your contact number"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -541,7 +525,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
             onChange={handleInputChange}
             className="form-input"
             placeholder="e.g., Business English, Conversational English, Academic Writing"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -557,13 +541,13 @@ function TutorForm({ onClose }: { onClose: () => void }) {
             rows={3}
             className="form-input resize-none"
             placeholder="Describe your availability (e.g., Weekdays 6-8 PM, Weekends)"
-            disabled={isSubmitting || submitSuccess}
+            disabled={isSubmitting}
           />
         </div>
 
         <div className="flex gap-3">
-          <button type="submit" className="btn-gold flex-1" disabled={isSubmitting || submitSuccess}>
-            {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+          <button type="submit" className="btn-gold flex-1" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit Application'}
           </button>
           <button
             type="button"

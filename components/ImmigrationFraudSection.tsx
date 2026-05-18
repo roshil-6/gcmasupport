@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 // API endpoint for form submission
 const API_ENDPOINT = '/api/submissions/immigration-fraud'
@@ -19,10 +21,10 @@ export default function ImmigrationFraudSection() {
   })
   const [showForm, setShowForm] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,7 +84,6 @@ export default function ImmigrationFraudSection() {
       const data = await response.json()
       
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           fullName: '',
           contactNumber: '',
@@ -91,11 +92,7 @@ export default function ImmigrationFraudSection() {
           description: '',
           evidence: null,
         })
-        
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          setShowForm(false)
-        }, 3000)
+        router.push(thankYouSearchPath('immigration-fraud'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -200,13 +197,6 @@ export default function ImmigrationFraudSection() {
               </button>
             </div>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {submitSuccess && (
-              <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-                <p className="text-gold-metallic font-semibold text-center">
-                  ✓ Complaint submitted successfully! Thank you for your submission.
-                </p>
-              </div>
-            )}
             {submitError && (
               <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
                 <p className="text-red-400 font-semibold text-center">
@@ -230,7 +220,7 @@ export default function ImmigrationFraudSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter your full legal name"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -250,7 +240,7 @@ export default function ImmigrationFraudSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter your contact number"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -270,7 +260,7 @@ export default function ImmigrationFraudSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter the name of the fraudulent agency"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -290,7 +280,7 @@ export default function ImmigrationFraudSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter the location/address of the agency"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -310,7 +300,7 @@ export default function ImmigrationFraudSection() {
                 rows={6}
                 className="form-input resize-none"
                 placeholder="Provide a detailed description of the fraudulent activity, including dates, amounts, and any relevant information"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
             </div>
 
@@ -328,7 +318,7 @@ export default function ImmigrationFraudSection() {
                 accept={SUBMISSION_FILE_ACCEPT}
                 onChange={handleFileChange}
                 className="form-input file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
-                disabled={submitSuccess}
+                disabled={isSubmitting}
               />
               <p className="text-xs text-gray-400 mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
             </div>
@@ -344,8 +334,8 @@ export default function ImmigrationFraudSection() {
               </p>
             </div>
 
-            <button type="submit" className="btn-gold w-full" disabled={isSubmitting || submitSuccess}>
-              {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Complaint'}
+            <button type="submit" className="btn-gold w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Submit Complaint'}
             </button>
           </form>
           </div>

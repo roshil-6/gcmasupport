@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 export default function CharitySupportPage() {
   const [activeForm, setActiveForm] = useState<'medical' | 'education' | null>(null)
@@ -325,6 +327,7 @@ export default function CharitySupportPage() {
 const MEDICAL_API_ENDPOINT = '/api/submissions/medical-assistance'
 
 function MedicalForm({ onClose }: { onClose: () => void }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     applicantName: '',
     contactNumber: '',
@@ -333,7 +336,6 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
     caseDescription: '',
     medicalCertificate: null as File | null,
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -376,7 +378,6 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       const data = await response.json()
       
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           applicantName: '',
           contactNumber: '',
@@ -385,11 +386,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           caseDescription: '',
           medicalCertificate: null,
         })
-        
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          onClose()
-        }, 3000)
+        router.push(thankYouSearchPath('medical-assistance'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -402,13 +399,6 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {submitSuccess && (
-        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-          <p className="text-gold-metallic font-semibold text-center">
-            ✓ Application submitted successfully! Thank you for your submission.
-          </p>
-        </div>
-      )}
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
@@ -426,7 +416,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter applicant's full name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -442,7 +432,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter contact number"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -458,7 +448,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter referring doctor's name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -474,7 +464,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter hospital name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -490,7 +480,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           rows={4}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
           placeholder="Describe the medical condition and required assistance"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -504,7 +494,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           accept={SUBMISSION_FILE_ACCEPT}
           onChange={handleFileChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-metallic file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
         {formData.medicalCertificate && (
           <p className="text-xs text-slate-300 mt-2">
@@ -515,8 +505,8 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
       </div>
 
       <div className="flex gap-3">
-        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting || submitSuccess}>
-          {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Application'}
         </button>
         <button
           type="button"
@@ -534,6 +524,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
 const EDUCATION_API_ENDPOINT = '/api/submissions/education-support'
 
 function EducationForm({ onClose }: { onClose: () => void }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     studentName: '',
     contactNumber: '',
@@ -541,7 +532,6 @@ function EducationForm({ onClose }: { onClose: () => void }) {
     schoolName: '',
     supportRequirement: '',
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -565,15 +555,16 @@ function EducationForm({ onClose }: { onClose: () => void }) {
       formDataToSend.append('schoolName', formData.schoolName)
       formDataToSend.append('supportRequirement', formData.supportRequirement)
       
+      const body = await prepareSubmissionFormData(formDataToSend, 'education-support')
+
       const response = await fetch(EDUCATION_API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
       
       const data = await response.json()
       
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           studentName: '',
           contactNumber: '',
@@ -581,11 +572,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           schoolName: '',
           supportRequirement: '',
         })
-        
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          onClose()
-        }, 3000)
+        router.push(thankYouSearchPath('education-support'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -598,13 +585,6 @@ function EducationForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {submitSuccess && (
-        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-          <p className="text-gold-metallic font-semibold text-center">
-            ✓ Application submitted successfully! Thank you for your submission.
-          </p>
-        </div>
-      )}
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
@@ -622,7 +602,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter student's full name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -638,7 +618,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter contact number"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -658,7 +638,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
             backgroundPosition: 'right 1rem center',
             paddingRight: '2.5rem'
           }}
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         >
           <option value="" className="bg-[#333333]/80 text-slate-100">Select education level</option>
           <option value="primary" className="bg-[#333333]/80 text-slate-100">Primary School</option>
@@ -681,7 +661,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter school or college name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -697,13 +677,13 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           rows={4}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
           placeholder="Describe the type of educational support needed"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
       <div className="flex gap-3">
-        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting || submitSuccess}>
-          {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Application'}
         </button>
         <button
           type="button"

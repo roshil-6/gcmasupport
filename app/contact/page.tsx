@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import HexagonBackground from '@/components/HexagonBackground'
 import GetInTouchSection from '@/components/GetInTouchSection'
 import Link from 'next/link'
 import { FormActions, FormField, FormGrid, FormSheet } from '@/components/FormSheet'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 export default function ContactPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -43,7 +46,11 @@ export default function ContactPage() {
       })
 
       if (response.ok) {
-        setSubmitMessage('Thank you! Your information has been submitted successfully.')
+        const data = await response.json().catch(() => ({}))
+        if (data && data.success === false) {
+          setSubmitMessage(data.message || 'There was an error submitting your form. Please try again.')
+          return
+        }
         setFormData({
           name: '',
           contactNumber: '',
@@ -54,18 +61,19 @@ export default function ContactPage() {
           experience: '',
           relationshipStatus: 'Single'
         })
-      } else {
-        let detail = 'There was an error submitting your form. Please try again.'
-        try {
-          const data = await response.json()
-          if (data && typeof data.message === 'string' && data.message.trim()) {
-            detail = data.message
-          }
-        } catch {
-          /* ignore */
-        }
-        setSubmitMessage(detail)
+        router.push(thankYouSearchPath('contact'))
+        return
       }
+      let detail = 'There was an error submitting your form. Please try again.'
+      try {
+        const data = await response.json()
+        if (data && typeof data.message === 'string' && data.message.trim()) {
+          detail = data.message
+        }
+      } catch {
+        /* ignore */
+      }
+      setSubmitMessage(detail)
     } catch (error) {
       setSubmitMessage('There was an error submitting your form. Please try again.')
     } finally {

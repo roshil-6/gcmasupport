@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { FormActions, FormField, FormGrid, FormSheet } from '@/components/FormSheet'
 import { SUBMISSION_FILE_ACCEPT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 interface NursingRegistrationFormProps {
   initialCountry?: string
@@ -13,13 +15,12 @@ export default function NursingRegistrationForm({
   initialCountry,
 }: NursingRegistrationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsSubmitting(true)
-    setSubmitMessage(null)
     setErrorMessage(null)
 
     const form = event.currentTarget
@@ -33,14 +34,13 @@ export default function NursingRegistrationForm({
         body,
       })
 
-      if (!response.ok) {
+      const data = await response.json()
+      if (!response.ok || !data.success) {
         throw new Error('Failed to submit application')
       }
 
-      setSubmitMessage(
-        'Thank you. Your Global Nursing Registration application has been received. Our team will review your details and contact you.'
-      )
       form.reset()
+      router.push(thankYouSearchPath('nurses-applications'))
     } catch (error) {
       console.error(error)
       setErrorMessage('There was a problem submitting your application. Please try again.')
@@ -189,9 +189,6 @@ export default function NursingRegistrationForm({
           </button>
         </FormActions>
 
-        {submitMessage ? (
-          <div className="form-feedback form-feedback-success">{submitMessage}</div>
-        ) : null}
         {errorMessage ? <div className="form-feedback form-feedback-error">{errorMessage}</div> : null}
       </form>
     </FormSheet>

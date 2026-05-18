@@ -3,16 +3,18 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import HexagonBackground from '@/components/HexagonBackground'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 export default function StudentTutorPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
     learningGoals: '',
     roleType: 'student-tutor',
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -43,17 +45,13 @@ export default function StudentTutorPage() {
       const data = await response.json()
       
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           name: '',
           contactNumber: '',
           learningGoals: '',
           roleType: 'student-tutor',
         })
-        
-        setTimeout(() => {
-          setSubmitSuccess(false)
-        }, 3000)
+        router.push(thankYouSearchPath('bts-student'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -178,14 +176,6 @@ export default function StudentTutorPage() {
             <h2 className="text-3xl font-bold text-black mb-6 text-center">Student Tutor Application Form</h2>
             
             <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
-              {submitSuccess && (
-                <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-                  <p className="text-gold-metallic font-semibold text-center">
-                    ✓ Application submitted successfully! Thank you for your submission.
-                  </p>
-                </div>
-              )}
-
               {submitError && (
                 <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
                   <p className="text-red-500 font-semibold text-center">
@@ -204,7 +194,7 @@ export default function StudentTutorPage() {
                   value={formData.roleType}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
-                  disabled={isSubmitting || submitSuccess}
+                  disabled={isSubmitting}
                 >
                   <option value="student">Student</option>
                   <option value="student-tutor">Student Tutor</option>
@@ -223,7 +213,7 @@ export default function StudentTutorPage() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
                   placeholder="Enter your full name"
-                  disabled={isSubmitting || submitSuccess}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -239,7 +229,7 @@ export default function StudentTutorPage() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic"
                   placeholder="Enter your contact number"
-                  disabled={isSubmitting || submitSuccess}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -255,7 +245,7 @@ export default function StudentTutorPage() {
                   rows={5}
                   className="w-full px-4 py-3 rounded-lg border border-gold-metallic/40 bg-white text-black focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
                   placeholder="Describe your learning goals, why you want to be a student tutor, and what you hope to achieve through this social service program"
-                  disabled={isSubmitting || submitSuccess}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -263,9 +253,9 @@ export default function StudentTutorPage() {
                 <button 
                   type="submit" 
                   className="flex-1 bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-8 py-4 rounded-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isSubmitting || submitSuccess}
+                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit Application'}
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
               </div>
             </form>

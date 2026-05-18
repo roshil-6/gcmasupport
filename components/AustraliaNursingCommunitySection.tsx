@@ -1,13 +1,12 @@
 'use client'
 
 import { useCallback, useEffect, useId, useState, type FormEvent, type ReactNode } from 'react'
+import { useRouter } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import { FormField, FormGrid } from '@/components/FormSheet'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
-
-const SUCCESS_COPY =
-  'Your request has been successfully submitted. Our team will review your application, and you will be notified once a decision has been made regarding the approval status.'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 function YesNoRadios({
   name,
@@ -147,12 +146,11 @@ function FinancialSupportModal({
   open: boolean
   onClose: () => void
 }) {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [done, setDone] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const reset = useCallback(() => {
-    setDone(false)
     setError(null)
   }, [])
 
@@ -175,8 +173,9 @@ function FinancialSupportModal({
         body,
       })
       if (!response.ok) throw new Error('submit failed')
-      setDone(true)
       form.reset()
+      onClose()
+      router.push(thankYouSearchPath('nursing-au-financial-support'))
     } catch {
       setError('Something went wrong. Please try again.')
     } finally {
@@ -191,15 +190,7 @@ function FinancialSupportModal({
       title="Apply for financial support — Nursing community"
       size="wide"
     >
-      {done ? (
-        <div className="space-y-6">
-          <p className="text-white/95 text-base leading-relaxed">{SUCCESS_COPY}</p>
-          <button type="button" onClick={onClose} className="btn-gold px-6 py-2.5 text-sm font-semibold">
-            Close
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8">
+      <form onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8">
           <p className="rounded-xl border border-gold-metallic/20 bg-gold-metallic/[0.06] px-4 py-3 text-sm leading-relaxed text-white/88">
             For nurses and nursing community members seeking support linked to migration-related assistance
             (Australia).
@@ -306,18 +297,16 @@ function FinancialSupportModal({
             <p className="text-center text-[0.7rem] text-white/45">All required fields must be completed.</p>
           </div>
         </form>
-      )}
     </ApplicationModal>
   )
 }
 
 function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [done, setDone] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const reset = useCallback(() => {
-    setDone(false)
     setError(null)
   }, [])
 
@@ -338,8 +327,9 @@ function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => voi
         body,
       })
       if (!response.ok) throw new Error('submit failed')
-      setDone(true)
       form.reset()
+      onClose()
+      router.push(thankYouSearchPath('nursing-au-fully-funded'))
     } catch {
       setError('Something went wrong. Please try again.')
     } finally {
@@ -354,14 +344,6 @@ function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => voi
       title="Apply for fully funded program — Nursing community"
       size="wide"
     >
-      {done ? (
-        <div className="space-y-6">
-          <p className="text-white/95 text-base leading-relaxed">{SUCCESS_COPY}</p>
-          <button type="button" onClick={onClose} className="btn-gold px-6 py-2.5 text-sm font-semibold">
-            Close
-          </button>
-        </div>
-      ) : (
         <form onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8" encType="multipart/form-data">
           <p className="rounded-xl border border-gold-metallic/20 bg-gold-metallic/[0.06] px-4 py-3 text-sm leading-relaxed text-white/88">
             Australia — fully funded nursing pathway. Complete your details, declarations, and upload your nursing ID.
@@ -489,7 +471,6 @@ function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => voi
             <p className="text-center text-[0.7rem] text-white/45">All required fields must be completed.</p>
           </div>
         </form>
-      )}
     </ApplicationModal>
   )
 }

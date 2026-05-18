@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import ShowcaseCard from '@/components/ShowcaseCard'
+import { thankYouSearchPath } from '@/lib/thank-you-path'
 
 const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
   ssr: false,
@@ -654,6 +656,7 @@ export default function StudyAbroadPage() {
 const CONSULTATION_API_ENDPOINT = '/api/submissions/study-abroad-consultation'
 
 function ConsultationForm({ onClose }: { onClose: () => void }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -661,7 +664,6 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
     preferredCountry: '',
     comment: '',
   })
-  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -693,7 +695,6 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
       const data = await response.json()
 
       if (response.ok && data.success) {
-        setSubmitSuccess(true)
         setFormData({
           name: '',
           contactNumber: '',
@@ -701,11 +702,8 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           preferredCountry: '',
           comment: '',
         })
-
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          onClose()
-        }, 3000)
+        onClose()
+        router.push(thankYouSearchPath('study-abroad-consultation'))
       } else {
         throw new Error(data.error || 'Submission failed. Please try again.')
       }
@@ -718,13 +716,6 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {submitSuccess && (
-        <div className="bg-gold-metallic/20 border border-gold-metallic/50 rounded-lg p-4 mb-4">
-          <p className="text-gold-metallic font-semibold text-center">
-            ✓ Consultation request submitted successfully! We'll contact you soon.
-          </p>
-        </div>
-      )}
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
@@ -742,7 +733,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter your full name"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -758,7 +749,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter your contact number"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -774,7 +765,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           onChange={handleInputChange}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
           placeholder="Enter your email address"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -794,7 +785,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
             backgroundPosition: 'right 1rem center',
             paddingRight: '2.5rem'
           }}
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         >
           <option value="" className="bg-[#333333]/80 text-slate-100">Select preferred country</option>
           <option value="australia" className="bg-[#333333]/80 text-slate-100">Australia</option>
@@ -818,13 +809,13 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           rows={4}
           className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
           placeholder="Tell us about your study abroad goals and any questions you have"
-          disabled={isSubmitting || submitSuccess}
+          disabled={isSubmitting}
         />
       </div>
 
       <div className="flex gap-3">
-        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting || submitSuccess}>
-          {isSubmitting ? 'Submitting...' : submitSuccess ? 'Submitted ✓' : 'Submit'}
+        <button type="submit" className="flex-1 py-3 px-6 bg-gold-metallic text-black font-semibold rounded-lg hover:bg-gold-bright transition-colors disabled:opacity-50" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
         <button
           type="button"

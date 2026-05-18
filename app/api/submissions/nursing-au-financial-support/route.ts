@@ -6,14 +6,17 @@ import { formDataToSubmissionData } from '@/lib/form-data-submission'
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
-    const data = await formDataToSubmissionData(formData, 'medical-assistance')
+    const data = await formDataToSubmissionData(formData, 'nursing-au-financial-support')
 
-    const submission = await saveSubmission('medical-assistance', data)
+    data.country = 'Australia'
+    data.program = 'financial-support'
 
-    return NextResponse.json({ 
-      success: true, 
+    const submission = await saveSubmission('nursing-au-financial-support', data)
+
+    return NextResponse.json({
+      success: true,
       message: 'Application submitted successfully',
-      id: submission.id 
+      id: submission.id,
     })
   } catch (error) {
     return responseFromSubmissionSaveError(error, 'Failed to submit application')

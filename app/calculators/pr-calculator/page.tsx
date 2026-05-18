@@ -115,10 +115,10 @@ export default function PRCalculatorPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gold-metallic mb-4">
               PR points calculator
             </h1>
-            <p className="text-lg text-white">
+            <p className="text-lg text-[#0f0c14]">
               Estimate your Express Entry Comprehensive Ranking System (CRS) score from IRCC&apos;s published tables.
             </p>
-            <p className="text-sm text-white/70 mt-3 max-w-2xl mx-auto">
+            <p className="text-sm text-[#0f0c14]/85 mt-3 max-w-2xl mx-auto">
               Not affiliated with IRCC. CRS job offer points ended March 25, 2025. For binding results, use the official
               CRS questionnaire on{' '}
               <a

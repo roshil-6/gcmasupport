@@ -14,11 +14,13 @@
     "download:section-images": "node scripts/fetch-section-images.js"
   },
   "dependencies": {
+    "@vercel/blob": "^0.27.3",
     "framer-motion": "^11.3.19",
     "next": "^14.2.35",
     "postgres": "^3.4.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",

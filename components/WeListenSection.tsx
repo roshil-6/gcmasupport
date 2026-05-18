@@ -31,7 +31,7 @@ export default function WeListenSection() {
     >
       <div className="max-w-4xl mx-auto">
         {/* Image Section */}
-        <div className="mb-8 glass-card rounded-2xl overflow-hidden">
+        <div className="mb-8 glass-card dark-container rounded-2xl overflow-hidden">
           <div className="relative h-64 overflow-hidden md:h-96">
             <img
               src="/home/we-listen.jpg"
@@ -39,12 +39,16 @@ export default function WeListenSection() {
               className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
-              <div className="text-center px-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-gold-metallic mb-4 drop-shadow-lg">
+            <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center">
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/65 to-black/80"
+                aria-hidden
+              />
+              <div className="relative z-10 px-4 text-center">
+                <h2 className="mb-4 text-4xl font-bold !text-white md:text-5xl [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
                   We Listen. We Care.
                 </h2>
-                <p className="text-2xl md:text-3xl text-white font-light drop-shadow-md">
+                <p className="text-2xl font-medium leading-snug !text-white md:text-3xl [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
                   Let's Build a Brighter Future for Migrants — Together!
                 </p>
               </div>

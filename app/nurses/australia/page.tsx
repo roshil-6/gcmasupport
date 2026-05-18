@@ -2,6 +2,7 @@
 
 import HexagonBackground from '@/components/HexagonBackground'
 import NursingRegistrationForm from '@/components/NursingRegistrationForm'
+import AustraliaNursingCommunitySection from '@/components/AustraliaNursingCommunitySection'
 import NursingCountryBanner from '@/components/NursingCountryBanner'
 import WhoCanApplyBox from '@/components/WhoCanApplyBox'
 import ShowcaseCard from '@/components/ShowcaseCard'
@@ -35,6 +36,8 @@ export default function NursesAustraliaPage() {
               bannerSrc="/nursing/photos/australia-banner.jpg"
             />
           </div>
+
+          <AustraliaNursingCommunitySection />
 
           {/* Why Australia Section */}
           <div className="mb-16">

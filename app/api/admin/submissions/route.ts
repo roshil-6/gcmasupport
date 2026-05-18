@@ -6,6 +6,7 @@ import {
   SubmissionType,
   isSubmissionType,
 } from '@/lib/submissions'
+import { getSql } from '@/lib/db'
 import { cookies } from 'next/headers'
 
 // Simple authentication check
@@ -35,7 +36,8 @@ export async function GET(request: NextRequest) {
       raw && isSubmissionType(raw) ? raw : undefined
 
     const submissions = await getSubmissions(type)
-    return NextResponse.json({ submissions })
+    const storageBackend = getSql() ? 'postgres' : 'local_json'
+    return NextResponse.json({ submissions, storageBackend })
   } catch (error) {
     console.error('Error fetching submissions:', error)
     return NextResponse.json(

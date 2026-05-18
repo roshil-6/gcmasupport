@@ -125,10 +125,10 @@ export default function CanadaPointsCalculatorPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gold-metallic mb-4">
               Canada CRS Points Calculator
             </h1>
-            <p className="text-lg text-white">
+            <p className="text-lg text-[#0f0c14]">
               Estimate your Comprehensive Ranking System (CRS) score for Express Entry using published IRCC criteria.
             </p>
-            <p className="text-sm text-white/70 mt-3 max-w-2xl mx-auto">
+            <p className="text-sm text-[#0f0c14]/85 mt-3 max-w-2xl mx-auto">
               This tool is not affiliated with IRCC. CRS job offer points were removed as of March 25, 2025. Use the
               official CRS tool on{' '}
               <a

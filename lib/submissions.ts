@@ -56,14 +56,27 @@ function normalizeSubmissionsFromFile(
 const sortBySubmittedDesc = (a: Submission, b: Submission) =>
   new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
 
+function parseSubmissionData(raw: unknown): Record<string, any> {
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
+    return { ...(raw as Record<string, any>) }
+  }
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw)
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        return parsed as Record<string, any>
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return {}
+}
+
 function mapDbRow(r: Record<string, unknown>): Submission {
   const id = String(r.id ?? '')
   const type = String(r.type ?? '') as SubmissionType
-  const rawData = r.data
-  const data =
-    rawData && typeof rawData === 'object' && !Array.isArray(rawData)
-      ? (rawData as Record<string, any>)
-      : {}
+  const data = parseSubmissionData(r.data)
   const st = r.submitted_at
   const submittedAt =
     st instanceof Date ? st.toISOString() : String(st ?? new Date().toISOString())

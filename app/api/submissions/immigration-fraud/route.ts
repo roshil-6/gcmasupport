@@ -1,25 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { saveSubmission } from '@/lib/submissions'
 import { responseFromSubmissionSaveError } from '@/lib/submission-api-errors'
+import { formDataToSubmissionData } from '@/lib/form-data-submission'
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
-    const data: Record<string, any> = {}
-
-    // Extract form fields
-    formData.forEach((value, key) => {
-      if (value instanceof File) {
-        // For files, store the filename and size
-        data[key] = {
-          filename: value.name,
-          size: value.size,
-          type: value.type
-        }
-      } else {
-        data[key] = value
-      }
-    })
+    const data = await formDataToSubmissionData(formData, 'immigration-fraud')
 
     const submission = await saveSubmission('immigration-fraud', data)
 

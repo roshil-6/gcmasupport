@@ -28,7 +28,6 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedType, setSelectedType] = useState<string>('all')
   const [error, setError] = useState('')
-  const [storageBackend, setStorageBackend] = useState<'postgres' | 'local_json' | null>(null)
   const router = useRouter()
 
   const loadSubmissions = useCallback(
@@ -53,7 +52,6 @@ export default function AdminDashboard() {
 
         if (!response.ok) {
           setSubmissions([])
-          setStorageBackend(null)
           setError(data.error || 'Failed to load submissions')
           return
         }
@@ -64,11 +62,6 @@ export default function AdminDashboard() {
           setSubmissions([])
           setError(data.error || 'Failed to load submissions')
         }
-        if (data.storageBackend === 'postgres' || data.storageBackend === 'local_json') {
-          setStorageBackend(data.storageBackend)
-        } else {
-          setStorageBackend(null)
-        }
       } catch (err: unknown) {
         if (
           signal?.aborted ||
@@ -78,7 +71,6 @@ export default function AdminDashboard() {
         }
         setSubmissions([])
         setError('Failed to load submissions')
-        setStorageBackend(null)
       } finally {
         if (!signal?.aborted) {
           setIsLoading(false)
@@ -181,36 +173,6 @@ export default function AdminDashboard() {
             </button>
           </div>
         </div>
-
-        {storageBackend === 'local_json' ? (
-          <div
-            className="mb-6 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950 shadow-sm"
-            role="status"
-          >
-            <p className="font-semibold text-amber-950">Recording mode: local JSON files</p>
-            <p className="mt-1 text-amber-900/90">
-              Submissions are written to the <code className="rounded bg-white/90 px-1 py-0.5 text-xs">data/</code>{' '}
-              folder on this machine. Uploaded files go to{' '}
-              <code className="rounded bg-white/90 px-1 py-0.5 text-xs">data/uploads/</code>. For production on Vercel,
-              set <code className="rounded bg-white/90 px-1 py-0.5 text-xs">DATABASE_URL</code> and{' '}
-              <code className="rounded bg-white/90 px-1 py-0.5 text-xs">BLOB_READ_WRITE_TOKEN</code>, then redeploy.
-            </p>
-          </div>
-        ) : null}
-        {storageBackend === 'postgres' ? (
-          <div
-            className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-950 shadow-sm"
-            role="status"
-          >
-            <p className="font-semibold text-emerald-950">Recording mode: PostgreSQL</p>
-            <p className="mt-1 text-emerald-900/90">
-              Submissions are stored in your database. File uploads use{' '}
-              <code className="rounded bg-white/90 px-1 py-0.5 text-xs">BLOB_READ_WRITE_TOKEN</code> (Vercel Blob)
-              when set; otherwise local <code className="rounded bg-white/90 px-1 py-0.5 text-xs">data/uploads/</code>{' '}
-              only works outside Vercel. Updates and deletes in this panel apply to submission rows.
-            </p>
-          </div>
-        ) : null}
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[min(280px,100%)_1fr]">
           {/* Sidebar — all submission types (matches site forms) */}

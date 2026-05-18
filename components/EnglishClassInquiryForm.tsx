@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { thankYouPathFromSubmissionsApi } from '@/lib/thank-you-path'
+import { thankYouPathFromSubmissionsApi, SUBMISSION_SUCCESS_PATH } from '@/lib/thank-you-path'
 
 type EnglishClassInquiryFormProps = {
   apiEndpoint: string
@@ -40,7 +40,7 @@ export default function EnglishClassInquiryForm({
         setContactNumber('')
         setEmail('')
         setMessage('')
-        router.push(thankYouPathFromSubmissionsApi(apiEndpoint) ?? '/thank-you')
+        router.push(thankYouPathFromSubmissionsApi(apiEndpoint) ?? SUBMISSION_SUCCESS_PATH)
       } else {
         throw new Error(data.error || 'Something went wrong')
       }

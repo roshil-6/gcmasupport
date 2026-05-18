@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +8,7 @@ import HexagonBackground from '@/components/HexagonBackground'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
+import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 
 export default function CharitySupportPage() {
   const [activeForm, setActiveForm] = useState<'medical' | 'education' | null>(null)
@@ -328,6 +329,8 @@ const MEDICAL_API_ENDPOINT = '/api/submissions/medical-assistance'
 
 function MedicalForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     applicantName: '',
     contactNumber: '',
@@ -398,7 +401,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
@@ -525,6 +528,8 @@ const EDUCATION_API_ENDPOINT = '/api/submissions/education-support'
 
 function EducationForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     studentName: '',
     contactNumber: '',
@@ -584,7 +589,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>

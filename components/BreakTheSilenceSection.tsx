@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { scrollIntoViewSafe } from '@/lib/scroll'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
+import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
 
 export default function BreakTheSilenceSection() {
@@ -254,6 +255,8 @@ function StudentForm({
   initialRoleType?: 'student' | 'student-tutor'
 }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -321,7 +324,7 @@ function StudentForm({
       <h3 className="text-xl font-bold text-gold-metallic mb-4">
         Student Application Form
       </h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gold-metallic mb-2">
             I Am a *
@@ -413,6 +416,8 @@ const BTS_TUTOR_API_ENDPOINT = '/api/submissions/bts-tutor'
 
 function TutorForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -480,7 +485,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
       <h3 className="text-xl font-bold text-gold-metallic mb-4">
         Tutor Application Form
       </h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gold-metallic mb-2">
             Name *

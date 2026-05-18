@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import ShowcaseCard from '@/components/ShowcaseCard'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
+import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 
 const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
   ssr: false,
@@ -657,6 +658,8 @@ const CONSULTATION_API_ENDPOINT = '/api/submissions/study-abroad-consultation'
 
 function ConsultationForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -715,7 +718,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>

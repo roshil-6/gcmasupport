@@ -6,6 +6,7 @@ import WelfareProgramCard from './WelfareProgramCard'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
+import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 
 export default function HumanitarianAidSection() {
   const [activeCard, setActiveCard] = useState<'medical' | 'education' | null>(
@@ -126,6 +127,8 @@ const MEDICAL_API_ENDPOINT = '/api/submissions/medical-assistance'
 
 function MedicalForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     applicantName: '',
     contactNumber: '',
@@ -196,7 +199,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-sheet">
+    <form ref={formRef} onSubmit={handleSubmit} className="form-sheet">
       {submitError && (
         <div className="rounded-lg border border-red-400/50 bg-red-950/40 p-4">
           <p className="text-center text-sm font-semibold text-red-200">{submitError}</p>
@@ -323,6 +326,8 @@ const EDUCATION_API_ENDPOINT = '/api/submissions/education-support'
 
 function EducationForm({ onClose }: { onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef)
   const [formData, setFormData] = useState({
     studentName: '',
     contactNumber: '',
@@ -382,7 +387,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-sheet">
+    <form ref={formRef} onSubmit={handleSubmit} className="form-sheet">
       {submitError && (
         <div className="rounded-lg border border-red-400/50 bg-red-950/40 p-4">
           <p className="text-center text-sm font-semibold text-red-200">{submitError}</p>

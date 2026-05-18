@@ -1,12 +1,13 @@
 'use client'
 
-import { useCallback, useEffect, useId, useState, type FormEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import { FormField, FormGrid } from '@/components/FormSheet'
 import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
 import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
+import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 
 function YesNoRadios({
   name,
@@ -147,6 +148,8 @@ function FinancialSupportModal({
   onClose: () => void
 }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef, open)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -190,7 +193,7 @@ function FinancialSupportModal({
       title="Apply for financial support — Nursing community"
       size="wide"
     >
-      <form onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8">
+      <form ref={formRef} onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8">
           <p className="rounded-xl border border-gold-metallic/20 bg-gold-metallic/[0.06] px-4 py-3 text-sm leading-relaxed text-white/88">
             For nurses and nursing community members seeking support linked to migration-related assistance
             (Australia).
@@ -303,6 +306,8 @@ function FinancialSupportModal({
 
 function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  useScrollInvalidFieldIntoView(formRef, open)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -344,7 +349,7 @@ function FullyFundedModal({ open, onClose }: { open: boolean; onClose: () => voi
       title="Apply for fully funded program — Nursing community"
       size="wide"
     >
-        <form onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8" encType="multipart/form-data">
+        <form ref={formRef} onSubmit={handleSubmit} className="-mt-1 flex flex-col gap-8" encType="multipart/form-data">
           <p className="rounded-xl border border-gold-metallic/20 bg-gold-metallic/[0.06] px-4 py-3 text-sm leading-relaxed text-white/88">
             Australia — fully funded nursing pathway. Complete your details, declarations, and upload your nursing ID.
           </p>

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import WelfareProgramCard from './WelfareProgramCard'
+import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
+import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 
 export default function HumanitarianAidSection() {
   const [activeCard, setActiveCard] = useState<'medical' | 'education' | null>(
@@ -162,9 +164,11 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
         formDataToSend.append('medicalCertificate', formData.medicalCertificate)
       }
 
+      const body = await prepareSubmissionFormData(formDataToSend, 'medical-assistance')
+
       const response = await fetch(MEDICAL_API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
 
       const data = await response.json()
@@ -295,7 +299,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
         <input
           type="file"
           name="medicalCertificate"
-          accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+          accept={SUBMISSION_FILE_ACCEPT}
           onChange={handleFileChange}
           className="form-input file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
           disabled={isSubmitting || submitSuccess}
@@ -305,9 +309,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
             Selected: {formData.medicalCertificate.name}
           </p>
         )}
-        <p className="text-xs text-white/55 mt-2">
-          Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB)
-        </p>
+        <p className="text-xs text-white/55 mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
       </div>
 
       <div className="form-actions-row">

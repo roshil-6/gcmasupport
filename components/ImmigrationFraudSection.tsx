@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import ExplanationPanel, { ExplanationBox } from './ExplanationPanel'
+import { SUBMISSION_FILE_ACCEPT, SUBMISSION_FILE_ACCEPT_HINT } from '@/lib/allowed-uploads'
+import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 
 // API endpoint for form submission
 const API_ENDPOINT = '/api/submissions/immigration-fraud'
@@ -69,10 +71,12 @@ export default function ImmigrationFraudSection() {
       if (formData.evidence) {
         formDataToSend.append('evidence', formData.evidence)
       }
-      
+
+      const body = await prepareSubmissionFormData(formDataToSend, 'immigration-fraud')
+
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
-        body: formDataToSend
+        body,
       })
       
       const data = await response.json()
@@ -321,14 +325,12 @@ export default function ImmigrationFraudSection() {
                 type="file"
                 id="evidence"
                 name="evidence"
-                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                accept={SUBMISSION_FILE_ACCEPT}
                 onChange={handleFileChange}
                 className="form-input file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
                 disabled={submitSuccess}
               />
-              <p className="text-xs text-gray-400 mt-2">
-                Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB)
-              </p>
+              <p className="text-xs text-gray-400 mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
             </div>
 
             <div className="bg-[#333333]/30 border border-gold-metallic/30 rounded-lg p-4 text-sm text-white">

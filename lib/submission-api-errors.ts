@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { FileUploadNotConfiguredError } from '@/lib/upload-storage'
 
 /** Thrown when the app runs on Vercel but `DATABASE_URL` is missing (filesystem writes are not allowed). */
 export class MissingDatabaseUrlError extends Error {
@@ -49,6 +50,10 @@ export function responseFromSubmissionSaveError(
   fallbackMessage: string
 ): NextResponse {
   if (error instanceof MissingDatabaseUrlError) {
+    return NextResponse.json({ success: false, message: error.message }, { status: 503 })
+  }
+
+  if (error instanceof FileUploadNotConfiguredError) {
     return NextResponse.json({ success: false, message: error.message }, { status: 503 })
   }
 

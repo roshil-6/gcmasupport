@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { FormActions, FormField, FormGrid, FormSheet } from '@/components/FormSheet'
+import { SUBMISSION_FILE_ACCEPT } from '@/lib/allowed-uploads'
+import { prepareSubmissionFormData } from '@/lib/prepare-submission-form-data'
 
 interface NursingRegistrationFormProps {
   initialCountry?: string
@@ -24,9 +26,11 @@ export default function NursingRegistrationForm({
     const formData = new FormData(form)
 
     try {
+      const body = await prepareSubmissionFormData(formData, 'nurses-applications')
+
       const response = await fetch('/api/submissions/nurses-applications', {
         method: 'POST',
-        body: formData,
+        body,
       })
 
       if (!response.ok) {
@@ -60,6 +64,7 @@ export default function NursingRegistrationForm({
               required
               className="form-input"
               placeholder="Enter your full name"
+              suppressHydrationWarning
             />
           </FormField>
 
@@ -71,6 +76,7 @@ export default function NursingRegistrationForm({
               required
               className="form-input"
               placeholder="Include country code if possible"
+              suppressHydrationWarning
             />
           </FormField>
 
@@ -82,6 +88,7 @@ export default function NursingRegistrationForm({
               required
               className="form-input"
               placeholder="Enter a valid email address"
+              suppressHydrationWarning
             />
           </FormField>
 
@@ -92,6 +99,7 @@ export default function NursingRegistrationForm({
               required
               defaultValue={initialCountry || ''}
               className="form-input"
+              suppressHydrationWarning
             >
               {!initialCountry && (
                 <option value="" disabled>
@@ -119,6 +127,7 @@ export default function NursingRegistrationForm({
             required
             className="form-input"
             placeholder="e.g., BSc Nursing, GNM, MSc Nursing"
+            suppressHydrationWarning
           />
         </FormField>
 
@@ -132,6 +141,7 @@ export default function NursingRegistrationForm({
               required
               className="form-input"
               placeholder="Total years of clinical experience"
+              suppressHydrationWarning
             />
           </FormField>
 
@@ -142,12 +152,20 @@ export default function NursingRegistrationForm({
               type="text"
               className="form-input"
               placeholder="IELTS / OET / PTE with scores, if available"
+              suppressHydrationWarning
             />
           </FormField>
         </FormGrid>
 
-        <FormField label="CV Upload" htmlFor="cv" hint="PDF or DOC, optional">
-          <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" className="form-input form-file" />
+        <FormField label="CV Upload" htmlFor="cv" hint="PDF, Word, images, or video (optional)">
+          <input
+            id="cv"
+            name="cv"
+            type="file"
+            accept={SUBMISSION_FILE_ACCEPT}
+            className="form-input form-file"
+            suppressHydrationWarning
+          />
         </FormField>
 
         <FormField label="Notes" htmlFor="notes">
@@ -157,6 +175,7 @@ export default function NursingRegistrationForm({
             rows={4}
             className="form-input form-textarea"
             placeholder="Share any additional details about your goals, preferred timelines, or questions."
+            suppressHydrationWarning
           />
         </FormField>
 

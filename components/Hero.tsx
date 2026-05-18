@@ -187,8 +187,8 @@ export default function Hero() {
                   <Link key={link.href} href={link.href} className={navLinkClass}>
                     {link.compactLabel ? (
                       <>
-                        <span className="xl:hidden">{link.compactLabel}</span>
-                        <span className="hidden xl:inline">{link.label}</span>
+                        <span className="text-inherit xl:hidden">{link.compactLabel}</span>
+                        <span className="hidden text-inherit xl:inline">{link.label}</span>
                       </>
                     ) : (
                       link.label
@@ -243,8 +243,8 @@ export default function Hero() {
                 aria-label="Global nursing registration"
                 aria-expanded={showNursingMenu}
               >
-                <span className="hidden lg:inline">Global nursing registration</span>
-                <span className="lg:hidden">Nursing</span>
+                <span className="hidden text-inherit lg:inline">Global nursing registration</span>
+                <span className="text-inherit lg:hidden">Nursing</span>
                 <svg
                   className={`h-3.5 w-3.5 shrink-0 transition-transform sm:h-4 sm:w-4 ${showNursingMenu ? 'rotate-180' : ''}`}
                   fill="none"

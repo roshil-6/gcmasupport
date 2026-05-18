@@ -9,6 +9,8 @@ export type SubmissionType =
   | 'bts-tutor'
   | 'contact'
   | 'nurses-applications'
+  | 'nursing-au-financial-support'
+  | 'nursing-au-fully-funded'
   | 'study-abroad-consultation'
 
 /** Single source of truth for admin filters and JSON file names */
@@ -23,6 +25,8 @@ export const SUBMISSION_TYPES: SubmissionType[] = [
   'bts-tutor',
   'contact',
   'nurses-applications',
+  'nursing-au-financial-support',
+  'nursing-au-fully-funded',
   'study-abroad-consultation',
 ]
 
@@ -38,6 +42,8 @@ export const SUBMISSION_TYPE_LABELS: Record<SubmissionType, string> = {
   'bts-tutor': 'Break the Silence — Tutor (child tutor)',
   contact: 'Contact',
   'nurses-applications': 'Nurses applications',
+  'nursing-au-financial-support': 'Australia — Nursing financial support',
+  'nursing-au-fully-funded': 'Australia — Nursing fully funded program',
   'study-abroad-consultation': 'Study abroad consultation',
 }
 

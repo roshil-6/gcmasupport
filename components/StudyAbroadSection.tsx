@@ -90,6 +90,15 @@ export default function StudyAbroadSection() {
         },
     ]
 
+    const stepCardColors = [
+        'border-[#e3d5b1] bg-[linear-gradient(180deg,#fffdf8_0%,#f7efdf_100%)]',
+        'border-[#cadbb7] bg-[linear-gradient(180deg,#fbfff7_0%,#edf5e3_100%)]',
+        'border-[#d9c7e5] bg-[linear-gradient(180deg,#fffaff_0%,#f3e8f8_100%)]',
+        'border-[#e4d2b3] bg-[linear-gradient(180deg,#fffaf6_0%,#f7ebdb_100%)]',
+        'border-[#c7ded8] bg-[linear-gradient(180deg,#f9fffe_0%,#e7f4f1_100%)]',
+        'border-[#e2c8d3] bg-[linear-gradient(180deg,#fffafd_0%,#f6e7ee_100%)]',
+    ]
+
     return (
         <section ref={sectionRef} className="py-16 px-4 relative z-10">
             <div className="max-w-7xl mx-auto space-y-20">
@@ -118,17 +127,21 @@ export default function StudyAbroadSection() {
                 {/* How We Help - Steps */}
                 <div className="space-y-12">
                     <div className="text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                             How We Help You Study Abroad
                         </h2>
-                        <p className="text-white/80 max-w-2xl mx-auto">
+                        <p className="max-w-2xl mx-auto text-[#6d5a3a]">
                             A comprehensive step-by-step guidance system designed to make your journey seamless.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {steps.map((step, index) => (
-                            <div key={index} className="glass-card p-4 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-colors">
+                            <div
+                                key={index}
+                                className={`rounded-xl border p-4 shadow-[0_12px_28px_rgba(122,90,30,0.07)] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_16px_34px_rgba(122,90,30,0.1)] ${stepCardColors[index % stepCardColors.length]}`}
+                            >
+                              <div className="flex items-start gap-4">
                                 <div className="relative w-36 aspect-video shrink-0 rounded-lg overflow-hidden border border-gold-metallic/30">
                                     <Image
                                         src={step.image}
@@ -140,9 +153,10 @@ export default function StudyAbroadSection() {
                                     />
                                 </div>
                                 <div className="py-2">
-                                    <span className="text-gold-metallic/60 font-mono text-sm mb-1 block">STEP {step.number}</span>
-                                    <h4 className="text-lg font-bold text-white leading-tight">{step.title}</h4>
+                                    <span className="text-[#8a7340] font-mono text-sm mb-1 block">STEP {step.number}</span>
+                                    <h4 className="text-lg font-bold text-[#2a241d] leading-tight">{step.title}</h4>
                                 </div>
+                              </div>
                             </div>
                         ))}
                     </div>
@@ -150,7 +164,7 @@ export default function StudyAbroadSection() {
 
                 {/* Why Choose Us */}
                 <div className="bg-[#333333]/40 rounded-3xl p-8 md:p-12 border border-gold-metallic/20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
                         Why Choose Our Services
                     </h2>
                     <div className="grid md:grid-cols-3 gap-8">

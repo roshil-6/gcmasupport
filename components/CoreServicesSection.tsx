@@ -89,6 +89,12 @@ const coreServices: CoreService[] = [
   },
 ]
 
+const serviceCardColors = [
+  'border-[#e0d0aa] bg-[linear-gradient(180deg,#fffdf8_0%,#f8f0df_100%)]',
+  'border-[#cadbb7] bg-[linear-gradient(180deg,#fbfff7_0%,#edf5e3_100%)]',
+  'border-[#d9c7e5] bg-[linear-gradient(180deg,#fffaff_0%,#f2e8f8_100%)]',
+]
+
 function ServiceIcon({ serviceId }: { serviceId: CoreServiceId }) {
   if (serviceId === 1) {
     return (
@@ -153,7 +159,7 @@ export default function CoreServicesSection() {
           {coreServices.map((service) => (
             <article
               key={service.id}
-              className="glass-card flex w-full flex-col self-start rounded-2xl p-5 transition-all duration-300 hover:border-gold-metallic/60 sm:p-8"
+              className={`flex w-full flex-col self-start rounded-2xl border p-5 shadow-[0_14px_34px_rgba(122,90,30,0.08)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_18px_40px_rgba(122,90,30,0.12)] hover:border-gold-metallic/60 sm:p-8 ${serviceCardColors[(service.id - 1) % serviceCardColors.length]}`}
               onClick={() => toggleService(service.id)}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
@@ -179,7 +185,7 @@ export default function CoreServicesSection() {
               </div>
 
               <div className="mb-3 flex items-center gap-2">
-                <h3 className="text-xl font-bold text-gold-metallic md:text-2xl">{service.title}</h3>
+                <h3 className="text-xl font-bold text-[#2a241d] md:text-2xl">{service.title}</h3>
                 <ExplanationPanel
                   title={service.explanationTitle}
                   content={service.explanationContent}
@@ -188,7 +194,7 @@ export default function CoreServicesSection() {
                 />
               </div>
 
-              <p className="text-sm leading-relaxed md:text-base">{service.summary}</p>
+              <p className="text-sm leading-relaxed text-[#343434] md:text-base">{service.summary}</p>
 
               <div className="mt-5 space-y-5 border-t border-gold-metallic/20 pt-5">
                 <div>
@@ -201,7 +207,7 @@ export default function CoreServicesSection() {
                         <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span className="text-sm leading-relaxed">{feature}</span>
+                        <span className="text-sm leading-relaxed text-[#343434]">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -211,7 +217,7 @@ export default function CoreServicesSection() {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-metallic/85">
                     {service.supportHeading}
                   </p>
-                  <p className="text-sm leading-relaxed">{service.supportText}</p>
+                  <p className="text-sm leading-relaxed text-[#343434]">{service.supportText}</p>
                 </div>
               </div>
 

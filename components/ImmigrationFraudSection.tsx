@@ -111,9 +111,9 @@ export default function ImmigrationFraudSection() {
     >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gold-metallic">
             Immigration Fraud Complaint Portal
-          </h2>
+          </h1>
           <p className="page-intro mx-auto text-lg max-w-2xl">
             A secure platform for victims of fraudulent immigration agencies to
             submit verified complaints. Your information is protected and will

@@ -197,9 +197,9 @@ export default function GlobalNursingRegistrationSection() {
       <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
         {/* Title & Intro */}
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
             Global Nursing Registration
-          </h2>
+          </h1>
           <p className="text-base md:text-lg text-white">
             Internationally qualified nurses play a vital role in modern healthcare systems worldwide.
             Through this unified application, GCMA helps you explore safe, ethical pathways to register

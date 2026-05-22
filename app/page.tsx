@@ -1,8 +1,11 @@
 import dynamic from 'next/dynamic'
 import Hero from '@/components/Hero'
 import HomeSeoIntro from '@/components/HomeSeoIntro'
+import JsonLd from '@/components/JsonLd'
 import Link from 'next/link'
 import CoreServicesSection from '@/components/CoreServicesSection'
+import { webPageJsonLd } from '@/lib/seo-jsonld'
+import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 
 const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
   ssr: false,
@@ -14,8 +17,15 @@ const HumanitarianAidSection = dynamic(() => import('@/components/HumanitarianAi
 const BreakTheSilenceSection = dynamic(() => import('@/components/BreakTheSilenceSection'))
 
 export default function Home() {
+  const homeWebPage = webPageJsonLd({
+    path: '/',
+    title: `${SITE_NAME} | Justice, Protection & Empowerment`,
+    description: SITE_DESCRIPTION,
+  })
+
   return (
     <main className="relative min-h-screen">
+      <JsonLd data={homeWebPage} />
       <HexagonBackground />
       <Hero />
       <HomeSeoIntro />
@@ -39,6 +49,18 @@ export default function Home() {
               skilled workers, and families seeking lawful visa, travel, and settlement pathways.
             </p>
           </div>
+          <nav aria-label="Site map" className="mt-6 text-sm">
+            <p className="text-gold-metallic/80 font-semibold mb-3">Explore</p>
+            <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-white/80">
+              <li><Link href="/about" className="hover:text-gold-metallic">About</Link></li>
+              <li><Link href="/services" className="hover:text-gold-metallic">Services</Link></li>
+              <li><Link href="/study-abroad" className="hover:text-gold-metallic">Study abroad</Link></li>
+              <li><Link href="/nursing-registration" className="hover:text-gold-metallic">Nursing registration</Link></li>
+              <li><Link href="/migration-advice" className="hover:text-gold-metallic">Migration advice</Link></li>
+              <li><Link href="/charity-support" className="hover:text-gold-metallic">Charity support</Link></li>
+              <li><Link href="/contact" className="hover:text-gold-metallic">Contact</Link></li>
+            </ul>
+          </nav>
           <p className="text-gray-400 mt-6">
             © {new Date().getFullYear()} Global Council for Migration Awareness and Social Welfare (GCMA)
           </p>

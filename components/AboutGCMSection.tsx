@@ -41,9 +41,9 @@ export default function AboutGCMSection() {
               loading="lazy"
             />
             <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
+              <h1 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
                 About GCMA
-              </h2>
+              </h1>
             </div>
           </div>
         </div>

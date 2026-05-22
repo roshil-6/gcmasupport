@@ -5,6 +5,9 @@ export const SITE_SHORT_NAME = 'GCMA'
 export const SITE_DESCRIPTION =
   'Global Council for Migration Awareness and Social Welfare (GCMA) provides immigration fraud reporting, humanitarian aid, nursing registration abroad, study abroad counseling, skilled migration advice, visit visa guidance, English classes, and community welfare programs for students, nurses, and families worldwide.'
 
+/** Default social preview image (must exist under /public). */
+export const DEFAULT_OG_IMAGE_PATH = '/home/gcma-hero-brand.png'
+
 const DEFAULT_SITE_URL = 'http://localhost:3030'
 
 export function getSiteUrl() {
@@ -19,6 +22,7 @@ type PageMetadataInput = {
   path: string
   keywords?: string[]
   noIndex?: boolean
+  ogImagePath?: string
 }
 
 export function buildPageMetadata({
@@ -27,10 +31,12 @@ export function buildPageMetadata({
   path,
   keywords = [],
   noIndex = false,
+  ogImagePath = DEFAULT_OG_IMAGE_PATH,
 }: PageMetadataInput): Metadata {
   const siteUrl = getSiteUrl()
   const canonical = `${siteUrl}${path}`
   const fullTitle = path === '/' ? title : `${title} | ${SITE_NAME}`
+  const ogImageUrl = `${siteUrl}${ogImagePath.startsWith('/') ? ogImagePath : `/${ogImagePath}`}`
 
   return {
     title: fullTitle,
@@ -46,15 +52,24 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       title: fullTitle,
       description,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${SITE_NAME} — migration awareness and social welfare`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
+      images: [ogImageUrl],
     },
     robots: noIndex
       ? { index: false, follow: false }
-      : { index: true, follow: true },
+      : { index: true, follow: true, googleBot: { index: true, follow: true } },
   }
 }
 
@@ -65,7 +80,7 @@ export function organizationJsonLd() {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Organization',
+        '@type': ['Organization', 'NGO'],
         '@id': `${siteUrl}/#organization`,
         name: SITE_NAME,
         alternateName: 'Global Council for Migration Awareness and Social Welfare',

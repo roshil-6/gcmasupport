@@ -4,11 +4,20 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import HeroMobileParticles from '@/components/HeroMobileParticles'
 
-const heroImageCandidates = [
+const desktopHeroImageCandidates = [
   '/logo_statue.png',
   '/home/belief-statement.jpg',
   '/hero-background.jpeg',
 ]
+
+const mobileHeroImageCandidates = [
+  '/home/gcma-hero-latest.png',
+  '/hero-background.jpeg',
+  '/logo_statue.png',
+  '/home/belief-statement.jpg',
+]
+
+const desktopHeroTexture = '/home/gcma-hero-latest.png'
 
 type PrimaryNavLink = { href: string; label: string; compactLabel?: string }
 
@@ -16,12 +25,6 @@ const primaryLinks: PrimaryNavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/gcma-projects', label: 'GCMA Projects', compactLabel: 'Projects' },
-  { href: '/calculators/pr-calculator', label: 'PR Calculator', compactLabel: 'PR calc' },
-  {
-    href: '/calculators/canada-points',
-    label: 'Canada Points Calculator',
-    compactLabel: 'Canada points',
-  },
   { href: '/contact', label: 'Contact Us' },
 ]
 
@@ -58,15 +61,19 @@ const mobileNavLinkClass =
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const [heroImageIndex, setHeroImageIndex] = useState(0)
+  const [desktopHeroImageIndex, setDesktopHeroImageIndex] = useState(0)
+  const [mobileHeroImageIndex, setMobileHeroImageIndex] = useState(0)
   const [showServicesMenu, setShowServicesMenu] = useState(false)
   const [showNursingMenu, setShowNursingMenu] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const [mobileNursingOpen, setMobileNursingOpen] = useState(false)
 
-  const heroImage = heroImageCandidates[heroImageIndex]
-  const hasHeroImage = heroImageIndex < heroImageCandidates.length
+  const desktopHeroImage = desktopHeroImageCandidates[desktopHeroImageIndex]
+  const mobileHeroImage = mobileHeroImageCandidates[mobileHeroImageIndex]
+  const hasDesktopHeroImage = desktopHeroImageIndex < desktopHeroImageCandidates.length
+  const hasMobileHeroImage = mobileHeroImageIndex < mobileHeroImageCandidates.length
+  const hasHeroImage = hasDesktopHeroImage || hasMobileHeroImage
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false)
@@ -105,19 +112,19 @@ export default function Hero() {
       ref={heroRef}
       className="relative z-10 min-h-[100dvh] overflow-hidden md:overflow-visible hero-background md:h-screen md:min-h-screen"
     >
-      {/* Desktop: pure white band behind nav */}
+      {/* Desktop: floating light green notch behind nav */}
       <div
-        className="hero-header-luxe absolute inset-x-0 top-0 z-20 hidden h-[5.75rem] md:block"
+        className="hero-header-luxe absolute left-1/2 top-2 z-20 hidden h-[3.2rem] w-[min(85vw,65rem)] -translate-x-1/2 rounded-full md:block transition-all duration-600 ease-out"
         aria-hidden
       />
-      <div className="hero-header-luxe absolute left-0 right-0 top-0 z-40 px-3 py-3 md:hidden">
+      <div className="hero-header-luxe absolute left-3 right-3 top-3 z-40 rounded-[1.4rem] px-3 py-3 md:hidden transition-all duration-300 ease-out">
         <div className="flex items-center justify-between gap-3">
-          <Link href="/" className="text-sm font-bold text-gold-rich" onClick={closeMobileMenu}>
+          <Link href="/" className="text-sm font-bold text-black" onClick={closeMobileMenu}>
             GCMA
           </Link>
           <button
             type="button"
-            className="rounded-lg border border-gold-rich/45 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-gold-rich"
+            className="rounded-lg border border-black/30 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black"
             aria-expanded={mobileMenuOpen}
             aria-controls="hero-mobile-menu"
             onClick={() => setMobileMenuOpen((open) => !open)}
@@ -130,7 +137,7 @@ export default function Hero() {
       {mobileMenuOpen ? (
         <div
           id="hero-mobile-menu"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#f9f2e7] px-4 pb-8 pt-16 md:hidden"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#f9f2e7] px-4 pb-8 pt-16 md:hidden transition-all duration-300 ease-out"
         >
           <nav aria-label="Mobile primary navigation" className="space-y-2">
             {primaryLinks.map((link) => (
@@ -178,11 +185,11 @@ export default function Hero() {
         </div>
       ) : null}
 
-      <nav className="absolute left-0 right-0 top-6 z-30 hidden px-4 md:block">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="flex min-w-0 items-center justify-start gap-x-1 sm:gap-x-2">
-            <div className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="mx-auto flex w-max flex-nowrap items-center justify-start gap-x-1 sm:gap-x-2">
+      <nav className="absolute left-1/2 top-3 z-30 hidden w-[min(85vw,65rem)] -translate-x-1/2 px-6 md:block rounded-full transition-all duration-600 ease-out notch-nav">
+        <div className="mx-auto w-full max-w-none">
+          <div className="flex items-center justify-center gap-x-6 lg:gap-x-8 xl:gap-x-12">
+            <div className="overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex w-max flex-nowrap items-center justify-center gap-x-3 lg:gap-x-5">
                 {primaryLinks.map((link) => (
                   <Link key={link.href} href={link.href} className={navLinkClass}>
                     {link.compactLabel ? (
@@ -198,6 +205,7 @@ export default function Hero() {
               </div>
             </div>
 
+            <div className="flex shrink-0 items-center gap-x-3 lg:gap-x-5">
             <div className="relative shrink-0">
               <button
                 type="button"
@@ -273,6 +281,7 @@ export default function Hero() {
                 </div>
               ) : null}
             </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -289,22 +298,31 @@ export default function Hero() {
 
       {hasHeroImage ? (
         <>
-          {/* Desktop: start image below floating nav (nav is absolute top-6 + pill height) so it does not cover the hero focal point */}
-          <div className="absolute inset-x-0 bottom-0 top-[5.75rem] z-0 hidden md:block">
-            <div className="hero-ledge-feather" aria-hidden />
+          {/* Desktop: start image below floating nav so it does not cover the hero focal point */}
+          <div className="absolute inset-x-0 bottom-0 top-[4.6rem] z-0 hidden overflow-hidden md:block">
+            <div className="absolute inset-0 bg-[#0b2f1f]" aria-hidden />
             <img
-              src={heroImage}
+              src={desktopHeroTexture}
               alt="GCMA Hero"
-              className="relative z-0 h-full w-full object-cover object-center"
+              className="absolute left-0 top-0 h-full w-full object-cover"
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              onError={() => {
-                setHeroImageIndex((current) => current + 1)
-              }}
             />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(90deg, rgba(9, 35, 23, 0.08) 0%, rgba(9, 35, 23, 0.12) 22%, rgba(9, 35, 23, 0.46) 54%, rgba(9, 35, 23, 0.78) 100%)',
+              }}
+              aria-hidden
+            />
+
             <div className="absolute bottom-5 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
-              <Link href="/services#immigration-fraud" className="btn-gold btn-gold-lighter block w-full px-8 py-4 text-center text-lg">
+              <Link
+                href="/services#immigration-fraud"
+                className="btn-gold btn-gold-lighter block w-full px-8 py-4 text-center text-lg"
+              >
                 Report scam
               </Link>
             </div>
@@ -317,20 +335,14 @@ export default function Hero() {
             <div className="relative z-10 flex flex-1 flex-col px-4 pb-28 pt-4">
               <div className="mx-auto flex w-full max-w-md justify-center">
                 <img
-                  src={heroImageCandidates[0]}
-                  alt="GCMA emblem"
-                  className="max-h-[38vh] w-full object-contain"
+                  src={mobileHeroImage}
+                  alt="GCMA hero poster"
+                  className="w-full max-w-[25rem] object-contain"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  onError={(event) => {
-                    const target = event.currentTarget
-                    if (target.dataset.fallbackApplied === 'true') {
-                      target.classList.add('hidden')
-                      return
-                    }
-                    target.dataset.fallbackApplied = 'true'
-                    target.src = heroImageCandidates[1] ?? heroImageCandidates[2]
+                  onError={() => {
+                    setMobileHeroImageIndex((current) => current + 1)
                   }}
                 />
               </div>

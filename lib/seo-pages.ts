@@ -30,6 +30,7 @@ export const seoPages = {
     description:
       'Study abroad counseling for Australia, Germany, Denmark, Sweden, France, Malta, and Latvia with university selection, applications, scholarships, visa documentation, and pre-departure support.',
     path: '/study-abroad',
+    ogImagePath: '/study-abroad/banner.jpg',
     keywords: [
       'study abroad counseling',
       'university admission guidance',
@@ -204,6 +205,41 @@ export const seoPages = {
       'private school English classes',
       'student English coaching',
       'academic English support',
+    ],
+  }),
+  gcmaProjects: buildPageMetadata({
+    title: 'GCMA Community Projects and Outreach',
+    description:
+      'Community projects, humanitarian outreach, and welfare initiatives documented by the Global Council for Migration Awareness and Social Welfare (GCMA).',
+    path: '/gcma-projects',
+    ogImagePath: '/projects/gcma-vision.jpg',
+    keywords: [
+      'GCMA projects',
+      'community outreach',
+      'humanitarian initiatives',
+      'migration awareness programs',
+    ],
+  }),
+  canadaPointsCalculator: buildPageMetadata({
+    title: 'Canada CRS Points Calculator (Estimate Only)',
+    description:
+      'Estimate your Express Entry Comprehensive Ranking System (CRS) score using published IRCC criteria. For planning only — not an official IRCC tool. Verify on Canada.ca.',
+    path: '/calculators/canada-points',
+    keywords: [
+      'Canada CRS calculator',
+      'Express Entry points estimate',
+      'CRS score estimator',
+    ],
+  }),
+  prCalculator: buildPageMetadata({
+    title: 'PR Points Calculator (CRS Estimate)',
+    description:
+      'Estimate Express Entry CRS-style points from published criteria for educational planning. Not affiliated with IRCC — confirm results on Canada.ca.',
+    path: '/calculators/pr-calculator',
+    keywords: [
+      'PR points calculator',
+      'CRS estimate',
+      'Express Entry planning',
     ],
   }),
 } as const

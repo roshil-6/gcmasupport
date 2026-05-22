@@ -37,6 +37,24 @@ const gcmaFeatures = [
   'Humanitarian aid, English learning, and volunteer support',
 ]
 
+const serviceBoxColors = [
+  'border-[#d7c39a] bg-[linear-gradient(180deg,#fffdf8_0%,#f7edd9_100%)] text-[#6d5320]',
+  'border-[#c8d8a6] bg-[linear-gradient(180deg,#fbfff5_0%,#edf5db_100%)] text-[#48612a]',
+  'border-[#d7c0de] bg-[linear-gradient(180deg,#fffaff_0%,#f1e4f5_100%)] text-[#694177]',
+  'border-[#e2c2a8] bg-[linear-gradient(180deg,#fffaf6_0%,#f6e5d7_100%)] text-[#7b4d2c]',
+  'border-[#e2c0c9] bg-[linear-gradient(180deg,#fffafb_0%,#f7e1e7_100%)] text-[#7d4658]',
+  'border-[#bec9e2] bg-[linear-gradient(180deg,#fafcff_0%,#e4ebf7_100%)] text-[#42547a]',
+  'border-[#bfe0d5] bg-[linear-gradient(180deg,#f7fffd_0%,#dff3ed_100%)] text-[#2f6b5e]',
+  'border-[#e2c0b6] bg-[linear-gradient(180deg,#fff9f8_0%,#f6e0db_100%)] text-[#7a483f]',
+  'border-[#e4d2a5] bg-[linear-gradient(180deg,#fffdf6_0%,#f4ebcc_100%)] text-[#756025]',
+]
+
+const supportBoxColors = [
+  'border-l-[#c8a95b] bg-[linear-gradient(180deg,#fffdf8_0%,#f8f1e3_100%)]',
+  'border-l-[#8ea861] bg-[linear-gradient(180deg,#fbfff7_0%,#edf4e2_100%)]',
+  'border-l-[#b78cc2] bg-[linear-gradient(180deg,#fffaff_0%,#f1e7f5_100%)]',
+]
+
 function MobileSection({
   title,
   children,
@@ -69,7 +87,7 @@ function MobileSection({
 export default function HomeSeoIntro() {
   return (
     <section aria-labelledby="gcma-home-intro" className="relative z-10 px-3 py-5 sm:px-4 sm:py-6 md:py-8">
-      <div className="glass-card mx-auto max-w-7xl overflow-hidden rounded-2xl">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-[#eadfca] bg-[#fffdf8] shadow-[0_18px_48px_rgba(122,90,30,0.08)]">
         <div className="relative h-40 overflow-hidden sm:h-48 md:h-60">
           <img
             src="/home/seo-intro.jpg"
@@ -77,45 +95,45 @@ export default function HomeSeoIntro() {
             className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
             loading="lazy"
           />
-          <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/55 via-[#333333]/15 to-transparent" />
+          <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#26201b]/28 via-[#26201b]/8 to-transparent" />
         </div>
 
         <div className="grid gap-5 p-4 sm:gap-6 sm:p-5 md:p-6 lg:grid-cols-3 lg:items-stretch lg:gap-0 lg:divide-x lg:divide-gold-metallic/20">
           <MobileSection title="What we focus on" className="order-2 lg:order-1 lg:pr-6">
             <div className="flex flex-col gap-4">
-              {gcmaSupportPoints.map((item) => (
+              {gcmaSupportPoints.map((item, index) => (
                 <div
                   key={item.title}
-                  className="rounded-xl border border-gold-metallic/25 bg-gold-metallic/10 px-4 py-4"
+                  className={`rounded-xl border border-[#eadfca] border-l-4 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] ${supportBoxColors[index % supportBoxColors.length]}`}
                 >
-                  <p className="text-sm font-semibold text-gold-metallic">{item.title}</p>
-                  <p className="mt-2 text-sm leading-relaxed">{item.text}</p>
+                  <p className="text-sm font-semibold text-[#222222]">{item.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#343434]">{item.text}</p>
                 </div>
               ))}
             </div>
           </MobileSection>
 
           <div className="order-1 space-y-4 lg:order-2 lg:px-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3f3f3f]">
               Community welfare and migration awareness
             </p>
 
             <div className="space-y-3">
               <h1
                 id="gcma-home-intro"
-                className="text-[1.65rem] font-bold leading-snug text-gold-metallic sm:text-2xl md:text-3xl"
+                className="text-[1.65rem] font-bold leading-snug text-[#222222] sm:text-2xl md:text-3xl"
               >
                 Global Council for Migration Awareness and Social Welfare (GCMA)
               </h1>
-              <div className="h-px w-16 bg-gradient-to-r from-gold-metallic/80 to-transparent" />
+              <div className="h-px w-16 bg-gradient-to-r from-[#b79b5f] to-transparent" />
             </div>
 
             <div className="space-y-3">
-              <p className="page-intro text-sm leading-relaxed sm:text-base">
+              <p className="page-intro text-sm leading-relaxed text-[#2f2f2f] sm:text-base">
                 GCMA helps students, nurses, families, and skilled professionals with migration awareness,
                 immigration fraud reporting, humanitarian support, and ethical guidance for life abroad.
               </p>
-              <p className="page-intro text-sm leading-relaxed sm:text-base">
+              <p className="page-intro text-sm leading-relaxed text-[#2f2f2f] sm:text-base">
                 Explore study abroad counseling, nursing registration, skilled migration advice, visit visa
                 planning, English classes, Break the Silence, travel support, and charity assistance.
               </p>
@@ -126,10 +144,10 @@ export default function HomeSeoIntro() {
             <ul className="space-y-2.5">
               {gcmaFeatures.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#7a5d1e]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-sm leading-relaxed">{feature}</span>
+                  <span className="text-sm leading-relaxed text-[#343434]">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -144,11 +162,11 @@ export default function HomeSeoIntro() {
             aria-label="Primary service areas"
             className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-3 xl:gap-4"
           >
-            {serviceLinks.map((link) => (
+            {serviceLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="btn-gold-outline flex min-h-11 w-full items-center justify-center px-3 py-2.5 text-center text-xs sm:px-4 sm:text-sm"
+                className={`flex min-h-11 w-full items-center justify-center rounded-lg border-2 px-3 py-2.5 text-center text-xs font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-md sm:px-4 sm:text-sm ${serviceBoxColors[index % serviceBoxColors.length]}`}
               >
                 {link.label}
               </Link>

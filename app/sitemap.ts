@@ -16,7 +16,6 @@ const routes = [
   '/migration-advice/skilled-migration/australia',
   '/migration-advice/skilled-migration/canada',
   '/nursing-registration',
-  '/nurses',
   '/nurses/australia',
   '/nurses/canada',
   '/nurses/denmark',

@@ -7,14 +7,16 @@
   --gold-bright: #d4af37;
   --black-deep: #333333;
   --black-glass: rgba(51, 51, 51, 0.72);
-  --light-bg: #f9f6ef;
-  --light-bg-mid: #f3eee4;
+  --light-bg: #eaf2ec;
+  --light-bg-mid: #dbe8df;
   --light-text: #1f1b2d;
   --light-card: rgba(255, 255, 255, 0.75);
   --light-card-border: rgba(53, 6, 62, 0.15);
-  --light-input: #f3efe6;
+  --light-input: #e2ede5;
   --light-input-border: rgba(53, 6, 62, 0.25);
   --light-placeholder: rgba(53, 6, 62, 0.5);
+  --hero-blend-color: #0b2f1f;
+  --hero-blend-color-rgb: 11, 47, 31;
 }
 
 .text-shadow-strong {
@@ -66,7 +68,7 @@ body.theme-light {
     var(--light-bg) 0%,
     var(--light-bg-mid) 22%,
     var(--light-bg) 55%,
-    #faf7f0 100%
+    #eaf2ec 100%
   );
   color: var(--light-text);
 }
@@ -168,6 +170,58 @@ body.theme-dark .hero-bg {
     transparent 100%
   );
 }
+
+/* Custom blend classes for the dark green poster */
+.hero-blend-top {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 12rem;
+  background: linear-gradient(
+    to bottom,
+    var(--hero-blend-color) 0%,
+    rgba(var(--hero-blend-color-rgb), 0.95) 20%,
+    rgba(var(--hero-blend-color-rgb), 0.7) 50%,
+    rgba(var(--hero-blend-color-rgb), 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.hero-blend-bottom {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  height: 12rem;
+  background: linear-gradient(
+    to top,
+    var(--hero-blend-color) 0%,
+    rgba(var(--hero-blend-color-rgb), 0.95) 20%,
+    rgba(var(--hero-blend-color-rgb), 0.7) 50%,
+    rgba(var(--hero-blend-color-rgb), 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.hero-blend-center {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+}
+
+.hero-mobile-container {
+  background: 
+    linear-gradient(to bottom, var(--hero-blend-color) 0%, var(--hero-blend-color) 45%, transparent 65%),
+    url('/home/gcma-hero-green-seamless.png?v=8') right center / cover no-repeat;
+}
+
 
 .hero-overlay {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.12) 60%, rgba(255, 255, 255, 0.15) 100%);
@@ -534,8 +588,9 @@ body.theme-light [class*='bg-black'][class*='backdrop-blur'] span {
  * Mirrors the bg-black rules above so light-theme text stays readable.
  */
 body.theme-light .bg-\[\#333333\]\/30 {
-  background: rgba(243, 239, 230, 0.5) !important;
-  border-color: rgba(201, 169, 97, 0.3) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(201, 169, 97, 0.45) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
 }
 
 body.theme-light .bg-\[\#333333\]\/70 .text-white,
@@ -601,8 +656,20 @@ body.theme-light .bg-\[\#333333\]\/30 .text-white,
 body.theme-light .bg-\[\#333333\]\/30 .text-gray-300,
 body.theme-light .bg-\[\#333333\]\/30 .text-gray-200,
 body.theme-light .bg-\[\#333333\]\/30 p,
-body.theme-light .bg-\[\#333333\]\/30 span {
-  color: #ffffff !important;
+body.theme-light .bg-\[\#333333\]\/30 span,
+body.theme-light .bg-\[\#333333\]\/30 div,
+body.theme-light .bg-\[\#333333\]\/30 li,
+body.theme-light .bg-\[\#333333\]\/30 label {
+  color: #2a241d !important;
+}
+
+body.theme-light .bg-\[\#333333\]\/30 h1,
+body.theme-light .bg-\[\#333333\]\/30 h2,
+body.theme-light .bg-\[\#333333\]\/30 h3,
+body.theme-light .bg-\[\#333333\]\/30 h4,
+body.theme-light .bg-\[\#333333\]\/30 h5,
+body.theme-light .bg-\[\#333333\]\/30 h6 {
+  color: #6e531d !important;
 }
 
 body.theme-light [class*='bg-[#333333]'] .text-white,
@@ -686,27 +753,31 @@ body.theme-dark .text-white {
 }
 
 body.theme-light .glass-card {
-  background: var(--light-card);
-  border: 1px solid var(--light-card-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  color: var(--light-text);
+  background: #ffffff !important;
+  border: 1px solid rgba(201, 169, 97, 0.45) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+  color: #2a241d !important;
 }
 
-/* Light theme: only non-dark glass cards use dark copy */
-body.theme-light .glass-card:not(.dark-container) p,
-body.theme-light .glass-card:not(.dark-container) span,
-body.theme-light .glass-card:not(.dark-container) div,
-body.theme-light .glass-card:not(.dark-container) h1,
-body.theme-light .glass-card:not(.dark-container) h2,
-body.theme-light .glass-card:not(.dark-container) h3,
-body.theme-light .glass-card:not(.dark-container) h4,
-body.theme-light .glass-card:not(.dark-container) h5,
-body.theme-light .glass-card:not(.dark-container) h6,
-body.theme-light .glass-card:not(.dark-container) li,
-body.theme-light .glass-card:not(.dark-container) .text-white,
-body.theme-light .glass-card:not(.dark-container) .text-gray-300,
-body.theme-light .glass-card:not(.dark-container) .text-gray-200 {
-  color: #1a1a1a !important;
+body.theme-light .glass-card h1,
+body.theme-light .glass-card h2,
+body.theme-light .glass-card h3,
+body.theme-light .glass-card h4,
+body.theme-light .glass-card h5,
+body.theme-light .glass-card h6 {
+  color: #6e531d !important;
+}
+
+body.theme-light .glass-card p,
+body.theme-light .glass-card span,
+body.theme-light .glass-card div,
+body.theme-light .glass-card li,
+body.theme-light .glass-card label,
+body.theme-light .glass-card .text-white,
+body.theme-light .glass-card .text-gray-300,
+body.theme-light .glass-card .text-gray-200,
+body.theme-light .glass-card .text-gray-400 {
+  color: #2a241d !important;
 }
 
 .glass-card:hover {
@@ -934,31 +1005,29 @@ body.theme-light .form-input::placeholder {
 
 /* Dark welfare card forms sit on light site theme — override light form-input */
 body.theme-light .welfare-card-form .form-input {
-  background: rgba(255, 255, 255, 0.11);
-  border: 1px solid rgba(201, 169, 97, 0.5);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(201, 169, 97, 0.35);
+  color: #1a1a1a;
 }
 
 body.theme-light .welfare-card-form .form-input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: var(--gold-bright);
-  box-shadow:
-    0 0 0 1px rgba(201, 169, 97, 0.35),
-    0 6px 16px rgba(0, 0, 0, 0.22);
+  background: #ffffff;
+  border-color: var(--gold-metallic);
+  box-shadow: 0 0 0 2px rgba(201, 169, 97, 0.2);
 }
 
 body.theme-light .welfare-card-form .form-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #888888;
 }
 
 body.theme-light .welfare-card-form select.form-input {
-  background-color: rgba(38, 38, 38, 0.98) !important;
-  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .welfare-card-form select.form-input option {
-  background-color: #333333 !important;
-  color: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
 }
 
 /* Select dropdown styling */
@@ -1127,28 +1196,26 @@ body.theme-light .dark-container {
   border-color: rgba(201, 169, 97, 0.3) !important;
 }
 
-body.theme-light .dark-container h1,
-body.theme-light .dark-container h2,
-body.theme-light .dark-container h3,
-body.theme-light .dark-container h4,
-body.theme-light .dark-container p,
-body.theme-light .dark-container span,
-body.theme-light .dark-container li,
-body.theme-light .dark-container div,
-body.theme-light .dark-container label,
-body.theme-light .dark-container .text-white,
-body.theme-light .dark-container .text-gray-200,
-body.theme-light .dark-container .text-gray-300,
-body.theme-light .dark-container .text-gray-400,
-body.theme-light .glass-card.dark-container p,
-body.theme-light .glass-card.dark-container span,
-body.theme-light .glass-card.dark-container div,
-body.theme-light .glass-card.dark-container li,
-body.theme-light .glass-card.dark-container label,
-body.theme-light .glass-card.dark-container .text-white,
-body.theme-light .glass-card.dark-container .text-gray-200,
-body.theme-light .glass-card.dark-container .text-gray-300,
-body.theme-light .glass-card.dark-container .text-gray-400,
+body.theme-light .dark-container:not(.hero-dark-zone),
+body.theme-light .glass-card.dark-container {
+  background: #ffffff !important;
+  border: 1px solid rgba(201, 169, 97, 0.45) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.theme-light .dark-container.hero-dark-zone h1,
+body.theme-light .dark-container.hero-dark-zone h2,
+body.theme-light .dark-container.hero-dark-zone h3,
+body.theme-light .dark-container.hero-dark-zone h4,
+body.theme-light .dark-container.hero-dark-zone p,
+body.theme-light .dark-container.hero-dark-zone span,
+body.theme-light .dark-container.hero-dark-zone li,
+body.theme-light .dark-container.hero-dark-zone div,
+body.theme-light .dark-container.hero-dark-zone label,
+body.theme-light .dark-container.hero-dark-zone .text-white,
+body.theme-light .dark-container.hero-dark-zone .text-gray-200,
+body.theme-light .dark-container.hero-dark-zone .text-gray-300,
+body.theme-light .dark-container.hero-dark-zone .text-gray-400,
 body.theme-light [class*='bg-black'] .text-white,
 body.theme-light [class*='from-black'] .text-white,
 body.theme-light [class*='to-black'] .text-white,
@@ -1177,6 +1244,42 @@ body.theme-light [class*='bg-black'] .text-on-dark,
 body.theme-light [class*='from-black'] .text-on-dark,
 body.theme-light [class*='to-black'] .text-on-dark {
   color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.theme-light .dark-container:not(.hero-dark-zone) p,
+body.theme-light .dark-container:not(.hero-dark-zone) span,
+body.theme-light .dark-container:not(.hero-dark-zone) li,
+body.theme-light .dark-container:not(.hero-dark-zone) div,
+body.theme-light .dark-container:not(.hero-dark-zone) label,
+body.theme-light .dark-container:not(.hero-dark-zone) .text-white,
+body.theme-light .dark-container:not(.hero-dark-zone) .text-gray-200,
+body.theme-light .dark-container:not(.hero-dark-zone) .text-gray-300,
+body.theme-light .dark-container:not(.hero-dark-zone) .text-gray-400,
+body.theme-light .glass-card.dark-container p,
+body.theme-light .glass-card.dark-container span,
+body.theme-light .glass-card.dark-container div,
+body.theme-light .glass-card.dark-container li,
+body.theme-light .glass-card.dark-container label,
+body.theme-light .glass-card.dark-container .text-white,
+body.theme-light .glass-card.dark-container .text-gray-200,
+body.theme-light .glass-card.dark-container .text-gray-300,
+body.theme-light .glass-card.dark-container .text-gray-400 {
+  color: #2a241d !important;
+}
+
+body.theme-light .dark-container:not(.hero-dark-zone) h1,
+body.theme-light .dark-container:not(.hero-dark-zone) h2,
+body.theme-light .dark-container:not(.hero-dark-zone) h3,
+body.theme-light .dark-container:not(.hero-dark-zone) h4,
+body.theme-light .dark-container:not(.hero-dark-zone) h5,
+body.theme-light .dark-container:not(.hero-dark-zone) h6,
+body.theme-light .glass-card.dark-container h1,
+body.theme-light .glass-card.dark-container h2,
+body.theme-light .glass-card.dark-container h3,
+body.theme-light .glass-card.dark-container h4,
+body.theme-light .glass-card.dark-container h5,
+body.theme-light .glass-card.dark-container h6 {
+  color: #6e531d !important;
 }
 
 body.theme-light .dark-container .text-gold-metallic,
@@ -1362,3 +1465,122 @@ body.theme-light .form-sheet.dark-container .form-sheet-description {
   padding-top: 0.55rem;
   padding-bottom: 0.55rem;
 }
+
+/* Global overrides to map creamy colors (#f9f2e7 and #f9f6ef) to pale green (#eaf2ec) */
+body.theme-light .bg-\[#f9f2e7\],
+body.theme-light .bg-\[#f9f6ef\],
+body.theme-light [class*="bg-[#f9f2e7]"],
+body.theme-light [class*="bg-[#f9f6ef]"] {
+  background-color: #eaf2ec !important;
+}
+
+body.theme-light .bg-\[#f9f2e7\]\/95 {
+  background-color: rgba(234, 242, 236, 0.95) !important;
+}
+
+body.theme-light .bg-\[#f9f2e7\]\/90 {
+  background-color: rgba(234, 242, 236, 0.90) !important;
+}
+
+/* Protect hero overlay text from light-theme dark-color overrides */
+.hero-desktop-content .text-white,
+.hero-dark-zone .text-white,
+body.theme-light .hero-desktop-content .text-white,
+body.theme-light .hero-dark-zone .text-white {
+  color: #ffffff !important;
+}
+
+.hero-desktop-content .text-gold-bright,
+.hero-dark-zone .text-gold-bright,
+body.theme-light .hero-desktop-content .text-gold-bright,
+body.theme-light .hero-dark-zone .text-gold-bright {
+  color: #ffdf85 !important;
+}
+
+.hero-desktop-content .text-gold-metallic,
+.hero-dark-zone .text-gold-metallic,
+body.theme-light .hero-desktop-content .text-gold-metallic,
+body.theme-light .hero-dark-zone .text-gold-metallic,
+body.theme-light .hero-desktop-content [class*="text-gold"],
+body.theme-light .hero-dark-zone [class*="text-gold"] {
+  color: #ffd97d !important;
+}
+
+.hero-desktop-content .text-gold\/90,
+.hero-dark-zone .text-gold\/90,
+body.theme-light .hero-desktop-content .text-gold\/90,
+body.theme-light .hero-dark-zone .text-gold\/90 {
+  color: #fff3d1 !important;
+}
+
+/* Hero Text Enhancements - Ultra sharp, high-contrast, premium look without cards or blur */
+.hero-desktop-text-wrapper {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text-title {
+  color: #ffdf85 !important;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 4px 12px rgba(0, 0, 0, 0.9),
+    0 8px 24px rgba(11, 47, 31, 0.95);
+  letter-spacing: 0.12em !important;
+}
+
+.hero-text-sub {
+  color: #ffd97d !important;
+  text-shadow: 
+    0 1.5px 3px rgba(0, 0, 0, 0.98),
+    0 3px 8px rgba(0, 0, 0, 0.95),
+    0 6px 16px rgba(11, 47, 31, 0.95);
+  font-weight: 700 !important;
+}
+
+.hero-text-quote {
+  color: #ffffff !important;
+  text-shadow: 
+    0 1.5px 3px rgba(0, 0, 0, 0.98),
+    0 3px 8px rgba(0, 0, 0, 0.95),
+    0 6px 16px rgba(11, 47, 31, 0.95);
+  font-weight: 500 !important;
+}
+
+/* Map creamy containers (#fffdf8) to pure white (#ffffff) in light theme */
+body.theme-light .bg-\[\#fffdf8\],
+body.theme-light [class*="bg-[#fffdf8]"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+body.theme-light .border-\[\#eadfca\],
+body.theme-light [class*="border-[#eadfca]"] {
+  border-color: rgba(193, 209, 197, 0.3) !important;
+}
+
+/* Map mobile hero and menu cream backgrounds to dark charcoal under dark theme */
+body.theme-dark .bg-\[#f9f2e7\],
+body.theme-dark .bg-\[#f9f6ef\],
+body.theme-dark [class*="bg-[#f9f2e7]"],
+body.theme-dark [class*="bg-[#f9f6ef]"],
+body.theme-dark .bg-\[\#fffdf8\],
+body.theme-dark [class*="bg-[#fffdf8]"] {
+  background-color: var(--black-deep) !important;
+  background: var(--black-deep) !important;
+  border-color: rgba(201, 169, 97, 0.2) !important;
+}
+
+body.theme-dark .bg-\[#f9f2e7\]\/95 {
+  background-color: rgba(51, 51, 51, 0.95) !important;
+}
+
+body.theme-dark .bg-\[#f9f2e7\]\/90 {
+  background-color: rgba(51, 51, 51, 0.90) !important;
+}
+

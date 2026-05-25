@@ -168,7 +168,7 @@ export default function TravelPage() {
 
           {/* Travel Intention Cards */}
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">Select Your Travel Intention</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] text-center mb-8">Select Your Travel Intention</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <ShowcaseCard
                 imageSrc="/travel/visit-intention.jpg"
@@ -227,18 +227,18 @@ export default function TravelPage() {
 
           {/* Comprehensive Services List - Numbered Format (Different Format) */}
           <div className="mb-12">
-            <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
-              <h2 className="text-3xl font-bold text-gold-metallic mb-6 text-center">Our Comprehensive Travel Services</h2>
+            <div className="bg-white border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
+              <h2 className="text-3xl font-bold text-[#6e531d] mb-6 text-center">Our Comprehensive Travel Services</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-4">Travel Planning Services</h3>
+                  <h3 className="text-xl font-semibold text-[#2a241d] mb-4">Travel Planning Services</h3>
                   <ol className="space-y-4">
                     {planningServices.map((service, idx) => (
                       <li
                         key={service.title}
-                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-[#333333]/40 p-4"
+                        className="flex gap-4 rounded-xl border border-[#8a7340]/25 bg-[#f9f2e7]/20 p-4 shadow-sm"
                       >
-                        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28">
+                        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28 border border-gold-metallic/20">
                           <Image
                             src={service.imageSrc}
                             alt={service.imageAlt}
@@ -251,8 +251,8 @@ export default function TravelPage() {
                             {idx + 1}
                           </span>
                           <div>
-                            <h4 className="mb-1 font-semibold text-white">{service.title}</h4>
-                            <p className="text-sm leading-relaxed text-white/80">{service.desc}</p>
+                            <h4 className="mb-1 font-semibold text-[#2a241d]">{service.title}</h4>
+                            <p className="text-sm leading-relaxed text-[#4a4238]">{service.desc}</p>
                           </div>
                         </div>
                       </li>
@@ -260,14 +260,14 @@ export default function TravelPage() {
                   </ol>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-4">Booking & Reservation Services</h3>
+                  <h3 className="text-xl font-semibold text-[#2a241d] mb-4">Booking & Reservation Services</h3>
                   <ol className="space-y-4">
                     {bookingServices.map((service, idx) => (
                       <li
                         key={service.title}
-                        className="flex gap-4 rounded-xl border border-gold-metallic/20 bg-[#333333]/40 p-4"
+                        className="flex gap-4 rounded-xl border border-[#8a7340]/25 bg-[#f9f2e7]/20 p-4 shadow-sm"
                       >
-                        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28">
+                        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-28 border border-gold-metallic/20">
                           <Image
                             src={service.imageSrc}
                             alt={service.imageAlt}
@@ -280,8 +280,8 @@ export default function TravelPage() {
                             {idx + 5}
                           </span>
                           <div>
-                            <h4 className="mb-1 font-semibold text-white">{service.title}</h4>
-                            <p className="text-sm leading-relaxed text-white/80">{service.desc}</p>
+                            <h4 className="mb-1 font-semibold text-[#2a241d]">{service.title}</h4>
+                            <p className="text-sm leading-relaxed text-[#4a4238]">{service.desc}</p>
                           </div>
                         </div>
                       </li>
@@ -295,8 +295,8 @@ export default function TravelPage() {
           {/* Why Choose Us - Feature Grid (Different Format) */}
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">Why Choose Our Travel Services?</h2>
-              <p className="page-intro mx-auto text-lg max-w-3xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">Why Choose Our Travel Services?</h2>
+              <p className="page-intro mx-auto text-lg max-w-3xl text-[#6d5a3a]">
                 We go beyond booking to provide comprehensive travel support
               </p>
             </div>
@@ -304,7 +304,7 @@ export default function TravelPage() {
               {whyChooseFeatures.map((feature) => (
                 <article
                   key={feature.title}
-                  className="overflow-hidden rounded-xl border border-gold-metallic/30 bg-gradient-to-br from-[#333333]/80 to-[#333333]/60 shadow-lg transition-all hover:border-gold-metallic/60"
+                  className="overflow-hidden rounded-xl border border-gold-metallic/40 bg-white shadow-xl transition-all hover:border-gold-metallic"
                 >
                   <div className="relative h-40 w-full">
                     <Image
@@ -313,11 +313,11 @@ export default function TravelPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/20 to-transparent" />
                   </div>
                   <div className="p-6">
-                    <h3 className="mb-3 text-lg font-bold text-gold-metallic">{feature.title}</h3>
-                    <p className="text-sm leading-relaxed text-white">{feature.description}</p>
+                    <h3 className="mb-3 text-lg font-bold text-[#6e531d]">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-[#4a4238]">{feature.description}</p>
                   </div>
                 </article>
               ))}

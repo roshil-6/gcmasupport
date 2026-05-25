@@ -104,18 +104,18 @@ export default function VisitVisaPage() {
           </div>
 
           {/* Significance Section */}
-          <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-12">
+          <div className="rounded-2xl border border-gold-metallic/40 bg-white shadow-xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gold-metallic mb-6">Why Visit Visa Matters</h2>
-                <p className="text-lg text-white mb-4 leading-relaxed">
+                <h2 className="text-3xl font-bold text-[#6e531d] mb-6">Why Visit Visa Matters</h2>
+                <p className="text-lg text-[#2a241d] mb-4 leading-relaxed">
                   A visit visa opens doors to new experiences, family reunions, business opportunities, and cultural exploration. Whether you're planning a vacation, visiting loved ones, or exploring business prospects abroad, having the right visa is crucial.
                 </p>
-                <p className="text-base text-white leading-relaxed">
+                <p className="text-base text-[#4a4238] leading-relaxed">
                   Our expert team guides you through the entire visa application process, ensuring all documentation is accurate and complete. We understand that visa applications can be complex and time-consuming, which is why we're here to simplify the process and maximize your chances of approval.
                 </p>
               </div>
-              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden border border-gold-metallic/20">
                 <Image
                   src="/visit-visa/significance.jpg"
                   alt="Visit Visa Significance"
@@ -162,10 +162,10 @@ export default function VisitVisaPage() {
           {/* Visa Application Process - Step-by-Step Format (Different Format) */}
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                 Our Visa Application Process
               </h2>
-              <p className="page-intro mx-auto text-lg max-w-3xl">
+              <p className="page-intro mx-auto text-lg max-w-3xl text-[#6d5a3a]">
                 We guide you through every step to ensure a smooth and successful visa application
               </p>
             </div>
@@ -173,7 +173,7 @@ export default function VisitVisaPage() {
               {visaProcessSteps.map((step) => (
                 <article
                   key={step.title}
-                  className="overflow-hidden rounded-xl border border-gold-metallic/40 bg-[#333333]/70 shadow-xl backdrop-blur-sm"
+                  className="overflow-hidden rounded-xl border border-gold-metallic/40 bg-white shadow-xl"
                 >
                   <div className="relative h-36 w-full">
                     <Image
@@ -182,16 +182,16 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/75 via-[#333333]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/20 to-transparent" />
                   </div>
                   <div className="p-6">
                     <div className="mb-4 flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-metallic">
                         <span className="text-lg font-bold text-black">{step.number}</span>
                       </div>
-                      <h3 className="text-lg font-bold text-gold-metallic">{step.title}</h3>
+                      <h3 className="text-lg font-bold text-[#6e531d]">{step.title}</h3>
                     </div>
-                    <p className="text-sm leading-relaxed text-white">{step.description}</p>
+                    <p className="text-sm leading-relaxed text-[#4a4238]">{step.description}</p>
                   </div>
                 </article>
               ))}
@@ -200,10 +200,10 @@ export default function VisitVisaPage() {
 
           {/* Required Documents Checklist - List Format (Different Format) */}
           <div className="mb-12">
-            <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
-              <h2 className="text-3xl font-bold text-gold-metallic mb-6">Required Documents Checklist</h2>
+            <div className="bg-white border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
+              <h2 className="text-3xl font-bold text-[#6e531d] mb-6">Required Documents Checklist</h2>
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-[#333333]/40">
+                <div className="overflow-hidden rounded-xl border border-[#8a7340]/30 bg-[#f9f2e7]/20 shadow-md">
                   <div className="relative h-36 w-full">
                     <Image
                       src="/visit-visa/checklist-essential-documents.jpg"
@@ -211,23 +211,23 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/20 to-transparent" />
                   </div>
                   <div className="p-5">
-                    <h3 className="mb-4 text-xl font-semibold text-white">Essential Documents</h3>
+                    <h3 className="mb-4 text-xl font-semibold text-[#2a241d]">Essential Documents</h3>
                     <ul className="space-y-3">
                       {essentialDocuments.map((item) => (
                         <li key={item} className="flex items-start gap-3">
-                          <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#8a7340]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span className="text-sm text-white">{item}</span>
+                          <span className="text-sm text-[#4a4238]">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-xl border border-gold-metallic/20 bg-[#333333]/40">
+                <div className="overflow-hidden rounded-xl border border-[#8a7340]/30 bg-[#f9f2e7]/20 shadow-md">
                   <div className="relative h-36 w-full">
                     <Image
                       src="/visit-visa/checklist-supporting-documents.jpg"
@@ -235,26 +235,26 @@ export default function VisitVisaPage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 via-[#333333]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/20 to-transparent" />
                   </div>
                   <div className="p-5">
-                    <h3 className="mb-4 text-xl font-semibold text-white">Supporting Documents</h3>
+                    <h3 className="mb-4 text-xl font-semibold text-[#2a241d]">Supporting Documents</h3>
                     <ul className="space-y-3">
                       {supportingDocuments.map((item) => (
                         <li key={item} className="flex items-start gap-3">
-                          <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#8a7340]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span className="text-sm text-white">{item}</span>
+                          <span className="text-sm text-[#4a4238]">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className="mt-6 pt-6 border-t border-gold-metallic/20">
-                <p className="text-white text-sm leading-relaxed">
-                  <strong className="text-gold-metallic">Note:</strong> Document requirements vary by destination country and visa type. Our consultants provide a personalized checklist based on your specific situation and travel purpose. We ensure all documents meet embassy standards and are submitted in the correct format.
+              <div className="mt-6 pt-6 border-t border-gold-metallic/35">
+                <p className="text-[#4a4238] text-sm leading-relaxed">
+                  <strong className="text-[#6e531d]">Note:</strong> Document requirements vary by destination country and visa type. Our consultants provide a personalized checklist based on your specific situation and travel purpose. We ensure all documents meet embassy standards and are submitted in the correct format.
                 </p>
               </div>
             </div>

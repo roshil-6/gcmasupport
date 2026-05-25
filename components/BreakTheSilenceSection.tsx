@@ -144,7 +144,7 @@ export default function BreakTheSilenceSection() {
           )}
         </div>
 
-        <div className="glass-card dark-container rounded-2xl p-8 md:p-12">
+        <div className="bg-white border border-gold-metallic/40 rounded-2xl p-8 md:p-12 shadow-xl">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <button
               onClick={() => {
@@ -163,13 +163,13 @@ export default function BreakTheSilenceSection() {
                   className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute -bottom-px left-0 right-0 top-0 bg-[#333333]/40"></div>
+                <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-white/60 via-white/20 to-transparent"></div>
               </div>
-              <div className="p-6 bg-[#333333]/75">
-                <h3 className="text-2xl font-bold text-gold-metallic mb-2">
+              <div className="p-6 bg-white">
+                <h3 className="text-2xl font-bold text-[#6e531d] mb-2">
                   I Am a Student
                 </h3>
-                <p className="text-on-dark text-sm leading-relaxed">
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Apply to improve your English speaking skills through our
                   volunteer-based program.
                 </p>
@@ -190,13 +190,13 @@ export default function BreakTheSilenceSection() {
                   className="absolute left-0 right-0 top-0 h-[calc(100%+3px)] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute -bottom-px left-0 right-0 top-0 bg-[#333333]/40"></div>
+                <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-white/60 via-white/20 to-transparent"></div>
               </div>
-              <div className="p-6 bg-[#333333]/75">
-                <h3 className="text-2xl font-bold text-gold-metallic mb-2">
+              <div className="p-6 bg-white">
+                <h3 className="text-2xl font-bold text-[#6e531d] mb-2">
                   I Am a Tutor
                 </h3>
-                <p className="text-on-dark text-sm leading-relaxed">
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Volunteer to teach English as a social service. Teaching is
                   completely free.
                 </p>
@@ -217,7 +217,7 @@ export default function BreakTheSilenceSection() {
                   if (el) scrollIntoViewSafe(el)
                 })
               }}
-              className="inline-flex items-center gap-2 text-gold-metallic hover:text-gold-bright font-semibold transition-colors text-lg border-2 border-gold-metallic/40 hover:border-gold-metallic rounded-lg px-6 py-3 bg-[#333333]/80 hover:bg-[#333333]/90"
+              className="inline-flex items-center gap-2 bg-gold-metallic hover:bg-gold-bright text-black font-semibold transition-colors text-lg rounded-lg px-6 py-3 shadow-md hover:shadow-lg"
             >
               <span>Be a Child Tutor</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,12 +321,12 @@ function StudentForm({
 
   return (
     <div className="mt-6">
-      <h3 className="text-xl font-bold text-gold-metallic mb-4">
+      <h3 className="text-xl font-bold text-[#6e531d] mb-4">
         Student Application Form
       </h3>
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             I Am a *
           </label>
           <select
@@ -347,7 +347,7 @@ function StudentForm({
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Name *
           </label>
           <input
@@ -363,7 +363,7 @@ function StudentForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Contact Number *
           </label>
           <input
@@ -379,7 +379,7 @@ function StudentForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Learning Goals *
           </label>
           <textarea
@@ -476,18 +476,18 @@ function TutorForm({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="mt-6">
-      <div className="bg-gold-metallic/10 border border-gold-metallic/30 rounded-lg p-4 mb-6">
-        <p className="text-gold-metallic font-semibold text-center">
+      <div className="bg-gold-metallic/10 border border-gold-metallic/35 rounded-lg p-4 mb-6">
+        <p className="text-[#6e531d] font-semibold text-center">
           ⚠️ Important: Teaching is carried out as a voluntary social service, with our educators contributing their time and knowledge without compensation to support community development.
         </p>
       </div>
 
-      <h3 className="text-xl font-bold text-gold-metallic mb-4">
+      <h3 className="text-xl font-bold text-[#6e531d] mb-4">
         Tutor Application Form
       </h3>
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Name *
           </label>
           <input
@@ -503,7 +503,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Contact Number *
           </label>
           <input
@@ -519,7 +519,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Area of Expertise *
           </label>
           <input
@@ -535,7 +535,7 @@ function TutorForm({ onClose }: { onClose: () => void }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gold-metallic mb-2">
+          <label className="block text-sm font-medium text-[#2a241d] mb-2">
             Availability *
           </label>
           <textarea

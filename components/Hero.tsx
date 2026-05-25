@@ -3,21 +3,26 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import HeroMobileParticles from '@/components/HeroMobileParticles'
+import HexagonBackground from '@/components/HexagonBackground'
 
 const desktopHeroImageCandidates = [
+  '/home/gcma-hero-banner.jpg?v=3',
+  '/home/gcma-hero-poster.jpg?v=2',
   '/logo_statue.png',
   '/home/belief-statement.jpg',
   '/hero-background.jpeg',
 ]
 
 const mobileHeroImageCandidates = [
+  '/home/gcma-hero-banner.jpg?v=3',
+  '/home/gcma-hero-green-statue-cropped.jpg?v=10',
+  '/logo_statue.png',
   '/home/gcma-hero-latest.png',
   '/hero-background.jpeg',
-  '/logo_statue.png',
   '/home/belief-statement.jpg',
 ]
 
-const desktopHeroTexture = '/home/gcma-hero-latest.png'
+const desktopHeroTexture = '/home/gcma-hero-banner.jpg?v=3'
 
 type PrimaryNavLink = { href: string; label: string; compactLabel?: string }
 
@@ -54,13 +59,15 @@ const nursingLinks = [
 ]
 
 const navLinkClass =
-  'shrink-0 whitespace-nowrap rounded-md px-1.5 py-1.5 text-xs font-semibold text-gold-rich transition-colors hover:text-gold hover:underline hover:decoration-gold-rich/90 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-rich/50 sm:px-2 sm:py-1.5 sm:text-sm lg:px-2.5 lg:py-2 lg:text-base'
+  'shrink-0 whitespace-nowrap rounded-md px-1.5 py-1.5 text-xs font-semibold text-gold transition-colors hover:text-gold-metallic hover:underline hover:decoration-gold-metallic/90 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold/50 sm:px-2 sm:py-1.5 sm:text-sm lg:px-2.5 lg:py-2 lg:text-base'
 
 const mobileNavLinkClass =
   'block rounded-lg border border-gold-rich/30 px-4 py-3 text-sm font-semibold text-gold-rich transition-colors hover:bg-gold-rich/10'
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const nursingRef = useRef<HTMLDivElement>(null)
   const [desktopHeroImageIndex, setDesktopHeroImageIndex] = useState(0)
   const [mobileHeroImageIndex, setMobileHeroImageIndex] = useState(0)
   const [showServicesMenu, setShowServicesMenu] = useState(false)
@@ -68,6 +75,31 @@ export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const [mobileNursingOpen, setMobileNursingOpen] = useState(false)
+
+  const toggleServicesMenu = () => {
+    setShowServicesMenu((prev) => !prev)
+    setShowNursingMenu(false)
+  }
+
+  const toggleNursingMenu = () => {
+    setShowNursingMenu((prev) => !prev)
+    setShowServicesMenu(false)
+  }
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setShowServicesMenu(false)
+      }
+      if (nursingRef.current && !nursingRef.current.contains(event.target as Node)) {
+        setShowNursingMenu(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const desktopHeroImage = desktopHeroImageCandidates[desktopHeroImageIndex]
   const mobileHeroImage = mobileHeroImageCandidates[mobileHeroImageIndex]
@@ -110,34 +142,42 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative z-10 min-h-[100dvh] overflow-hidden md:overflow-visible hero-background md:h-screen md:min-h-screen"
+      className="relative z-10 min-h-[100dvh] overflow-x-hidden md:overflow-visible hero-background md:h-screen md:min-h-screen"
     >
-      {/* Desktop: floating light green notch behind nav */}
-      <div
-        className="hero-header-luxe absolute left-1/2 top-2 z-20 hidden h-[3.2rem] w-[min(85vw,65rem)] -translate-x-1/2 rounded-full md:block transition-all duration-600 ease-out"
-        aria-hidden
-      />
-      <div className="hero-header-luxe absolute left-3 right-3 top-3 z-40 rounded-[1.4rem] px-3 py-3 md:hidden transition-all duration-300 ease-out">
-        <div className="flex items-center justify-between gap-3">
-          <Link href="/" className="text-sm font-bold text-black" onClick={closeMobileMenu}>
-            GCMA
-          </Link>
-          <button
-            type="button"
-            className="rounded-lg border border-black/30 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="hero-mobile-menu"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-          >
-            {mobileMenuOpen ? 'Close' : 'Menu'}
-          </button>
-        </div>
+
+      <div 
+        className={`absolute left-0 right-0 top-0 z-[60] w-full px-6 py-4 flex items-center justify-between transition-all duration-300 ease-out md:hidden ${
+          mobileMenuOpen 
+            ? 'bg-transparent border-b border-black/10' 
+            : 'mobile-nav-header backdrop-blur-md'
+        }`}
+      >
+        <Link 
+          href="/" 
+          className={`text-base font-bold tracking-widest transition-colors ${mobileMenuOpen ? 'text-black' : 'mobile-nav-logo'}`}
+          onClick={closeMobileMenu}
+        >
+          GCMA
+        </Link>
+        <button
+          type="button"
+          className={`rounded-lg border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition-colors ${
+            mobileMenuOpen 
+              ? 'border-black/30 text-black hover:bg-black/5' 
+              : 'mobile-nav-btn'
+          }`}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="hero-mobile-menu"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          {mobileMenuOpen ? 'Close' : 'Menu'}
+        </button>
       </div>
 
       {mobileMenuOpen ? (
         <div
           id="hero-mobile-menu"
-          className="fixed inset-0 z-50 overflow-y-auto bg-[#f9f2e7] px-4 pb-8 pt-16 md:hidden transition-all duration-300 ease-out"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[#f9f2e7] px-6 pb-8 pt-20 md:hidden transition-all duration-300 ease-out"
         >
           <nav aria-label="Mobile primary navigation" className="space-y-2">
             {primaryLinks.map((link) => (
@@ -185,7 +225,7 @@ export default function Hero() {
         </div>
       ) : null}
 
-      <nav className="absolute left-1/2 top-3 z-30 hidden w-[min(85vw,65rem)] -translate-x-1/2 px-6 md:block rounded-full transition-all duration-600 ease-out notch-nav">
+      <nav className="absolute left-1/2 top-5 z-30 hidden w-full max-w-7xl -translate-x-1/2 px-6 md:block transition-all duration-600 ease-out">
         <div className="mx-auto w-full max-w-none">
           <div className="flex items-center justify-center gap-x-6 lg:gap-x-8 xl:gap-x-12">
             <div className="overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -206,10 +246,10 @@ export default function Hero() {
             </div>
 
             <div className="flex shrink-0 items-center gap-x-3 lg:gap-x-5">
-            <div className="relative shrink-0">
+            <div ref={servicesRef} className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setShowServicesMenu(!showServicesMenu)}
+                onClick={toggleServicesMenu}
                 className={`${navLinkClass} flex items-center gap-1`}
                 aria-expanded={showServicesMenu}
               >
@@ -243,10 +283,10 @@ export default function Hero() {
               ) : null}
             </div>
 
-            <div className="relative shrink-0">
+            <div ref={nursingRef} className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setShowNursingMenu(!showNursingMenu)}
+                onClick={toggleNursingMenu}
                 className={`${navLinkClass} flex items-center gap-1`}
                 aria-label="Global nursing registration"
                 aria-expanded={showNursingMenu}
@@ -286,20 +326,12 @@ export default function Hero() {
         </div>
       </nav>
 
-      {(showServicesMenu || showNursingMenu) && (
-        <div
-          className="fixed inset-0 z-[25] hidden md:block"
-          onClick={() => {
-            setShowServicesMenu(false)
-            setShowNursingMenu(false)
-          }}
-        />
-      )}
+
 
       {hasHeroImage ? (
         <>
-          {/* Desktop: start image below floating nav so it does not cover the hero focal point */}
-          <div className="absolute inset-x-0 bottom-0 top-[4.6rem] z-0 hidden overflow-hidden md:block">
+          {/* Desktop: hero image covering full viewport and blended with theme backgrounds */}
+          <div className="absolute inset-0 z-0 hidden overflow-hidden md:block">
             <div className="absolute inset-0 bg-[#0b2f1f]" aria-hidden />
             <img
               src={desktopHeroTexture}
@@ -309,16 +341,41 @@ export default function Hero() {
               fetchPriority="high"
               decoding="async"
             />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(90deg, rgba(9, 35, 23, 0.08) 0%, rgba(9, 35, 23, 0.12) 22%, rgba(9, 35, 23, 0.46) 54%, rgba(9, 35, 23, 0.78) 100%)',
-              }}
-              aria-hidden
-            />
 
-            <div className="absolute bottom-5 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
+
+
+            {/* Desktop Hero Text Content (overlay - visually hidden but preserved for SEO and screen readers) */}
+            <div className="sr-only pointer-events-none" aria-hidden="false">
+              <div className="w-full max-w-2xl xl:max-w-3xl text-center hero-desktop-text-wrapper">
+                <div className="space-y-4">
+                  <h2 className="text-7xl lg:text-8xl xl:text-9xl font-bold tracking-widest font-display text-gold-bright hero-text-title">
+                    GCMA
+                  </h2>
+                  
+                  {/* Elegant horizontal gold line */}
+                  <div className="flex items-center justify-center py-2">
+                    <div className="h-[2px] w-48 bg-gradient-to-r from-transparent via-[#ffd97d]/85 to-transparent" />
+                  </div>
+
+                  <p className="text-sm sm:text-base lg:text-lg font-bold tracking-[0.25em] font-sans text-gold-metallic uppercase leading-relaxed max-w-xl mx-auto hero-text-sub">
+                    Global Council for Migration Awareness and Social Welfare
+                  </p>
+                  
+                  {/* Elegant horizontal gold line */}
+                  <div className="flex items-center justify-center py-2">
+                    <div className="h-[2px] w-48 bg-gradient-to-r from-transparent via-[#ffd97d]/85 to-transparent" />
+                  </div>
+                </div>
+
+                <div className="mt-8 max-w-3xl mx-auto">
+                  <p className="text-xl sm:text-2xl lg:text-3xl italic font-display text-gold/95 leading-relaxed hero-text-quote">
+                    &ldquo;Human rights are a duty, not a choice. If you can smile while the world cries, you&rsquo;ve forgotten your humanity.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute bottom-4 left-1/2 z-20 w-[min(100%,20rem)] -translate-x-1/2 px-4">
               <Link
                 href="/services#immigration-fraud"
                 className="btn-gold btn-gold-lighter block w-full px-8 py-4 text-center text-lg"
@@ -328,52 +385,50 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#f9f2e7] md:hidden">
-            <HeroMobileParticles />
-            <div className="h-14 shrink-0" aria-hidden="true" />
+          <div className="relative flex flex-col md:hidden">
+          {/* Top section: Full-width GCMA banner, clears fixed nav */}
+            <div className="relative bg-[#0b2f1f]" style={{ paddingTop: '60px' }}>
+              <img
+                src={mobileHeroImage}
+                alt="GCMA hero poster"
+                className="w-full block"
+                style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '220px' }}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                onError={() => {
+                  setMobileHeroImageIndex((current) => current + 1)
+                }}
+              />
+            </div>
 
-            <div className="relative z-10 flex flex-1 flex-col px-4 pb-28 pt-4">
-              <div className="mx-auto flex w-full max-w-md justify-center">
-                <img
-                  src={mobileHeroImage}
-                  alt="GCMA hero poster"
-                  className="w-full max-w-[25rem] object-contain"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  onError={() => {
-                    setMobileHeroImageIndex((current) => current + 1)
-                  }}
-                />
-              </div>
-
-              <div className="mx-auto mt-6 w-full max-w-md space-y-4 text-center">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-metallic/85">
-                  Migration awareness and social welfare
-                </p>
-                <h1 className="hero-main-title text-[1.75rem] font-bold leading-tight sm:text-3xl">
-                  Global Council for Migration Awareness and Social Welfare
+            {/* Bottom section: Theme-aware background and text colors */}
+            <div className="px-6 pb-6 pt-6 mobile-hero-text-container">
+              <div className="mx-auto max-w-md space-y-4 text-center">
+                <h1 className="text-4xl font-extrabold tracking-widest mobile-hero-title">
+                  GCMA
                 </h1>
-                <p className="hero-subtitle-color text-sm font-semibold sm:text-base">GCMA</p>
-                <p className="text-sm italic leading-relaxed text-[#35063e]/90">
-                  Human rights are not optional. If you can smile while another suffers, you have forgotten what
-                  compassion means.
+                <p className="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase mobile-hero-subtitle">
+                  Global Council for Migration Awareness & Social Welfare
                 </p>
-                <p className="text-sm leading-relaxed text-[#35063e]/90">
+                <p className="text-base sm:text-lg italic leading-relaxed mobile-hero-quote">
+                  &ldquo;Human rights are a duty, not a choice. If you can smile while the world cries, you&rsquo;ve forgotten your humanity.&rdquo;
+                </p>
+                <p className="text-sm sm:text-base leading-relaxed mobile-hero-desc">
                   Justice, protection, and ethical guidance for students, nurses, families, and skilled professionals
                   planning life abroad.
                 </p>
+                
+                <div className="pt-4">
+                  <Link
+                    href="/services#immigration-fraud"
+                    className="btn-gold block w-full px-6 py-3 text-center text-base font-bold"
+                    onClick={closeMobileMenu}
+                  >
+                    Report scam
+                  </Link>
+                </div>
               </div>
-            </div>
-
-            <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-gold-metallic/20 bg-[#f9f2e7]/95 px-4 pb-3 pt-7 backdrop-blur">
-              <Link
-                href="/services#immigration-fraud"
-                className="btn-gold btn-gold-lighter block w-full px-6 py-3 text-center text-base"
-                onClick={closeMobileMenu}
-              >
-                Report scam
-              </Link>
             </div>
           </div>
         </>

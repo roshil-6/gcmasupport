@@ -53,30 +53,30 @@ export default function MigrationAdvicePage() {
           {/* Section 1: Skilled Migration */}
           <div className="mb-16">
             <div className="text-center mb-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#6e531d] mb-4">
                 Skilled Migration
               </h2>
-              <p className="text-xl text-white max-w-3xl mx-auto font-medium">
+              <p className="text-xl text-[#6d5a3a] max-w-3xl mx-auto font-medium">
                 Build your future in countries that value your skills and expertise
               </p>
             </div>
 
             {/* Skilled Migration Explanation */}
-            <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-8">
+            <div className="rounded-2xl border border-gold-metallic/40 bg-white shadow-xl p-8 md:p-12 mb-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold text-white mb-6">What is Skilled Migration?</h3>
-                  <p className="text-lg text-white mb-4 leading-relaxed font-medium">
+                  <h3 className="text-3xl font-bold text-[#6e531d] mb-6">What is Skilled Migration?</h3>
+                  <p className="text-lg text-[#2a241d] mb-4 leading-relaxed">
                     Skilled migration is a pathway that allows individuals with specific professional qualifications, work experience, and skills to migrate to countries that need their expertise. This program is designed to fill skill shortages in various sectors and contribute to the economic growth of the destination country.
                   </p>
-                  <p className="text-base text-white leading-relaxed mb-4 font-medium">
+                  <p className="text-base text-[#4a4238] leading-relaxed mb-4">
                     Countries like Australia and Canada have well-established skilled migration programs that offer permanent residency opportunities to qualified professionals. These programs assess candidates based on factors such as age, education, work experience, language proficiency, and occupation demand.
                   </p>
-                  <p className="text-base text-white leading-relaxed font-medium">
+                  <p className="text-base text-[#4a4238] leading-relaxed">
                     Our expert team provides comprehensive guidance throughout the skilled migration process, from initial assessment to visa application and settlement support. We help you understand eligibility requirements, prepare necessary documentation, and maximize your points score for successful migration.
                   </p>
                 </div>
-                <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+                <div className="relative h-64 md:h-80 rounded-xl overflow-hidden border border-gold-metallic/20">
                   <Image
                     src="/migration-advice/skilled-migration.jpg"
                     alt="Skilled Migration"
@@ -113,18 +113,18 @@ export default function MigrationAdvicePage() {
           {/* Section 2: Permanent Residency */}
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#6e531d] mb-4">
                 Permanent Residency
               </h2>
-              <p className="text-xl text-white max-w-3xl mx-auto font-medium">
+              <p className="text-xl text-[#6d5a3a] max-w-3xl mx-auto font-medium">
                 Secure your future with permanent residency status
               </p>
             </div>
 
             {/* Permanent Residency Explanation */}
-            <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12">
+            <div className="rounded-2xl border border-gold-metallic/40 bg-white shadow-xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="relative h-64 md:h-80 rounded-xl overflow-hidden order-2 md:order-1">
+                <div className="relative h-64 md:h-80 rounded-xl overflow-hidden order-2 md:order-1 border border-gold-metallic/20">
                   <Image
                     src="/migration-advice/permanent-residency.jpg"
                     alt="Permanent Residency"
@@ -133,48 +133,48 @@ export default function MigrationAdvicePage() {
                   />
                 </div>
                 <div className="order-1 md:order-2">
-                  <h3 className="text-3xl font-bold text-white mb-6">Understanding Permanent Residency</h3>
-                  <p className="text-lg text-white mb-4 leading-relaxed font-medium">
+                  <h3 className="text-3xl font-bold text-[#6e531d] mb-6">Understanding Permanent Residency</h3>
+                  <p className="text-lg text-[#2a241d] mb-4 leading-relaxed">
                     Permanent Residency (PR) grants you the right to live, work, and study in a country indefinitely, with most of the rights and privileges of a citizen. It's a significant milestone in your migration journey that opens doors to long-term stability, career growth, and family security.
                   </p>
-                  <p className="text-base text-white leading-relaxed mb-4 font-medium">
+                  <p className="text-base text-[#4a4238] leading-relaxed mb-4">
                     Permanent residency status typically allows you to access healthcare, education, and social services, sponsor family members, and eventually apply for citizenship. Different countries have different pathways to PR, including skilled migration, family sponsorship, business investment, and humanitarian programs.
                   </p>
-                  <p className="text-base text-white leading-relaxed mb-6 font-medium">
+                  <p className="text-base text-[#4a4238] leading-relaxed mb-6">
                     Our migration advisors help you understand the various PR pathways available, assess your eligibility, and guide you through the application process. We provide comprehensive support from initial consultation to visa grant and post-arrival settlement assistance.
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <p className="text-white font-medium">Multiple pathways: Skilled migration, family sponsorship, business investment</p>
+                      <p className="text-[#2a241d] font-medium">Multiple pathways: Skilled migration, family sponsorship, business investment</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <p className="text-white font-medium">Access to healthcare, education, and social services</p>
+                      <p className="text-[#2a241d] font-medium">Access to healthcare, education, and social services</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <p className="text-white font-medium">Pathway to citizenship after meeting residency requirements</p>
+                      <p className="text-[#2a241d] font-medium">Pathway to citizenship after meeting residency requirements</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                        <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <p className="text-white font-medium">Right to sponsor family members for permanent residency</p>
+                      <p className="text-[#2a241d] font-medium">Right to sponsor family members for permanent residency</p>
                     </div>
                   </div>
                 </div>

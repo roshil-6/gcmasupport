@@ -245,39 +245,4 @@ export const seoContent = {
     webPageDescription:
       'Community projects, outreach, and welfare initiatives led by the Global Council for Migration Awareness and Social Welfare (GCMA).',
   }),
-  canadaPointsCalculator: pageSeo({
-    heading: 'Canada Express Entry CRS Points Estimator',
-    paragraphs: [
-      'This calculator estimates a Comprehensive Ranking System (CRS) score using publicly published IRCC criteria. Results are for planning only and are not an official immigration assessment.',
-      'Always confirm eligibility and points with the official CRS tool on Canada.ca before making decisions.',
-    ],
-    links: [
-      { href: '/migration-advice/skilled-migration/canada', label: 'Skilled migration to Canada' },
-      { href: '/contact', label: 'Ask GCMA a question' },
-    ],
-    breadcrumbs: [
-      homeCrumb,
-      { name: 'Canada CRS calculator', path: '/calculators/canada-points' },
-    ],
-    pagePath: '/calculators/canada-points',
-    webPageTitle: 'Canada CRS Points Calculator',
-    webPageDescription:
-      'Estimate your Express Entry CRS score using published IRCC tables. For planning only — not affiliated with IRCC. Confirm results on Canada.ca.',
-  }),
-  prCalculator: pageSeo({
-    heading: 'Express Entry PR Points Estimator',
-    paragraphs: [
-      'Estimate CRS-style points from published Express Entry criteria for educational planning. This tool does not replace IRCC’s official questionnaire or legal advice.',
-      'CRS job offer points changed in March 2025; always verify current rules on Canada.ca.',
-    ],
-    links: [
-      { href: '/calculators/canada-points', label: 'Detailed Canada points calculator' },
-      { href: '/migration-advice/skilled-migration/canada', label: 'Canada skilled migration' },
-    ],
-    breadcrumbs: [homeCrumb, { name: 'PR calculator', path: '/calculators/pr-calculator' }],
-    pagePath: '/calculators/pr-calculator',
-    webPageTitle: 'PR Points Calculator',
-    webPageDescription:
-      'Estimate Express Entry CRS points from published criteria for planning only. Not affiliated with IRCC — verify on Canada.ca.',
-  }),
 } satisfies Record<string, PageSeoContentProps>

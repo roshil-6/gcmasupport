@@ -11,8 +11,7 @@ const port = process.env.PORT || '3030'
 const nextBin = path.join(root, 'node_modules', 'next', 'dist', 'bin', 'next')
 
 if (process.platform === 'win32') {
-  const ps = `$conns = Get-NetTCPConnection -LocalPort ${port} -ErrorAction SilentlyContinue
-if ($conns) { $conns | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }`
+  const ps = `$conns = Get-NetTCPConnection -LocalPort ${port} -ErrorAction SilentlyContinue; if ($conns) { $conns | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue } }`
   try {
     execSync(`powershell -NoProfile -Command ${JSON.stringify(ps)}`, {
       stdio: 'inherit',

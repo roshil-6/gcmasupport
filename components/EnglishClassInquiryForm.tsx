@@ -52,12 +52,12 @@ export default function EnglishClassInquiryForm({
   }
 
   const inputClass =
-    'w-full rounded-lg border border-gold-metallic/35 bg-white/10 px-4 py-2.5 text-slate-100 placeholder:text-slate-400 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60'
+    'w-full rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 px-4 py-2.5 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60'
 
   return (
-    <div className="rounded-2xl border border-gold-metallic/35 bg-[#333333]/75 p-6 shadow-xl backdrop-blur-sm md:p-8">
-      <h3 className="mb-1 text-xl font-bold text-gold-metallic md:text-2xl">{headline}</h3>
-      {subline ? <p className="mb-6 text-sm text-slate-200 md:text-base">{subline}</p> : null}
+    <div className="rounded-2xl border border-gold-metallic/35 bg-white p-6 shadow-xl md:p-8">
+      <h3 className="mb-1 text-xl font-bold text-[#6e531d] md:text-2xl">{headline}</h3>
+      {subline ? <p className="mb-6 text-sm text-[#4a4238] md:text-base">{subline}</p> : null}
 
       {error ? (
         <p className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 py-3 text-center text-sm text-red-200">
@@ -67,7 +67,7 @@ export default function EnglishClassInquiryForm({
 
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gold-metallic/90">Full name *</label>
+          <label className="mb-1.5 block text-sm font-medium text-[#2a241d]">Full name *</label>
           <input
             type="text"
             required
@@ -79,7 +79,7 @@ export default function EnglishClassInquiryForm({
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gold-metallic/90">Phone / WhatsApp *</label>
+          <label className="mb-1.5 block text-sm font-medium text-[#2a241d]">Phone / WhatsApp *</label>
           <input
             type="tel"
             required
@@ -91,7 +91,7 @@ export default function EnglishClassInquiryForm({
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gold-metallic/90">Email (optional)</label>
+          <label className="mb-1.5 block text-sm font-medium text-[#2a241d]">Email (optional)</label>
           <input
             type="email"
             value={email}
@@ -102,7 +102,7 @@ export default function EnglishClassInquiryForm({
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gold-metallic/90">Message (optional)</label>
+          <label className="mb-1.5 block text-sm font-medium text-[#2a241d]">Message (optional)</label>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}

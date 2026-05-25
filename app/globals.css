@@ -219,7 +219,7 @@ body.theme-dark .hero-bg {
 .hero-mobile-container {
   background: 
     linear-gradient(to bottom, var(--hero-blend-color) 0%, var(--hero-blend-color) 45%, transparent 65%),
-    url('/home/gcma-hero-green-seamless.png?v=8') right center / cover no-repeat;
+    url('/home/gcma-hero-green-seamless.png?v=10') right center / cover no-repeat;
 }
 
 
@@ -1585,27 +1585,169 @@ body.theme-dark .bg-\[#f9f2e7\]\/90 {
 }
 
 /* Keep text bright white and gold on dark image overlays under light theme */
-.keep-light-text,
 body.theme-light .keep-light-text,
-body.theme-light .keep-light-text h1,
-body.theme-light .keep-light-text h2,
-body.theme-light .keep-light-text h3,
-body.theme-light .keep-light-text h4,
-body.theme-light .keep-light-text p,
-body.theme-light .keep-light-text span,
-body.theme-light .keep-light-text div,
-body.theme-light h3.keep-light-text {
+body.theme-light h1.keep-light-text,
+body.theme-light h2.keep-light-text,
+body.theme-light h3.keep-light-text,
+body.theme-light h4.keep-light-text,
+body.theme-light h5.keep-light-text,
+body.theme-light h6.keep-light-text,
+body.theme-light p.keep-light-text,
+body.theme-light span.keep-light-text,
+body.theme-light div.keep-light-text,
+body.theme-light li.keep-light-text,
+body.theme-light label.keep-light-text,
+body.theme-light .glass-card.dark-container .keep-light-text,
+body.theme-light .glass-card.dark-container h1.keep-light-text,
+body.theme-light .glass-card.dark-container h2.keep-light-text,
+body.theme-light .glass-card.dark-container h3.keep-light-text,
+body.theme-light .glass-card.dark-container h4.keep-light-text,
+body.theme-light .glass-card.dark-container p.keep-light-text,
+body.theme-light .glass-card.dark-container span.keep-light-text,
+body.theme-light .glass-card .keep-light-text,
+body.theme-light .glass-card h1.keep-light-text,
+body.theme-light .glass-card h2.keep-light-text,
+body.theme-light .glass-card h3.keep-light-text,
+body.theme-light .glass-card h4.keep-light-text,
+body.theme-light .glass-card p.keep-light-text,
+body.theme-light .glass-card span.keep-light-text,
+body.theme-light .dark-container .keep-light-text,
+body.theme-light .dark-container h1.keep-light-text,
+body.theme-light .dark-container h2.keep-light-text,
+body.theme-light .dark-container h3.keep-light-text,
+body.theme-light .dark-container h4.keep-light-text,
+body.theme-light .dark-container p.keep-light-text,
+body.theme-light .dark-container span.keep-light-text,
+body.theme-light [class*='bg-'] .keep-light-text,
+body.theme-light [class*='text-'] .keep-light-text,
+body.theme-light .text-white.keep-light-text,
+body.theme-light .text-gray-300.keep-light-text,
+body.theme-light .text-gray-200.keep-light-text,
+body.theme-light .text-gray-400.keep-light-text {
   color: #ffffff !important;
 }
 
-.keep-gold-text,
 body.theme-light .keep-gold-text,
-body.theme-light .keep-gold-text h1,
-body.theme-light .keep-gold-text h2,
-body.theme-light .keep-gold-text h3,
-body.theme-light .keep-gold-text h4,
-body.theme-light .keep-gold-text p,
-body.theme-light .keep-gold-text span {
+body.theme-light h1.keep-gold-text,
+body.theme-light h2.keep-gold-text,
+body.theme-light h3.keep-gold-text,
+body.theme-light h4.keep-gold-text,
+body.theme-light h5.keep-gold-text,
+body.theme-light h6.keep-gold-text,
+body.theme-light p.keep-gold-text,
+body.theme-light span.keep-gold-text,
+body.theme-light div.keep-gold-text,
+body.theme-light li.keep-gold-text,
+body.theme-light label.keep-gold-text,
+body.theme-light .glass-card.dark-container .keep-gold-text,
+body.theme-light .glass-card.dark-container h1.keep-gold-text,
+body.theme-light .glass-card.dark-container h2.keep-gold-text,
+body.theme-light .glass-card.dark-container h3.keep-gold-text,
+body.theme-light .glass-card.dark-container h4.keep-gold-text,
+body.theme-light .glass-card.dark-container p.keep-gold-text,
+body.theme-light .glass-card.dark-container span.keep-gold-text,
+body.theme-light .glass-card .keep-gold-text,
+body.theme-light .glass-card h1.keep-gold-text,
+body.theme-light .glass-card h2.keep-gold-text,
+body.theme-light .glass-card h3.keep-gold-text,
+body.theme-light .glass-card h4.keep-gold-text,
+body.theme-light .glass-card p.keep-gold-text,
+body.theme-light .glass-card span.keep-gold-text,
+body.theme-light .dark-container .keep-gold-text,
+body.theme-light .dark-container h1.keep-gold-text,
+body.theme-light .dark-container h2.keep-gold-text,
+body.theme-light .dark-container h3.keep-gold-text,
+body.theme-light .dark-container h4.keep-gold-text,
+body.theme-light .dark-container p.keep-gold-text,
+body.theme-light .dark-container span.keep-gold-text,
+body.theme-light [class*='bg-'] .keep-gold-text,
+body.theme-light [class*='text-'] .keep-gold-text,
+body.theme-light [class*='text-gold'].keep-gold-text,
+body.theme-light .text-gold-metallic.keep-gold-text,
+body.theme-light .text-gold-metallic\/85.keep-gold-text,
+body.theme-light .text-gold-metallic\/90.keep-gold-text,
+body.theme-light .text-gold-metallic\/80.keep-gold-text,
+body.theme-light .text-gold-metallic\/70.keep-gold-text {
   color: #d4af37 !important; /* proper gold */
 }
+
+/* Mobile Navigation Header Themes */
+.mobile-nav-header {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(110, 83, 29, 0.1);
+}
+
+.mobile-nav-header .mobile-nav-logo {
+  color: #6e531d !important;
+}
+
+.mobile-nav-header .mobile-nav-btn {
+  border-color: rgba(110, 83, 29, 0.3) !important;
+  color: #6e531d !important;
+}
+
+body.theme-dark .mobile-nav-header {
+  background-color: rgba(11, 47, 31, 0.8) !important;
+  border-bottom-color: rgba(201, 169, 97, 0.1) !important;
+}
+
+body.theme-dark .mobile-nav-header .mobile-nav-logo {
+  color: var(--gold-bright) !important;
+}
+
+body.theme-dark .mobile-nav-header .mobile-nav-btn {
+  border-color: rgba(201, 169, 97, 0.3) !important;
+  color: var(--gold-bright) !important;
+}
+
+/* Mobile Hero Theme-Aware Text Container and Typography */
+.mobile-hero-text-container {
+  background-color: #0b2f1f;
+  transition: background-color 0.3s ease;
+}
+
+body.theme-light .mobile-hero-text-container {
+  background-color: #ffffff;
+}
+
+.mobile-hero-title {
+  color: var(--gold-bright) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-light .mobile-hero-title {
+  color: #6e531d !important;
+  text-shadow: none !important;
+}
+
+.mobile-hero-subtitle {
+  color: var(--gold-metallic) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-light .mobile-hero-subtitle {
+  color: #8a7340 !important;
+  text-shadow: none !important;
+}
+
+.mobile-hero-quote {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-light .mobile-hero-quote {
+  color: #2a241d !important;
+  text-shadow: none !important;
+}
+
+.mobile-hero-desc {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-light .mobile-hero-desc {
+  color: #2a241d !important;
+  text-shadow: none !important;
+}
+
 

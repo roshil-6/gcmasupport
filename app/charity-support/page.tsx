@@ -107,30 +107,30 @@ export default function CharitySupportPage() {
           </div>
 
           {/* Dark Band Section - "Still Confused?" */}
-          <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="bg-gradient-to-br from-white/90 via-white/80 to-[#f9f2e7]/70 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 shadow-xl mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                   Still Confused?
                 </h2>
-                <p className="text-lg text-white mb-6 leading-relaxed">
+                <p className="text-lg text-[#2a241d] mb-6 leading-relaxed">
                   Connect with us to learn more about our charity support programs. 
                   Our experts are here to guide you through the application process 
                   and answer any questions you may have.
                 </p>
-                <Link href="/contact" className="inline-block bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-6 py-3 rounded-lg transition-all">
+                <Link href="/contact" className="inline-block bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg">
                   We are Here
                 </Link>
               </div>
-              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden border border-gold-metallic/20">
                 <Image
                   src="/charity-support/banner.jpg"
                   alt="Connect with us"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute top-4 right-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">?</span>
+                <div className="absolute top-4 right-4 w-12 h-12 bg-[#6e531d]/20 border border-[#6e531d]/50 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-[#6e531d] text-2xl font-bold">?</span>
                 </div>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function CharitySupportPage() {
           {/* Charity Options Cards */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Healthcare Support Card */}
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl">
+            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-white shadow-xl">
               <div className="relative w-full h-64">
                 <Image
                   src="/charity-support/healthcare.jpg"
@@ -147,39 +147,39 @@ export default function CharitySupportPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 via-[#333333]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/20 to-transparent" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 rounded-full bg-[#6e531d]/10 flex items-center justify-center border-2 border-[#6e531d]/30">
+                    <svg className="w-6 h-6 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#6e531d]">
                     Healthcare Support
                   </h2>
                 </div>
                 <div className="mb-4 space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                      <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                      <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
-                    <p className="text-base text-slate-100 leading-relaxed">
+                    <p className="text-base text-[#2a241d] leading-relaxed">
                       Our Healthcare Support program assists financially vulnerable individuals and families 
                       facing medical emergencies. We ensure support reaches those who genuinely need it through 
                       verified medical professionals and recognized healthcare institutions.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                      <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                      <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
-                    <p className="text-base text-slate-100 leading-relaxed">
+                    <p className="text-base text-[#2a241d] leading-relaxed">
                       Our program focuses on providing dignified, transparent, and compassionate assistance 
                       while maintaining accountability. We work closely with doctors and hospitals to verify 
                       cases and coordinate appropriate medical interventions.
@@ -188,29 +188,29 @@ export default function CharitySupportPage() {
                 </div>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Verified referrals from licensed doctors and recognized hospitals</p>
+                    <p className="text-sm text-[#4a4238]">Verified referrals from licensed doctors and recognized hospitals</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Financial assistance for surgeries, treatments, and medical procedures</p>
+                    <p className="text-sm text-[#4a4238]">Financial assistance for surgeries, treatments, and medical procedures</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Transparent review process with clear communication</p>
+                    <p className="text-sm text-[#4a4238]">Transparent review process with clear communication</p>
                   </div>
                 </div>
                 <button
@@ -228,7 +228,7 @@ export default function CharitySupportPage() {
             </div>
 
             {/* Education Empowerment Card */}
-            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl">
+            <div className="rounded-2xl overflow-hidden border border-gold-metallic/40 bg-white shadow-xl">
               <div className="relative w-full h-64">
                 <Image
                   src="/charity-support/education.jpg"
@@ -236,41 +236,41 @@ export default function CharitySupportPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 via-[#333333]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/20 to-transparent" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gold-metallic/20 flex items-center justify-center border-2 border-gold-metallic/50">
-                    <svg className="w-6 h-6 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 rounded-full bg-[#6e531d]/10 flex items-center justify-center border-2 border-[#6e531d]/30">
+                    <svg className="w-6 h-6 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#6e531d]">
                     Education Empowerment
                   </h2>
                 </div>
                 <div className="mb-4 space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                      <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                      <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14v9M4.635 9.528l5.838 3.22M17.365 9.528l-5.838 3.22" />
                       </svg>
                     </div>
-                    <p className="text-base text-slate-100 leading-relaxed">
+                    <p className="text-base text-[#2a241d] leading-relaxed">
                       Our Education Empowerment initiative supports girl students who face financial 
                       barriers in pursuing their educational dreams. We believe education is the most 
                       powerful tool for social transformation and gender equality.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gold-metallic/20 flex items-center justify-center border border-gold-metallic/50 flex-shrink-0 mt-0.5">
-                      <svg className="w-5 h-5 text-gold-metallic" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-full bg-[#6e531d]/10 flex items-center justify-center border border-[#6e531d]/30 flex-shrink-0 mt-0.5">
+                      <svg className="w-5 h-5 text-[#6e531d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <p className="text-base text-slate-100 leading-relaxed">
+                    <p className="text-base text-[#2a241d] leading-relaxed">
                       Through comprehensive support including financial assistance, educational resources, 
                       and mentorship, we help students overcome obstacles and achieve their academic goals 
                       at all education levels.
@@ -279,29 +279,29 @@ export default function CharitySupportPage() {
                 </div>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Comprehensive support from primary to graduate level</p>
+                    <p className="text-sm text-[#4a4238]">Comprehensive support from primary to graduate level</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Financial assistance for tuition, books, and educational materials</p>
+                    <p className="text-sm text-[#4a4238]">Financial assistance for tuition, books, and educational materials</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-gold-metallic/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-4 h-4 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-6 h-6 rounded-full bg-[#6e531d]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-sm text-slate-200">Scholarship opportunities and merit-based support</p>
+                    <p className="text-sm text-[#4a4238]">Scholarship opportunities and merit-based support</p>
                   </div>
                 </div>
                 <button
@@ -401,14 +401,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-left">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
         </div>
       )}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Applicant Name *
         </label>
         <input
@@ -417,14 +417,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.applicantName}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter applicant's full name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Contact Number *
         </label>
         <input
@@ -433,14 +433,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.contactNumber}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter contact number"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Referring Doctor's Name *
         </label>
         <input
@@ -449,14 +449,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.doctorName}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter referring doctor's name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Referring Hospital Name *
         </label>
         <input
@@ -465,14 +465,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.hospitalName}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter hospital name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Medical Case Description *
         </label>
         <textarea
@@ -481,14 +481,14 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           value={formData.caseDescription}
           onChange={handleInputChange}
           rows={4}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none disabled:opacity-60"
           placeholder="Describe the medical condition and required assistance"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Medical Certificate (Optional)
         </label>
         <input
@@ -496,15 +496,15 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
           name="medicalCertificate"
           accept={SUBMISSION_FILE_ACCEPT}
           onChange={handleFileChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-metallic file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-metallic file:text-black hover:file:bg-gold-bright"
           disabled={isSubmitting}
         />
         {formData.medicalCertificate && (
-          <p className="text-xs text-slate-300 mt-2">
+          <p className="text-xs text-[#4a4238] mt-2">
             Selected: {formData.medicalCertificate.name}
           </p>
         )}
-        <p className="text-xs text-slate-300 mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
+        <p className="text-xs text-[#4a4238] mt-2">{SUBMISSION_FILE_ACCEPT_HINT}</p>
       </div>
 
       <div className="flex gap-3">
@@ -514,7 +514,7 @@ function MedicalForm({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-gold-metallic font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
+          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-[#6e531d] font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
         >
           Cancel
         </button>
@@ -589,14 +589,14 @@ function EducationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-left">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
         </div>
       )}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Student Name *
         </label>
         <input
@@ -605,14 +605,14 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.studentName}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter student's full name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Contact Number *
         </label>
         <input
@@ -621,14 +621,14 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.contactNumber}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter contact number"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Current Education Level *
         </label>
         <select
@@ -636,7 +636,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.educationLevel}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-metallic appearance-none cursor-pointer"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic appearance-none cursor-pointer"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a961' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -645,17 +645,17 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           }}
           disabled={isSubmitting}
         >
-          <option value="" className="bg-[#333333]/80 text-slate-100">Select education level</option>
-          <option value="primary" className="bg-[#333333]/80 text-slate-100">Primary School</option>
-          <option value="secondary" className="bg-[#333333]/80 text-slate-100">Secondary School</option>
-          <option value="higher-secondary" className="bg-[#333333]/80 text-slate-100">Higher Secondary</option>
-          <option value="undergraduate" className="bg-[#333333]/80 text-slate-100">Undergraduate</option>
-          <option value="graduate" className="bg-[#333333]/80 text-slate-100">Graduate</option>
+          <option value="" className="bg-white text-[#2a241d]">Select education level</option>
+          <option value="primary" className="bg-white text-[#2a241d]">Primary School</option>
+          <option value="secondary" className="bg-white text-[#2a241d]">Secondary School</option>
+          <option value="higher-secondary" className="bg-white text-[#2a241d]">Higher Secondary</option>
+          <option value="undergraduate" className="bg-white text-[#2a241d]">Undergraduate</option>
+          <option value="graduate" className="bg-white text-[#2a241d]">Graduate</option>
         </select>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           School / College Name *
         </label>
         <input
@@ -664,14 +664,14 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.schoolName}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter school or college name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Support Requirement Description *
         </label>
         <textarea
@@ -680,7 +680,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
           value={formData.supportRequirement}
           onChange={handleInputChange}
           rows={4}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none disabled:opacity-60"
           placeholder="Describe the type of educational support needed"
           disabled={isSubmitting}
         />
@@ -693,7 +693,7 @@ function EducationForm({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-gold-metallic font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
+          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-[#6e531d] font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
         >
           Cancel
         </button>

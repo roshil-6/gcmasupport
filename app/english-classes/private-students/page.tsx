@@ -52,21 +52,21 @@ export default function EnglishClassesPrivateStudentsPage() {
           </div>
 
           {/* Significance Section */}
-          <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-12">
+          <div className="rounded-2xl border border-gold-metallic/40 bg-white shadow-xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gold-metallic mb-6">Why Advanced English Skills Matter for Private School Students</h2>
-                <p className="text-lg text-slate-100 mb-4 leading-relaxed">
+                <h2 className="text-3xl font-bold text-[#6e531d] mb-6">Why Advanced English Skills Matter for Private School Students</h2>
+                <p className="text-lg text-[#2a241d] mb-4 leading-relaxed">
                   Private school students often have higher academic expectations and international opportunities. Advanced English proficiency is essential for excelling in competitive examinations, pursuing higher education abroad, and succeeding in global career paths.
                 </p>
-                <p className="text-base text-slate-200 leading-relaxed mb-4">
+                <p className="text-base text-[#4a4238] leading-relaxed mb-4">
                   Our specialized English speaking classes for private school students focus on advanced communication skills, academic English, and preparation for international standardized tests. We help students develop the fluency and confidence needed for academic excellence and global opportunities.
                 </p>
-                <p className="text-base text-slate-200 leading-relaxed">
+                <p className="text-base text-[#4a4238] leading-relaxed">
                   With experienced instructors and a curriculum designed for advanced learners, we provide the extra edge that private school students need to stand out in competitive environments and achieve their academic and career goals.
                 </p>
               </div>
-              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+              <div className="relative h-64 md:h-80 rounded-xl overflow-hidden border border-gold-metallic/20">
                 <Image
                   src="/english-classes/private-students/significance.jpg"
                   alt="English Classes Significance"

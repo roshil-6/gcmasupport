@@ -105,7 +105,7 @@ export default function StudyAbroadSection() {
 
                 {/* Main Goals Grid */}
                 <div className="text-center space-y-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gold-metallic">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#6e531d]">
                         Study Abroad Pathways
                     </h2>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -142,7 +142,7 @@ export default function StudyAbroadSection() {
                                 className={`rounded-xl border p-4 shadow-[0_12px_28px_rgba(122,90,30,0.07)] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_16px_34px_rgba(122,90,30,0.1)] ${stepCardColors[index % stepCardColors.length]}`}
                             >
                               <div className="flex items-start gap-4">
-                                <div className="relative w-36 aspect-video shrink-0 rounded-lg overflow-hidden border border-gold-metallic/30">
+                                <div className="relative w-36 aspect-video shrink-0 rounded-lg overflow-hidden border border-gold-metallic/30" style={{ position: 'relative' }}>
                                     <Image
                                         src={step.image}
                                         alt={step.title}
@@ -163,8 +163,8 @@ export default function StudyAbroadSection() {
                 </div>
 
                 {/* Why Choose Us */}
-                <div className="bg-[#333333]/40 rounded-3xl p-8 md:p-12 border border-gold-metallic/20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                <div className="bg-white rounded-3xl p-8 md:p-12 border border-gold-metallic/40 shadow-xl">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] text-center mb-12">
                         Why Choose Our Services
                     </h2>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -178,6 +178,7 @@ export default function StudyAbroadSection() {
                                 description={benefit.description}
                                 ctaHref="/study-abroad"
                                 ctaLabel="Learn More"
+                                theme="light"
                             />
                         ))}
                     </div>

@@ -83,7 +83,7 @@ function ProgramTrackLink({
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-gold-metallic/35 bg-[#333333]/80 shadow-lg transition-all hover:-translate-y-0.5 hover:border-gold-metallic/70 hover:shadow-xl"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-gold-metallic/45 bg-white shadow-md transition-all hover:-translate-y-0.5 hover:border-gold-metallic/70 hover:shadow-xl"
     >
       <div className="relative h-36" style={{ position: 'relative' }}>
         <Image
@@ -93,21 +93,21 @@ function ProgramTrackLink({
           sizes="(max-width: 768px) 100vw, 320px"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/85 via-[#333333]/35 to-[#333333]/10" />
-        <span className="absolute right-3 top-3 rounded-full border border-gold-metallic/35 bg-[#333333]/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-gold-metallic">
+        <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-white/10" />
+        <span className="absolute right-3 top-3 rounded-full border border-[#8a7340]/30 bg-[#8a7340]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#6e531d]">
           {audience}
         </span>
-        <h3 className="absolute bottom-3 left-3 right-3 text-xl font-bold text-white drop-shadow-lg">{title}</h3>
+        <h3 className="absolute bottom-3 left-3 right-3 text-xl font-bold text-[#2a241d] drop-shadow-sm">{title}</h3>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-sm leading-relaxed text-slate-200">{description}</p>
+        <p className="text-sm leading-relaxed text-[#4a4238]">{description}</p>
 
         <ul className="mt-4 space-y-2.5">
           {highlights.map((highlight) => (
             <li key={highlight} className="flex items-start gap-2.5">
-              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-gold-metallic/20">
-                <svg className="h-2.5 w-2.5 text-gold-metallic" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#8a7340]/15">
+                <svg className="h-2.5 w-2.5 text-[#6e531d]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -115,7 +115,7 @@ function ProgramTrackLink({
                   />
                 </svg>
               </span>
-              <span className="text-sm leading-relaxed text-slate-100">{highlight}</span>
+              <span className="text-sm leading-relaxed text-[#2a241d]">{highlight}</span>
             </li>
           ))}
         </ul>
@@ -138,10 +138,10 @@ function ProgramTrackPanel({
   tracks: ProgramTrack[]
 }) {
   return (
-    <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/75 p-5 shadow-xl md:p-6">
-      <div className="mb-5 border-b border-gold-metallic/20 pb-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">{title}</p>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200 md:text-base">{subtitle}</p>
+    <div className="rounded-2xl border border-gold-metallic/40 bg-white/95 p-5 shadow-xl md:p-6">
+      <div className="mb-5 border-b border-gold-metallic/25 pb-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a7340]">{title}</p>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#4a4238] md:text-base">{subtitle}</p>
       </div>
       <div className="grid items-stretch gap-4 sm:grid-cols-2">
         {tracks.map((track) => (
@@ -184,7 +184,7 @@ export default function EnglishAcademyPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#333333]/70 via-[#333333]/35 to-[#333333]/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/35 to-transparent" />
             <div className="absolute inset-0 flex items-center">
               <div className="mx-auto w-full max-w-7xl px-8 md:px-12">
                 <div className="inline-flex items-center gap-4 rounded-2xl border border-gold-metallic/55 bg-[#f9f2e7]/95 px-6 py-5 shadow-xl">
@@ -199,11 +199,11 @@ export default function EnglishAcademyPage() {
             </div>
           </div>
 
-          <div className="mb-12 rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 p-8 shadow-xl backdrop-blur-sm md:p-12">
+          <div className="mb-12 rounded-2xl border border-gold-metallic/40 bg-white p-8 shadow-xl md:p-12">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div>
-                <h2 className="mb-6 text-3xl font-bold text-gold-metallic">Why Choose English Academy?</h2>
-                <p className="mb-4 text-lg leading-relaxed text-slate-100">
+                <h2 className="mb-6 text-3xl font-bold text-[#6e531d]">Why Choose English Academy?</h2>
+                <p className="mb-4 text-lg leading-relaxed text-[#2a241d]">
                   Master English for professional success, academic excellence, and global opportunities.
                   Our programs cover spoken English, PTE, IELTS, and OET with coaching aligned to your goal.
                 </p>
@@ -214,9 +214,9 @@ export default function EnglishAcademyPage() {
                     'Structured practice for speaking confidence and test readiness',
                   ].map((highlight) => (
                     <li key={highlight} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-metallic/20">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#6e531d]/10">
                         <svg
-                          className="h-3.5 w-3.5 text-gold-metallic"
+                          className="h-3.5 w-3.5 text-[#6e531d]"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           aria-hidden="true"
@@ -228,13 +228,13 @@ export default function EnglishAcademyPage() {
                           />
                         </svg>
                       </span>
-                      <span className="text-sm leading-relaxed text-slate-200 md:text-base">{highlight}</span>
+                      <span className="text-sm leading-relaxed text-[#4a4238] md:text-base">{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div
-                className="relative h-64 overflow-hidden rounded-xl md:h-80"
+                className="relative h-64 overflow-hidden rounded-xl md:h-80 border border-gold-metallic/20"
                 style={{ position: 'relative' }}
               >
                 <Image

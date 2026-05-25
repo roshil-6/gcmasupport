@@ -138,28 +138,28 @@ export default function ShowcaseCard({
         {isFlagImage ? (
           <>
             <div
-              className={`pointer-events-none absolute -bottom-px left-0 right-0 top-0 z-[1] bg-gradient-to-t ${isLight ? 'from-white/80 via-white/40 to-transparent' : 'from-black/80 via-black/40 to-transparent'}`}
+              className="pointer-events-none absolute -bottom-px left-0 right-0 top-0 z-[1] bg-gradient-to-t from-black/85 via-black/35 to-transparent"
               aria-hidden
             />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
-                <p className={`mb-1 text-sm font-bold ${isLight ? 'text-[#8a7340]' : 'text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]'}`}>
+                <p className="mb-1 text-sm font-bold text-[#ffd97d] keep-gold-text drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                   {eyebrow}
                 </p>
               ) : null}
-              <h3 className={`text-2xl font-extrabold ${isLight ? 'text-[#2a241d]' : 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]'}`}>
+              <h3 className="text-2xl font-extrabold text-white keep-light-text drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                 {title}
               </h3>
             </div>
           </>
         ) : (
           <>
-            <div className={`absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t ${isLight ? 'from-white/85 via-white/20 to-transparent' : 'from-[#333333]/95 via-[#333333]/70 to-[#333333]/35'}`} />
+            <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
-                <p className={`text-sm font-bold mb-1 ${isLight ? 'text-[#8a7340]' : 'text-white drop-shadow-2xl'}`}>{eyebrow}</p>
+                <p className="text-sm font-bold mb-1 text-[#ffd97d] keep-gold-text drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{eyebrow}</p>
               ) : null}
-              <h3 className={`text-2xl font-extrabold ${isLight ? 'text-[#2a241d]' : 'text-white drop-shadow-2xl'}`}>{title}</h3>
+              <h3 className="text-2xl font-extrabold text-white keep-light-text drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">{title}</h3>
             </div>
           </>
         )}

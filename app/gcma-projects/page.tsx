@@ -125,35 +125,35 @@ export default function GCMAProjectsPage() {
           </div>
 
           {/* Description Cards */}
-          <div className="glass-card rounded-2xl p-6 md:p-8 border border-gold-metallic/20">
-            <p className="text-white text-lg leading-relaxed mb-6 text-center">
+          <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl p-6 md:p-8">
+            <p className="text-[#4a4238] text-lg leading-relaxed mb-6 text-center">
               Aswasabhavan is our flagship shelter and rehabilitation initiative. This project provides safe accommodation, medical care, and emotional support to vulnerable individuals who need assistance. The facility serves as a beacon of hope, offering comprehensive care and helping residents rebuild their lives with dignity.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-gold-metallic/10 rounded-xl p-6 border border-gold-metallic/30">
-                <h4 className="text-xl font-semibold text-gold-metallic mb-3">Project Goals</h4>
+                <h4 className="text-xl font-semibold text-[#6e531d] mb-3">Project Goals</h4>
                 <ul className="space-y-2 text-[#0f0c14]">
                   <li className="flex items-start gap-2">
-                    <span className="text-gold-metallic mt-1">✓</span>
+                    <span className="text-[#6e531d] mt-1 font-bold">✓</span>
                     <span>Provide safe and secure shelter</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold-metallic mt-1">✓</span>
+                    <span className="text-[#6e531d] mt-1 font-bold">✓</span>
                     <span>Offer medical and psychological support</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold-metallic mt-1">✓</span>
+                    <span className="text-[#6e531d] mt-1 font-bold">✓</span>
                     <span>Facilitate rehabilitation and reintegration</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-gold-metallic mt-1">✓</span>
+                    <span className="text-[#6e531d] mt-1 font-bold">✓</span>
                     <span>Ensure dignity and human rights protection</span>
                   </li>
                 </ul>
               </div>
               <div className="bg-gold-metallic/10 rounded-xl p-6 border border-gold-metallic/30">
-                <h4 className="text-xl font-semibold text-gold-metallic mb-3">Impact</h4>
+                <h4 className="text-xl font-semibold text-[#6e531d] mb-3">Impact</h4>
                 <p className="mb-4 text-[#0f0c14]">
                   Through Aswasabhavan, we have touched hundreds of lives, providing hope and a pathway to dignity. Our dedicated team works tirelessly to ensure every resident receives personalized care and support.
                 </p>
@@ -169,9 +169,9 @@ export default function GCMAProjectsPage() {
       {/* Introduction Section */}
       <section className="py-8 md:py-12 px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-2xl p-8 md:p-12">
-            <div className="space-y-6 text-white leading-relaxed font-normal">
-              <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center mb-6">
+          <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl p-8 md:p-12">
+            <div className="space-y-6 text-[#4a4238] leading-relaxed font-normal">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#6e531d] text-center mb-6">
                 GCMA Projects & Initiatives
               </h2>
               <p className="text-lg text-center">
@@ -185,13 +185,13 @@ export default function GCMAProjectsPage() {
       {/* Programs Section */}
       <section className="py-12 md:py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-12 text-center">
             Our Programs
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Program 1: Migration Awareness */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/migration-awareness.jpg"
@@ -205,15 +205,15 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">Migration Awareness</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">Migration Awareness</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Comprehensive education programs to help migrants understand legal pathways, avoid fraud, and make informed decisions about their journey.
                 </p>
               </div>
             </div>
 
             {/* Program 2: Nursing Career Support */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/nursing-career.jpg"
@@ -227,15 +227,15 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">Nursing Career Support</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">Nursing Career Support</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Specialized guidance for nurses seeking global registration and employment opportunities in Australia, Canada, UK, Germany, and more.
                 </p>
               </div>
             </div>
 
             {/* Program 3: English Education */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/english-education.jpg"
@@ -249,15 +249,15 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">English Education</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">English Education</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Free and subsidized English speaking classes for government school students, private school students, and adults preparing for migration.
                 </p>
               </div>
             </div>
 
             {/* Program 4: Charity Support */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/charity-support.jpg"
@@ -271,15 +271,15 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">Charity Support</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">Charity Support</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Direct assistance to vulnerable individuals and families through food programs, healthcare support, and emergency relief initiatives.
                 </p>
               </div>
             </div>
 
             {/* Program 5: Student Guidance */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/student-guidance.jpg"
@@ -293,15 +293,15 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">Student Guidance</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">Student Guidance</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Ethical counseling for students planning to study abroad, including university selection, scholarship information, and fraud prevention.
                 </p>
               </div>
             </div>
 
             {/* Program 6: Community Outreach */}
-            <div className="glass-card dark-container rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden hover:border-gold-metallic/60 transition-all duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src="/projects/community-outreach.jpg"
@@ -315,8 +315,8 @@ export default function GCMAProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gold-metallic mb-3">Community Outreach</h4>
-                <p className="text-white text-sm leading-relaxed">
+                <h4 className="text-xl font-bold text-[#6e531d] mb-3">Community Outreach</h4>
+                <p className="text-[#4a4238] text-sm leading-relaxed">
                   Building stronger communities through volunteer programs, skill development workshops, and social welfare initiatives at the grassroots level.
                 </p>
               </div>
@@ -328,20 +328,20 @@ export default function GCMAProjectsPage() {
       {/* Vision Section - GCMA Overall Vision */}
       <section className="py-12 md:py-16 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="glass-card dark-container rounded-2xl overflow-hidden border border-gold-metallic/30">
+          <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl overflow-hidden">
             {/* Vision Header */}
             <div className="bg-gradient-to-r from-gold-metallic/20 to-gold-metallic/5 p-6 md:p-8 border-b border-gold-metallic/20">
-              <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-[#6e531d] text-center">
                 Vision of GCMA
               </h3>
-              <p className="text-white/70 text-center mt-2 text-base">
+              <p className="text-[#4a4238] text-center mt-2 text-base">
                 Our commitment to a better world
               </p>
             </div>
 
             {/* Vision Content */}
             <div className="p-6 md:p-8">
-              <p className="text-white text-lg text-center leading-relaxed mb-8 max-w-4xl mx-auto">
+              <p className="text-[#4a4238] text-lg text-center leading-relaxed mb-8 max-w-4xl mx-auto">
                 To create a world where migration is safe, informed, and dignified for everyone. We envision a global community where human rights are protected, social welfare is prioritized, and every individual has access to ethical guidance and support for their journey abroad.
               </p>
               <div className="grid md:grid-cols-3 gap-6">
@@ -356,7 +356,7 @@ export default function GCMAProjectsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
                   </div>
                   <div className="p-4 text-center">
-                    <h4 className="text-lg font-semibold text-gold-metallic mb-2">Global Reach</h4>
+                    <h4 className="text-lg font-semibold text-[#6e531d] mb-2">Global Reach</h4>
                     <p className="text-sm leading-relaxed text-[#0f0c14]/85">Supporting migrants across continents with localized expertise</p>
                   </div>
                 </div>
@@ -372,7 +372,7 @@ export default function GCMAProjectsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
                   </div>
                   <div className="p-4 text-center">
-                    <h4 className="text-lg font-semibold text-gold-metallic mb-2">Human Rights</h4>
+                    <h4 className="text-lg font-semibold text-[#6e531d] mb-2">Human Rights</h4>
                     <p className="text-sm leading-relaxed text-[#0f0c14]/85">Championing dignity and protection for all individuals</p>
                   </div>
                 </div>
@@ -388,7 +388,7 @@ export default function GCMAProjectsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/70 to-transparent" />
                   </div>
                   <div className="p-4 text-center">
-                    <h4 className="text-lg font-semibold text-gold-metallic mb-2">Education</h4>
+                    <h4 className="text-lg font-semibold text-[#6e531d] mb-2">Education</h4>
                     <p className="text-sm leading-relaxed text-[#0f0c14]/85">Empowering through knowledge and awareness programs</p>
                   </div>
                 </div>
@@ -401,15 +401,15 @@ export default function GCMAProjectsPage() {
       {/* Call to Action */}
       <section className="py-12 md:py-16 px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-gold-metallic mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#6e531d] mb-4">
             Join Our Mission
           </h3>
-          <p className="text-white text-lg mb-8">
+          <p className="text-[#4a4238] text-lg mb-8">
             Together, we can build a more compassionate world. Your support helps us continue our vital work in migration awareness and social welfare.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-gold-metallic text-white px-8 py-4 rounded-full font-semibold hover:bg-gold-bright transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-block bg-gold-metallic text-black px-8 py-4 rounded-full font-semibold hover:bg-gold-bright transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Get Involved
           </Link>

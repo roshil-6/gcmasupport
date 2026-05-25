@@ -361,12 +361,12 @@ export default function StudyAbroadPage() {
           </div>
 
           {/* Why Study Abroad Section */}
-          <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="bg-white rounded-3xl p-8 md:p-12 mb-12 border border-gold-metallic/40 shadow-xl">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                 Why do you want to study abroad?
               </h2>
-              <p className="text-lg text-white mb-6 max-w-2xl mx-auto">
+              <p className="text-lg text-[#4a4238] mb-6 max-w-2xl mx-auto">
                 Is it to study, work, or gain PR through studying abroad? Our guidance is based on your intentions.
               </p>
               <div className="grid md:grid-cols-3 gap-6 mt-8">
@@ -380,6 +380,7 @@ export default function StudyAbroadPage() {
                     description={card.description}
                     ctaHref="/contact"
                     ctaLabel="Get Guidance"
+                    theme="light"
                   />
                 ))}
               </div>
@@ -389,26 +390,26 @@ export default function StudyAbroadPage() {
           {/* How It Works - Process Timeline Section (Different Format) */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                 How We Help You Study Abroad
               </h2>
-              <p className="page-intro mx-auto text-lg max-w-3xl">
+              <p className="page-intro mx-auto text-lg max-w-3xl text-[#6d5a3a]">
                 Our comprehensive process ensures you receive personalized guidance at every step of your study abroad journey
               </p>
             </div>
             <div className="relative max-w-5xl mx-auto">
               {/* Timeline Line */}
-              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gold-metallic/30" style={{ top: '0', bottom: '0' }} />
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#8a7340]/30" style={{ top: '0', bottom: '0' }} />
 
               <div className="space-y-12">
                 {studyAbroadProcessSteps.map((item, index) => (
                   <div key={index} className={`relative flex flex-col md:flex-row items-center gap-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                     {/* Timeline Dot */}
-                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-metallic rounded-full border-4 border-[#333333] z-10" />
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold-metallic rounded-full border-4 border-white z-10" />
 
                     {/* Content Card */}
                     <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
-                      <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="bg-white border border-gold-metallic/40 rounded-2xl overflow-hidden shadow-xl">
                         <div className="relative h-40 md:h-48">
                           <Image
                             src={item.image}
@@ -416,12 +417,12 @@ export default function StudyAbroadPage() {
                             fill
                             className="object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/80 via-[#333333]/30 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
                         </div>
                         <div className={`p-6 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                          <span className="text-gold-metallic font-bold text-sm mb-2 block">STEP {item.step}</span>
-                          <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                          <p className="text-white text-sm leading-relaxed">{item.description}</p>
+                          <span className="text-[#8a7340] font-bold text-sm mb-2 block">STEP {item.step}</span>
+                          <h3 className="text-xl font-bold text-[#2a241d] mb-3">{item.title}</h3>
+                          <p className="text-[#4a4238] text-sm leading-relaxed">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -437,10 +438,10 @@ export default function StudyAbroadPage() {
           {/* Benefits Section - Feature Grid Format (Different Format) */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                 Why Choose Our Study Abroad Services?
               </h2>
-              <p className="page-intro mx-auto text-lg max-w-3xl">
+              <p className="page-intro mx-auto text-lg max-w-3xl text-[#6d5a3a]">
                 We provide comprehensive support that goes beyond just application processing
               </p>
             </div>
@@ -455,6 +456,7 @@ export default function StudyAbroadPage() {
                   description={benefit.description}
                   ctaHref="/contact"
                   ctaLabel="Learn More"
+                  theme="light"
                 />
               ))}
             </div>
@@ -462,18 +464,18 @@ export default function StudyAbroadPage() {
 
           {/* Scholarship & Funding Section */}
           <div className="mb-12">
-            <div className="bg-gradient-to-br from-[#333333]/80 via-[#333333]/70 to-[#333333]/60 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 backdrop-blur-sm shadow-xl">
+            <div className="bg-gradient-to-br from-white/90 via-white/80 to-[#f9f2e7]/70 rounded-2xl p-8 md:p-12 border border-gold-metallic/40 shadow-xl">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="mb-6">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-3">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-3">
                     Scholarship & Funding Opportunities
                   </h2>
                   <div className="w-20 h-0.5 bg-gold-metallic mx-auto rounded-full"></div>
                 </div>
-                <p className="text-xl text-white mb-4 font-light max-w-3xl mx-auto">
+                <p className="text-xl text-[#2a241d] mb-4 font-light max-w-3xl mx-auto">
                   Merit-based scholarships and financial aid programs for exceptional candidates
                 </p>
-                <p className="text-base text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-base text-[#4a4238] mb-8 max-w-2xl mx-auto leading-relaxed">
                   Outstanding academic achievers may qualify for comprehensive scholarship programs covering tuition fees, living expenses, and additional academic support. Our dedicated scholarship advisors assist in identifying eligible funding opportunities and guide you through the application process to maximize your chances of securing financial assistance.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -485,7 +487,7 @@ export default function StudyAbroadPage() {
                   </button>
                   <Link
                     href="/contact"
-                    className="border-2 border-gold-metallic/50 hover:border-gold-metallic text-gold-metallic hover:text-gold-bright font-semibold px-8 py-3.5 rounded-lg transition-all backdrop-blur-sm bg-[#333333]/30"
+                    className="border-2 border-[#8a7340]/50 hover:border-[#8a7340] text-[#6e531d] hover:text-gold-bright font-semibold px-8 py-3.5 rounded-lg transition-all bg-[#f9f2e7]/30"
                   >
                     Schedule Consultation
                   </Link>
@@ -514,6 +516,7 @@ export default function StudyAbroadPage() {
                   footnote={`Our team provides comprehensive support including university selection, application assistance, visa guidance, and pre-departure orientation for ${country.name}.`}
                   ctaHref="/contact"
                   ctaLabel="Learn More"
+                  theme="light"
                 />
               ))}
             </div>
@@ -521,9 +524,9 @@ export default function StudyAbroadPage() {
 
           {/* Consultation Form Section */}
           {showConsultationForm && (
-            <div className="bg-[#333333]/80 rounded-2xl p-8 md:p-12 mb-12">
+            <div className="bg-white border border-gold-metallic/40 shadow-xl rounded-2xl p-8 md:p-12 mb-12">
               <div className="max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] text-center mb-8">
                   Free Consultation
                 </h2>
                 <ConsultationForm onClose={() => setShowConsultationForm(false)} />
@@ -534,10 +537,10 @@ export default function StudyAbroadPage() {
           {/* FAQ Section - Accordion Format (Different Format) */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                 Frequently Asked Questions
               </h2>
-              <p className="page-intro mx-auto text-lg max-w-3xl">
+              <p className="page-intro mx-auto text-lg max-w-3xl text-[#6d5a3a]">
                 Find answers to common questions about studying abroad
               </p>
             </div>
@@ -576,14 +579,14 @@ export default function StudyAbroadPage() {
                   answer: 'Our consultants conduct a comprehensive assessment considering your academic background, career goals, budget, language preferences, and long-term plans (work, PR, etc.). We provide detailed comparisons of programs, costs, job markets, and quality of life to help you make an informed decision that aligns with your aspirations.'
                 }
               ].map((faq, index) => (
-                <div key={index} className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-xl overflow-hidden shadow-lg">
+                <div key={index} className="bg-white border border-gold-metallic/30 rounded-xl overflow-hidden shadow-md">
                   <button
                     onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#333333]/50 transition-colors"
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#f9f2e7]/30 transition-colors"
                   >
-                    <span className="text-white font-semibold text-lg pr-4">{faq.question}</span>
+                    <span className="text-[#2a241d] font-semibold text-lg pr-4">{faq.question}</span>
                     <svg
-                      className={`w-6 h-6 text-gold-metallic flex-shrink-0 transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}
+                      className={`w-6 h-6 text-[#6e531d] flex-shrink-0 transition-transform ${openFAQ === index ? 'rotate-180' : ''}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -594,7 +597,7 @@ export default function StudyAbroadPage() {
                   {openFAQ === index && (
                     <div className="px-6 pb-4">
                       <div className="pt-2 border-t border-gold-metallic/20">
-                        <p className="text-white leading-relaxed">{faq.answer}</p>
+                        <p className="text-[#4a4238] leading-relaxed">{faq.answer}</p>
                       </div>
                     </div>
                   )}
@@ -615,18 +618,18 @@ export default function StudyAbroadPage() {
           </section>
 
           {/* Still Confused Section */}
-          <div className="bg-[#333333]/70 backdrop-blur-sm border border-gold-metallic/40 rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
+          <div className="bg-white border border-gold-metallic/40 rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] mb-4">
                   Still Confused?
                 </h2>
-                <p className="text-lg text-white mb-4 leading-relaxed font-medium">
+                <p className="text-lg text-[#2a241d] mb-4 leading-relaxed font-semibold">
                   Connect with us to learn more about our study abroad programs.
                   Our experts are here to guide you through the application process
                   and answer any questions you may have.
                 </p>
-                <p className="text-white mb-6 leading-relaxed">
+                <p className="text-[#4a4238] mb-6 leading-relaxed">
                   We understand that studying abroad is a significant decision. That's why we offer free consultations to discuss your options, answer your questions, and help you make an informed choice about your future.
                 </p>
                 <Link href="/contact" className="inline-block bg-gold-metallic hover:bg-gold-bright text-black font-semibold px-6 py-3 rounded-lg transition-all shadow-lg">
@@ -718,14 +721,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-left">
       {submitError && (
         <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
           <p className="text-red-500 font-semibold text-center">{submitError}</p>
         </div>
       )}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Your Name *
         </label>
         <input
@@ -734,14 +737,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.name}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter your full name"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Contact Number *
         </label>
         <input
@@ -750,14 +753,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.contactNumber}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter your contact number"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Email Address *
         </label>
         <input
@@ -766,14 +769,14 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.email}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic disabled:opacity-60"
           placeholder="Enter your email address"
           disabled={isSubmitting}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Preferred Country *
         </label>
         <select
@@ -781,7 +784,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           required
           value={formData.preferredCountry}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-metallic appearance-none cursor-pointer"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic appearance-none cursor-pointer"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a961' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -790,19 +793,19 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           }}
           disabled={isSubmitting}
         >
-          <option value="" className="bg-[#333333]/80 text-slate-100">Select preferred country</option>
-          <option value="australia" className="bg-[#333333]/80 text-slate-100">Australia</option>
-          <option value="germany" className="bg-[#333333]/80 text-slate-100">Germany</option>
-          <option value="denmark" className="bg-[#333333]/80 text-slate-100">Denmark</option>
-          <option value="sweden" className="bg-[#333333]/80 text-slate-100">Sweden</option>
-          <option value="france" className="bg-[#333333]/80 text-slate-100">France</option>
-          <option value="malta" className="bg-[#333333]/80 text-slate-100">Malta</option>
-          <option value="latvia" className="bg-[#333333]/80 text-slate-100">Latvia</option>
+          <option value="" className="bg-white text-[#2a241d]">Select preferred country</option>
+          <option value="australia" className="bg-white text-[#2a241d]">Australia</option>
+          <option value="germany" className="bg-white text-[#2a241d]">Germany</option>
+          <option value="denmark" className="bg-white text-[#2a241d]">Denmark</option>
+          <option value="sweden" className="bg-white text-[#2a241d]">Sweden</option>
+          <option value="france" className="bg-white text-[#2a241d]">France</option>
+          <option value="malta" className="bg-white text-[#2a241d]">Malta</option>
+          <option value="latvia" className="bg-white text-[#2a241d]">Latvia</option>
         </select>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
+        <label className="block text-sm font-medium text-[#2a241d] mb-2">
           Comment / Questions
         </label>
         <textarea
@@ -810,7 +813,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
           value={formData.comment}
           onChange={handleInputChange}
           rows={4}
-          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/30 bg-white/10 backdrop-blur-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
+          className="w-full px-4 py-2 rounded-lg border border-gold-metallic/35 bg-[#f9f2e7]/30 text-[#2a241d] placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-metallic resize-none"
           placeholder="Tell us about your study abroad goals and any questions you have"
           disabled={isSubmitting}
         />
@@ -823,7 +826,7 @@ function ConsultationForm({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-gold-metallic font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
+          className="flex-1 py-3 px-6 border-2 border-gold-metallic text-[#6e531d] font-semibold rounded-lg hover:bg-gold-metallic/10 transition-colors"
         >
           Cancel
         </button>

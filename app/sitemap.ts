@@ -29,8 +29,6 @@ const routes = [
   '/english-classes/govt-students',
   '/english-classes/private-students',
   '/break-the-silence/student-tutor',
-  '/calculators/canada-points',
-  '/calculators/pr-calculator',
   '/gcma-projects',
 ]
 

@@ -57,22 +57,22 @@ export default function EnglishClassesGovtStudentsPage() {
           </div>
 
           {/* Significance Section */}
-          <div className="rounded-2xl border border-gold-metallic/40 bg-[#333333]/70 backdrop-blur-sm shadow-xl p-8 md:p-12 mb-12">
+          <div className="rounded-2xl border border-gold-metallic/40 bg-white shadow-xl p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gold-metallic mb-6">Why English Proficiency Matters for Government School Students</h2>
-                <p className="text-lg text-slate-100 mb-4 leading-relaxed">
+                <h2 className="text-3xl font-bold text-[#6e531d] mb-6">Why English Proficiency Matters for Government School Students</h2>
+                <p className="text-lg text-[#2a241d] mb-4 leading-relaxed">
                   English proficiency is a critical skill that opens doors to higher education, better career opportunities, and global communication. For government school students, mastering English can be a game-changer in their academic and professional journey.
                 </p>
-                <p className="text-base text-slate-200 leading-relaxed mb-4">
+                <p className="text-base text-[#4a4238] leading-relaxed mb-4">
                   Our specialized English speaking classes are designed specifically for government school students, addressing their unique learning needs and challenges. We provide a supportive learning environment that builds confidence and fluency in spoken English.
                 </p>
-                <p className="text-base text-slate-200 leading-relaxed">
+                <p className="text-base text-[#4a4238] leading-relaxed">
                   With qualified instructors and a curriculum tailored to government school syllabi, we help students improve their communication skills, excel in examinations, and prepare for future opportunities in higher education and employment.
                 </p>
               </div>
               <div
-                className="relative h-64 overflow-hidden rounded-xl md:h-80"
+                className="relative h-64 overflow-hidden rounded-xl md:h-80 border border-gold-metallic/20"
                 style={{ position: 'relative' }}
               >
                 <Image

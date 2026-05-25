@@ -220,26 +220,4 @@ export const seoPages = {
       'migration awareness programs',
     ],
   }),
-  canadaPointsCalculator: buildPageMetadata({
-    title: 'Canada CRS Points Calculator (Estimate Only)',
-    description:
-      'Estimate your Express Entry Comprehensive Ranking System (CRS) score using published IRCC criteria. For planning only — not an official IRCC tool. Verify on Canada.ca.',
-    path: '/calculators/canada-points',
-    keywords: [
-      'Canada CRS calculator',
-      'Express Entry points estimate',
-      'CRS score estimator',
-    ],
-  }),
-  prCalculator: buildPageMetadata({
-    title: 'PR Points Calculator (CRS Estimate)',
-    description:
-      'Estimate Express Entry CRS-style points from published criteria for educational planning. Not affiliated with IRCC — confirm results on Canada.ca.',
-    path: '/calculators/pr-calculator',
-    keywords: [
-      'PR points calculator',
-      'CRS estimate',
-      'Express Entry planning',
-    ],
-  }),
 } as const

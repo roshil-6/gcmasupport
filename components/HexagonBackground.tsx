@@ -19,7 +19,7 @@ interface Spark {
   drift: number
 }
 
-export default function HexagonBackground() {
+export default function HexagonBackground({ className = "fixed inset-0 z-0 hidden md:block" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mousePosRef = useRef({ x: -1000, y: -1000 })
   const hexagonsRef = useRef<Hexagon[]>([])
@@ -297,7 +297,7 @@ export default function HexagonBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className={`pointer-events-none ${className}`}
       style={{ background: 'transparent' }}
       aria-hidden="true"
     />

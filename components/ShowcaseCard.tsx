@@ -18,6 +18,7 @@ export type ShowcaseCardProps = {
   className?: string
   href?: string
   imageFit?: 'cover' | 'contain'
+  theme?: 'dark' | 'light'
 }
 
 function CardBody({
@@ -28,26 +29,28 @@ function CardBody({
   ctaLabel,
   ctaHref,
   ctaOnClick,
+  theme = 'light',
 }: Pick<
   ShowcaseCardProps,
   'tagline' | 'description' | 'highlights' | 'footnote' | 'ctaLabel' | 'ctaHref' | 'ctaOnClick'
->) {
+> & { theme?: 'dark' | 'light' }) {
+  const isLight = theme === 'light'
   return (
-    <div className="p-6 bg-[#333333]">
+    <div className={`p-6 ${isLight ? 'bg-white' : 'bg-[#333333]'}`}>
       {tagline ? (
-        <p className="text-gold-metallic text-sm mb-3 font-semibold leading-relaxed">{tagline}</p>
+        <p className={`${isLight ? 'text-[#8a7340]' : 'text-gold-metallic'} text-sm mb-3 font-semibold leading-relaxed`}>{tagline}</p>
       ) : null}
       {description ? (
-        <p className="text-white text-base mb-4 leading-relaxed font-normal">{description}</p>
+        <p className={`${isLight ? 'text-[#4a4238]' : 'text-white'} text-base mb-4 leading-relaxed font-normal`}>{description}</p>
       ) : null}
       {highlights && highlights.length > 0 ? (
         <div className="mb-4">
-          <p className="text-white text-sm mb-3 font-medium text-gold-metallic/80">Key Highlights:</p>
+          <p className={`text-sm mb-3 font-semibold ${isLight ? 'text-[#8a7340]' : 'text-gold-metallic/80'}`}>Key Highlights:</p>
           <ul className="space-y-2.5">
             {highlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-gold-metallic mt-0.5 flex-shrink-0"
+                  className={`w-5 h-5 ${isLight ? 'text-[#8a7340]' : 'text-gold-metallic'} mt-0.5 flex-shrink-0`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
@@ -58,15 +61,15 @@ function CardBody({
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm text-white font-medium leading-relaxed">{highlight}</span>
+                <span className={`text-sm ${isLight ? 'text-[#4a4238]' : 'text-white'} font-medium leading-relaxed`}>{highlight}</span>
               </li>
             ))}
           </ul>
         </div>
       ) : null}
       {footnote ? (
-        <div className="mb-5 pt-4 border-t border-gold-metallic/20">
-          <p className="text-xs text-white/70 leading-relaxed">{footnote}</p>
+        <div className={`mb-5 pt-4 border-t ${isLight ? 'border-[#e3d5b1]' : 'border-gold-metallic/20'}`}>
+          <p className={`text-xs ${isLight ? 'text-[#6d6255]' : 'text-white/70'} leading-relaxed`}>{footnote}</p>
         </div>
       ) : null}
       {ctaHref ? (
@@ -104,12 +107,14 @@ export default function ShowcaseCard({
   className = '',
   href,
   imageFit = 'cover',
+  theme = 'light',
 }: ShowcaseCardProps) {
   const isFlagImage = imageFit === 'contain'
+  const isLight = theme === 'light'
 
   const card = (
     <div
-      className={`rounded-2xl overflow-hidden border border-gold-metallic/40 bg-[#333333] shadow-xl ${href ? 'hover:border-gold-metallic transition-all' : ''} ${className}`}
+      className={`rounded-2xl overflow-hidden border border-gold-metallic/40 ${isLight ? 'bg-white text-black' : 'bg-[#333333] text-white'} shadow-xl ${href ? 'hover:border-gold-metallic transition-all' : ''} ${className}`}
     >
       <div className="relative isolate h-48 w-full overflow-hidden" style={{ position: 'relative' }}>
         {isFlagImage ? (
@@ -133,28 +138,28 @@ export default function ShowcaseCard({
         {isFlagImage ? (
           <>
             <div
-              className="pointer-events-none absolute -bottom-px left-0 right-0 top-0 z-[1] bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+              className={`pointer-events-none absolute -bottom-px left-0 right-0 top-0 z-[1] bg-gradient-to-t ${isLight ? 'from-white/80 via-white/40 to-transparent' : 'from-black/80 via-black/40 to-transparent'}`}
               aria-hidden
             />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
-                <p className="mb-1 text-sm font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                <p className={`mb-1 text-sm font-bold ${isLight ? 'text-[#8a7340]' : 'text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]'}`}>
                   {eyebrow}
                 </p>
               ) : null}
-              <h3 className="text-2xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+              <h3 className={`text-2xl font-extrabold ${isLight ? 'text-[#2a241d]' : 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]'}`}>
                 {title}
               </h3>
             </div>
           </>
         ) : (
           <>
-            <div className="absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/70 to-[#333333]/35" />
+            <div className={`absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t ${isLight ? 'from-white/85 via-white/20 to-transparent' : 'from-[#333333]/95 via-[#333333]/70 to-[#333333]/35'}`} />
             <div className="absolute bottom-4 left-4 right-4 z-10">
               {eyebrow ? (
-                <p className="text-sm font-bold text-white mb-1 drop-shadow-2xl">{eyebrow}</p>
+                <p className={`text-sm font-bold mb-1 ${isLight ? 'text-[#8a7340]' : 'text-white drop-shadow-2xl'}`}>{eyebrow}</p>
               ) : null}
-              <h3 className="text-2xl font-extrabold text-white drop-shadow-2xl">{title}</h3>
+              <h3 className={`text-2xl font-extrabold ${isLight ? 'text-[#2a241d]' : 'text-white drop-shadow-2xl'}`}>{title}</h3>
             </div>
           </>
         )}
@@ -167,6 +172,7 @@ export default function ShowcaseCard({
         ctaLabel={ctaLabel}
         ctaHref={href ? undefined : ctaHref}
         ctaOnClick={href ? undefined : ctaOnClick}
+        theme={theme}
       />
     </div>
   )

@@ -48,7 +48,7 @@ export default function WelfareProgramCard({
   return (
     <article
       id={id}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-[#333333]/80 shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-gold-metallic/35 bg-white shadow-xl transition-colors hover:border-gold-metallic/65 scroll-mt-20"
     >
       <div
         className="relative h-52 md:h-56 cursor-pointer overflow-hidden"
@@ -73,11 +73,11 @@ export default function WelfareProgramCard({
         <div className="pointer-events-none absolute -bottom-px left-0 right-0 top-0 bg-gradient-to-t from-[#333333]/95 via-[#333333]/45 to-[#333333]/10" />
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6">
           <div className="min-w-0">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-metallic/85 keep-gold-text">
               {eyebrow}
             </p>
             <div className="flex items-center gap-2">
-              <h3 className="text-xl font-bold text-white md:text-2xl">{headline}</h3>
+              <h3 className="text-xl font-bold text-white md:text-2xl keep-light-text">{headline}</h3>
               <ExplanationPanel
                 title={explanation.title}
                 content={explanation.content}
@@ -92,7 +92,7 @@ export default function WelfareProgramCard({
       </div>
 
       {showExplanation ? (
-        <div className="border-b border-gold-metallic/20 px-6 pt-4">
+        <div className="border-b border-gold-metallic/20 bg-white px-6 pt-4">
           <ExplanationBox
             title={explanation.title}
             content={explanation.content}
@@ -101,16 +101,16 @@ export default function WelfareProgramCard({
         </div>
       ) : null}
 
-      <div className="flex flex-col border-t border-gold-metallic/20 bg-[#333333]/75 p-5 sm:p-6 md:p-8">
-        <h4 className="mb-3 text-xl font-semibold text-gold-metallic md:text-2xl">{title}</h4>
-        <p className="text-on-dark mb-5 text-sm leading-relaxed md:text-base">{description}</p>
+      <div className="flex flex-col border-t border-gold-metallic/20 bg-white p-5 sm:p-6 md:p-8">
+        <h4 className="mb-3 text-xl font-semibold text-[#6e531d] md:text-2xl">{title}</h4>
+        <p className="text-[#4a4238] mb-5 text-sm leading-relaxed md:text-base">{description}</p>
 
         <ul className="mb-6 space-y-2.5">
           {highlights.map((highlight) => (
             <li key={highlight} className="flex items-start gap-3">
               <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-metallic/20">
                 <svg
-                  className="h-3.5 w-3.5 text-gold-metallic"
+                  className="h-3.5 w-3.5 text-[#6e531d]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
@@ -122,7 +122,7 @@ export default function WelfareProgramCard({
                   />
                 </svg>
               </span>
-              <span className="text-on-dark text-sm leading-relaxed">{highlight}</span>
+              <span className="text-[#4a4238] text-sm leading-relaxed">{highlight}</span>
             </li>
           ))}
         </ul>
@@ -141,7 +141,7 @@ export default function WelfareProgramCard({
 
         {isFormOpen ? (
           <div className="mt-5 border-t border-gold-metallic/30 pt-5 sm:mt-6 sm:pt-6">
-            <div className="welfare-card-form rounded-xl border border-gold-metallic/30 bg-black/25 p-4 sm:p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+            <div className="welfare-card-form rounded-xl border border-gold-metallic/30 bg-[#f9f2e7]/30 p-4 sm:p-5 shadow-sm">
               {form}
             </div>
           </div>

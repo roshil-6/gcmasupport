@@ -151,14 +151,14 @@ export default function ImmigrationFraudSection() {
                     </svg>
                   </div>
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    <h3 className="text-2xl font-bold text-gold-metallic">Legal Protection & Justice</h3>
+                    <h3 className="text-2xl font-bold text-gold-metallic keep-gold-text">Legal Protection & Justice</h3>
                     <ExplanationPanel
                       title="Legal Protection & Justice"
                       content="This section is for people who have been cheated or misled by immigration or visa agencies. It provides a safe and confidential way to submit complaints. All information is protected and used only for legal review, investigation, and public protection. Submitting a complaint also helps prevent others from falling victim to similar scams."
                       onToggle={setShowExplanation}
                     />
                   </div>
-                  <p className="text-white">Secure complaint submission for immigration fraud victims</p>
+                  <p className="text-white keep-light-text">Secure complaint submission for immigration fraud victims</p>
                 </div>
               </div>
             </div>

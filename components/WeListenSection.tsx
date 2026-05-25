@@ -45,10 +45,10 @@ export default function WeListenSection() {
                 aria-hidden
               />
               <div className="relative z-10 px-4 text-center">
-                <h2 className="mb-4 text-4xl font-bold !text-white md:text-5xl [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
+                <h2 className="mb-4 text-4xl font-bold keep-gold-text md:text-5xl [text-shadow:0_2px_14px_rgba(0,0,0,0.85)]">
                   We Listen. We Care.
                 </h2>
-                <p className="text-2xl font-medium leading-snug !text-white md:text-3xl [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
+                <p className="text-2xl font-medium leading-snug keep-light-text md:text-3xl [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]">
                   Let's Build a Brighter Future for Migrants — Together!
                 </p>
               </div>

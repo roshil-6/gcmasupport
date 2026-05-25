@@ -40,7 +40,7 @@ export default function BeliefStatementSection() {
               loading="lazy"
             />
             <div className="absolute -bottom-px left-0 right-0 top-0 flex items-center justify-center bg-[#333333]/50">
-              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center px-4 drop-shadow-lg">
+              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic keep-gold-text text-center px-4 drop-shadow-lg">
                 Our Core Philosophy
               </h2>
             </div>

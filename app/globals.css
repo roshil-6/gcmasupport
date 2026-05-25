@@ -1584,3 +1584,28 @@ body.theme-dark .bg-\[#f9f2e7\]\/90 {
   background-color: rgba(51, 51, 51, 0.90) !important;
 }
 
+/* Keep text bright white and gold on dark image overlays under light theme */
+.keep-light-text,
+body.theme-light .keep-light-text,
+body.theme-light .keep-light-text h1,
+body.theme-light .keep-light-text h2,
+body.theme-light .keep-light-text h3,
+body.theme-light .keep-light-text h4,
+body.theme-light .keep-light-text p,
+body.theme-light .keep-light-text span,
+body.theme-light .keep-light-text div,
+body.theme-light h3.keep-light-text {
+  color: #ffffff !important;
+}
+
+.keep-gold-text,
+body.theme-light .keep-gold-text,
+body.theme-light .keep-gold-text h1,
+body.theme-light .keep-gold-text h2,
+body.theme-light .keep-gold-text h3,
+body.theme-light .keep-gold-text h4,
+body.theme-light .keep-gold-text p,
+body.theme-light .keep-gold-text span {
+  color: #d4af37 !important; /* proper gold */
+}
+

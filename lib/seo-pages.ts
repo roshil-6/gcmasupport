@@ -220,4 +220,17 @@ export const seoPages = {
       'migration awareness programs',
     ],
   }),
+  nclexSyllabus: buildPageMetadata({
+    title: 'NCLEX-RN Master Syllabus & NGN Exam Prep',
+    description:
+      'Explore the official NCLEX-RN study plan with 15 interactive modules covering management of care, physiological adaptation, pharmacology, and Next Generation NCLEX (NGN) exam prep.',
+    path: '/nclex-syllabus',
+    keywords: [
+      'NCLEX-RN Master Syllabus',
+      'NGN prep course',
+      'Next Generation NCLEX plan',
+      'nursing registration syllabus',
+      'GCMA study plan',
+    ],
+  }),
 } as const

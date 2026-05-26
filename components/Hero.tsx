@@ -30,6 +30,7 @@ const primaryLinks: PrimaryNavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/gcma-projects', label: 'GCMA Projects', compactLabel: 'Projects' },
+  { href: '/nclex-syllabus', label: 'NCLEX-RN Syllabus', compactLabel: 'NCLEX' },
   { href: '/contact', label: 'Contact Us' },
 ]
 

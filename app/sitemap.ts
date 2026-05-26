@@ -30,6 +30,7 @@ const routes = [
   '/english-classes/private-students',
   '/break-the-silence/student-tutor',
   '/gcma-projects',
+  '/nclex-syllabus',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -245,4 +245,20 @@ export const seoContent = {
     webPageDescription:
       'Community projects, outreach, and welfare initiatives led by the Global Council for Migration Awareness and Social Welfare (GCMA).',
   }),
+  nclexSyllabus: pageSeo({
+    heading: 'NCLEX-RN Master Syllabus and Study Framework',
+    paragraphs: [
+      'Access the complete NCLEX-RN Master Syllabus containing 15 comprehensive study modules designed to help international nurses prepare for the Next Generation NCLEX (NGN) exam.',
+      'Our structured lesson plans combine core clinical knowledge, physiological integrity concepts, learning objectives, and clinical decision-making priorities.',
+    ],
+    links: [
+      { href: '/nursing-registration', label: 'Nursing registration support' },
+      { href: '/contact', label: 'Contact nursing team' },
+    ],
+    breadcrumbs: [homeCrumb, { name: 'NCLEX-RN Syllabus', path: '/nclex-syllabus' }],
+    pagePath: '/nclex-syllabus',
+    webPageTitle: 'NCLEX-RN Master Syllabus',
+    webPageDescription:
+      'Comprehensive study plan for NCLEX-RN candidates. 15 modules covering management of care, physiological systems, pharmacology, and Next Generation NCLEX (NGN) exam prep.',
+  }),
 } satisfies Record<string, PageSeoContentProps>

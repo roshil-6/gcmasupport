@@ -1146,10 +1146,10 @@ export default function NclexSyllabusPage() {
                       </div>
                     </div>
 
-                    {/* Body details with smooth transition height container */}
+                    {/* Body details container */}
                     <div
-                      className={`transition-all duration-300 ease-in-out overflow-hidden relative z-10 ${
-                        isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                      className={`relative z-10 ${
+                        isOpen ? 'block' : 'hidden'
                       }`}
                     >
                       <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6">

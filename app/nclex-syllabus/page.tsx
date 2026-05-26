@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import HexagonBackground from '@/components/HexagonBackground'
+import NursingCountryBanner from '@/components/NursingCountryBanner'
+import ShowcaseCard from '@/components/ShowcaseCard'
+import NursingRegistrationForm from '@/components/NursingRegistrationForm'
 
 interface LessonDecision {
   icon: string
@@ -64,7 +67,7 @@ const SYLLABUS_DATA: SyllabusModule[] = [
     ],
     lessonDecisions: [
       { icon: '🏗️', text: 'Teach this module first as the foundation for all clinical modules that follow' },
-      { icon: '🎥', text: 'Use skills lab simulations and skills checklists for procedural competency' },
+      { icon: '🎥', text: 'Use skills lab simulations and skills checklists for procedural competence' },
       { icon: '📝', text: 'Quiz on infection control chains before advancing to system modules' },
     ],
     nclexQuestionTypes: ['Multiple Choice', 'SATA', 'Image/Hotspot', 'Ordered Response'],
@@ -252,7 +255,7 @@ const SYLLABUS_DATA: SyllabusModule[] = [
       { icon: '🩹', text: 'Use pressure injury staging visual aids with diverse skin-tone wound photos' },
     ],
     nclexQuestionTypes: ['Calculation', 'Image/Hotspot', 'SATA', 'Prioritization'],
-    gradientClass: 'from-yellow-600 to-amber-700',
+    gradientClass: 'from-yellow-650 to-amber-800',
   },
   {
     id: 11,
@@ -321,7 +324,7 @@ const SYLLABUS_DATA: SyllabusModule[] = [
       { icon: '🚫', text: 'Teach contraindications and antidotes as standalone high-priority decision clusters' },
     ],
     nclexQuestionTypes: ['Calculation', 'SATA', 'Drop-Down', 'Table/Matrix', 'Multiple Choice'],
-    gradientClass: 'from-yellow-650 to-yellow-800',
+    gradientClass: 'from-yellow-600 to-yellow-800',
   },
   {
     id: 14,
@@ -455,7 +458,7 @@ export default function NclexSyllabusPage() {
 
       {/* Nav */}
       <nav className="relative z-20 pt-6 px-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
             className="inline-flex items-center text-gold-metallic hover:text-gold-bright transition-colors text-sm md:text-base font-semibold"
@@ -469,201 +472,307 @@ export default function NclexSyllabusPage() {
       </nav>
 
       {/* Content wrapper */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 mt-8 md:mt-12">
-        {/* Header Block */}
-        <header className="text-center mb-10 pb-8 border-b border-gold-metallic/20 relative">
-          <div className="inline-block bg-gradient-to-r from-emerald-900 to-green-800 text-gold font-semibold text-xs tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-gold-metallic/35 mb-4 shadow-sm">
-            Official Study Program
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gold-metallic drop-shadow-sm mb-4">
-            NCLEX-RN <span className="text-white body.theme-light:text-[#0f0c14] transition-colors">Master Syllabus</span>
-          </h1>
-          <p className="text-white/80 max-w-2xl mx-auto text-sm md:text-base mb-8">
-            Comprehensive study framework, diagnostic priorities, and clinical decision trees aligned with the Next Generation NCLEX (NGN) guidelines.
-          </p>
-
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
-            {[
-              { num: '15', label: 'Modules' },
-              { num: '3', label: 'Difficulty Tiers' },
-              { num: 'NGN', label: 'NCLEX Format' },
-              { num: 'Pass', label: 'Focused Goal' },
-            ].map((stat, i) => (
-              <div key={i} className="glass-card dark-container rounded-xl p-3 text-center border border-gold-metallic/20">
-                <span className="block text-2xl md:text-3xl font-bold text-gold-metallic">{stat.num}</span>
-                <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider font-semibold">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 h-1 bg-gradient-to-r from-emerald-500 to-gold-metallic rounded-full" />
-        </header>
-
-        {/* Filters and Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          {/* Legend and Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: 'all', label: 'All Categories', dot: null },
-              { id: 'foundation', label: 'Foundation', dot: 'dot-foundation' },
-              { id: 'intermediate', label: 'Intermediate', dot: 'dot-intermediate' },
-              { id: 'advanced', label: 'Advanced', dot: 'dot-advanced' },
-              { id: 'exam', label: 'Exam Prep', dot: 'dot-exam' },
-            ].map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all border ${
-                  activeFilter === filter.id
-                    ? 'bg-gold-metallic/20 border-gold-metallic text-gold-bright font-semibold'
-                    : 'bg-transparent border-gold-metallic/25 hover:border-gold-metallic/50 text-white/70 hover:text-white'
-                }`}
-              >
-                {filter.dot && <span className={`w-2 h-2 rounded-full ${filter.dot}`} />}
-                {filter.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Expand/Collapse All */}
-          <div className="flex items-center gap-2 self-end sm:self-auto">
-            <button
-              onClick={expandAll}
-              className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
-            >
-              Expand All
-            </button>
-            <span className="text-white/30 text-xs">|</span>
-            <button
-              onClick={collapseAll}
-              className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
-            >
-              Collapse All
-            </button>
-          </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mt-8 md:mt-12 space-y-12">
+        {/* Banner Section */}
+        <div>
+          <NursingCountryBanner
+            country="NCLEX-RN Syllabus"
+            subtitle="Next Generation Study Plan for International Nurse Registration"
+            flagSrc="/nursing/flags/us.png"
+            bannerSrc="/nursing/photos/usa-banner.jpg"
+          />
         </div>
 
-        {/* Modules Accordions */}
-        <div className="space-y-4">
-          {filteredModules.map((module) => {
-            const isOpen = !!expandedModules[module.id]
+        {/* Detailed Intro Section (Proper Page Feeling) */}
+        <section className="grid lg:grid-cols-2 gap-8 items-stretch">
+          {/* Card 1: Benchmark */}
+          <div className="glass-card dark-container rounded-2xl p-6 md:p-8 flex flex-col justify-between border border-gold-metallic/30">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
+                NCLEX-RN: The Global Nursing Benchmark
+              </h2>
+              <p className="text-base leading-relaxed text-white/90">
+                The National Council Licensure Examination for Registered Nurses (NCLEX-RN) is the comprehensive testing benchmark used by regulatory boards in the <strong>United States, Canada, and Australia</strong> to certify that candidates possess the clinical competence and critical reasoning needed to practice safely as entry-level nurses.
+              </p>
+              <p className="text-base leading-relaxed text-white/90">
+                GCMA supports overseas qualified nurses by offering structured guidance and curriculum resources, helping you align your training with these stringent regulatory assessments.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-gold-metallic/15 mt-6">
+              <span className="text-xs uppercase tracking-wider text-gold-metallic font-semibold block">
+                Primary Destinations Covered
+              </span>
+              <span className="text-sm text-white/70 block mt-1">
+                United States (NCSBN) · Canada (Regulatory Bodies) · Australia (AHPRA / NMBA)
+              </span>
+            </div>
+          </div>
 
-            return (
-              <div
-                key={module.id}
-                className="glass-card dark-container rounded-2xl overflow-hidden nclex-module-card border border-gold-metallic/30"
-              >
-                {/* Header */}
-                <div
-                  onClick={() => toggleModule(module.id)}
-                  className="flex items-center gap-4 p-5 cursor-pointer user-select-none hover:bg-gold-metallic/5 transition-colors"
+          {/* Card 2: NGN standard */}
+          <div className="glass-card dark-container rounded-2xl p-6 md:p-8 flex flex-col justify-between border border-gold-metallic/30">
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
+                Next Generation NCLEX (NGN) Model
+              </h2>
+              <p className="text-base leading-relaxed text-white/90">
+                The updated Next Generation NCLEX (NGN) exam system centers heavily around the <strong>NCSBN Clinical Judgment Measurement Model (NCJMM)</strong>. This framework is designed to measure your cognitive ability to make safe, expert decisions during complex patient care.
+              </p>
+              <p className="text-base leading-relaxed text-white/90">
+                Rather than simple recall questions, candidates are presented with unfolding case studies and interactive item types (bowtie, trend, matrix grids) that assess your ability to recognize cues, prioritize hypotheses, and take clinical action.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-gold-metallic/15 mt-6">
+              <span className="text-xs uppercase tracking-wider text-gold-metallic font-semibold block">
+                Core Cognitive Operations Tested
+              </span>
+              <span className="text-sm text-white/70 block mt-1">
+                Recognize Cues · Analyze Cues · Prioritize Hypotheses · Take Action · Evaluate Outcomes
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Bar */}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {[
+            { num: '15', label: 'Structured Modules' },
+            { num: '3', label: 'Difficulty Tiers' },
+            { num: 'NGN', label: 'Clinical Model Aligned' },
+            { num: 'Pass', label: 'Focused Registration' },
+          ].map((stat, i) => (
+            <div key={i} className="glass-card dark-container rounded-xl p-4 text-center border border-gold-metallic/20">
+              <span className="block text-3xl md:text-4xl font-bold text-gold-metallic">{stat.num}</span>
+              <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider font-semibold block mt-1">{stat.label}</span>
+            </div>
+          ))}
+        </section>
+
+        {/* Core Syllabus Areas (Showcase Cards with Images!) */}
+        <section>
+          <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-8">
+            Curriculum Core Pillars
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ShowcaseCard
+              imageSrc="/nursing/photos/australia-career2.jpg"
+              imageAlt="Care Management"
+              eyebrow="Syllabus Pillar 1"
+              title="Management of Care"
+              tagline="Supervision & Legal Frameworks"
+              description="Learn delegation rules (RN vs LPN vs UAP), nursing advocacy, patient rights, legal liability, and priority frameworks (Maslow, ABCs) for nursing boards."
+              theme="dark"
+            />
+            <ShowcaseCard
+              imageSrc="/nursing/photos/germany-why4.jpg"
+              imageAlt="Basic Procedures"
+              eyebrow="Syllabus Pillar 2"
+              title="Basic Care & Safety"
+              tagline="Fundamentals & Procedures"
+              description="Infection control standards, sterile techniques, vital signs analysis, catheterization, wound care, and health promotion timelines across age groups."
+              theme="dark"
+            />
+            <ShowcaseCard
+              imageSrc="/nursing/photos/australia-why3.jpg"
+              imageAlt="Physiological Adaptation"
+              eyebrow="Syllabus Pillar 3"
+              title="Clinical Systems"
+              tagline="Physiological Adaptation"
+              description="Interpret complex ECG strips, manage heart failure, respiratory crisis, neurological CVA response, electrolyte balances, and advanced post-op procedures."
+              theme="dark"
+            />
+            <ShowcaseCard
+              imageSrc="/nursing/photos/newzealand-registration.jpg"
+              imageAlt="NGN & Pharmacology"
+              eyebrow="Syllabus Pillar 4"
+              title="NGN & Pharmacology"
+              tagline="Medication Safety & Practice"
+              description="Master safe calculations, high-alert drug reversal protocols, suffix patterns, and practice full simulations of folding NGN case studies and bowtie queries."
+              theme="dark"
+            />
+          </div>
+        </section>
+
+        {/* Interactive Syllabus Accordions Section */}
+        <section className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic">
+              Explore the 15 Modules
+            </h2>
+            <p className="text-sm md:text-base text-white/80 mt-2">
+              Select difficulty tiers to filter the modules or toggle individual tabs to view comprehensive learning objectives, lesson decisions, and NGN question types.
+            </p>
+          </div>
+
+          {/* Filters and Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4">
+            {/* Legend and Filter Buttons */}
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                { id: 'all', label: 'All Modules', dot: null },
+                { id: 'foundation', label: 'Foundation', dot: 'dot-foundation' },
+                { id: 'intermediate', label: 'Intermediate', dot: 'dot-intermediate' },
+                { id: 'advanced', label: 'Advanced', dot: 'dot-advanced' },
+                { id: 'exam', label: 'Exam Prep', dot: 'dot-exam' },
+              ].map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all border ${
+                    activeFilter === filter.id
+                      ? 'bg-gold-metallic/20 border-gold-metallic text-gold-bright'
+                      : 'bg-transparent border-gold-metallic/25 hover:border-gold-metallic/50 text-white/70 hover:text-white'
+                  }`}
                 >
-                  {/* Module Number Block */}
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-sm flex-shrink-0 bg-gradient-to-br ${module.gradientClass}`}>
-                    {module.id < 10 ? `0${module.id}` : module.id}
-                  </div>
+                  {filter.dot && <span className={`w-2.5 h-2.5 rounded-full ${filter.dot}`} />}
+                  {filter.label}
+                </button>
+              ))}
+            </div>
 
-                  {/* Title & Tags */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg md:text-xl font-bold text-white leading-tight mb-1.5 pr-2">
-                      {module.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="inline-block bg-green-500/10 border border-green-500/25 text-emerald-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                        {module.weeks}
+            {/* Expand/Collapse All */}
+            <div className="flex items-center gap-2 self-end sm:self-auto font-medium">
+              <button
+                onClick={expandAll}
+                className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
+              >
+                Expand All
+              </button>
+              <span className="text-white/30 text-xs">|</span>
+              <button
+                onClick={collapseAll}
+                className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
+              >
+                Collapse All
+              </button>
+            </div>
+          </div>
+
+          {/* Modules Accordions */}
+          <div className="space-y-4">
+            {filteredModules.map((module) => {
+              const isOpen = !!expandedModules[module.id]
+
+              return (
+                <div
+                  key={module.id}
+                  className="glass-card dark-container rounded-2xl overflow-hidden nclex-module-card border border-gold-metallic/30"
+                >
+                  {/* Header */}
+                  <div
+                    onClick={() => toggleModule(module.id)}
+                    className="flex items-center gap-4 p-5 cursor-pointer user-select-none hover:bg-gold-metallic/5 transition-colors"
+                  >
+                    {/* Module Number Block */}
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-sm flex-shrink-0 bg-gradient-to-br ${module.gradientClass}`}>
+                      {module.id < 10 ? `0${module.id}` : module.id}
+                    </div>
+
+                    {/* Title & Tags */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg md:text-xl font-bold text-white leading-tight mb-1.5 pr-2">
+                        {module.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        <span className="inline-block bg-green-500/10 border border-green-500/25 text-emerald-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                          {module.weeks}
+                        </span>
+                        <span className="inline-block bg-amber-500/10 border border-amber-500/25 text-amber-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                          {module.priority}
+                        </span>
+                        <span className="inline-block bg-teal-500/10 border border-teal-500/25 text-teal-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                          {module.weight}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right: Badge + Chevron */}
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className={`text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
+                        {module.difficultyLabel}
                       </span>
-                      <span className="inline-block bg-amber-500/10 border border-amber-500/25 text-amber-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                        {module.priority}
-                      </span>
-                      <span className="inline-block bg-teal-500/10 border border-teal-500/25 text-teal-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                        {module.weight}
-                      </span>
+                      <svg
+                        className={`w-5 h-5 text-gold-metallic transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
                     </div>
                   </div>
 
-                  {/* Right: Badge + Chevron */}
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className={`text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
-                      {module.difficultyLabel}
-                    </span>
-                    <svg
-                      className={`w-5 h-5 text-gold-metallic transition-transform duration-300 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
+                  {/* Body details */}
+                  {isOpen && (
+                    <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6 animate-fadeIn">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {/* Left: Objectives */}
+                        <div className="nclex-section-box rounded-xl p-4 md:p-5">
+                          <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <span className="w-1.5 h-3 bg-emerald-500 rounded-full" />
+                            Learning Objectives
+                          </h4>
+                          <ul className="space-y-3">
+                            {module.learningObjectives.map((obj, i) => (
+                              <li key={i} className="text-xs md:text-sm text-white/90 leading-relaxed pl-4 relative">
+                                <span className="absolute left-0 text-emerald-500 font-bold font-sans">›</span>
+                                {obj}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
 
-                {/* Body details */}
-                {isOpen && (
-                  <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6 animate-fadeIn">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Left: Objectives */}
-                      <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                        <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
-                          <span className="w-1.5 h-3 bg-emerald-500 rounded-full" />
-                          Learning Objectives
-                        </h4>
-                        <ul className="space-y-3">
-                          {module.learningObjectives.map((obj, i) => (
-                            <li key={i} className="text-xs md:text-sm text-white/90 leading-relaxed pl-4 relative">
-                              <span className="absolute left-0 text-emerald-500 font-bold font-sans">›</span>
-                              {obj}
-                            </li>
-                          ))}
-                        </ul>
+                        {/* Right: Decisions */}
+                        <div className="nclex-section-box rounded-xl p-4 md:p-5">
+                          <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <span className="w-1.5 h-3 bg-amber-500 rounded-full" />
+                            Lesson Decisions
+                          </h4>
+                          <div className="space-y-3">
+                            {module.lessonDecisions.map((decision, i) => (
+                              <div key={i} className="nclex-decision-item flex items-start gap-2.5 p-3 rounded-lg text-xs md:text-sm leading-relaxed">
+                                <span className="text-sm mt-0.5 flex-shrink-0">{decision.icon}</span>
+                                <span>{decision.text}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
 
-                      {/* Right: Decisions */}
+                      {/* Bottom: NCLEX types */}
                       <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                        <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
-                          <span className="w-1.5 h-3 bg-amber-500 rounded-full" />
-                          Lesson Decisions
+                        <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-3 flex items-center gap-2">
+                          <span className="w-1.5 h-3 bg-purple-500 rounded-full" />
+                          {module.difficulty === 'exam' ? 'Study Methods' : 'NCLEX Question Types'}
                         </h4>
-                        <div className="space-y-3">
-                          {module.lessonDecisions.map((decision, i) => (
-                            <div key={i} className="nclex-decision-item flex items-start gap-2.5 p-3 rounded-lg text-xs md:text-sm leading-relaxed">
-                              <span className="text-sm mt-0.5 flex-shrink-0">{decision.icon}</span>
-                              <span>{decision.text}</span>
-                            </div>
+                        <div className="flex flex-wrap gap-2">
+                          {module.nclexQuestionTypes.map((type, i) => (
+                            <span
+                              key={i}
+                              className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs px-3 py-1 rounded-md"
+                            >
+                              {type}
+                            </span>
                           ))}
                         </div>
                       </div>
                     </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </section>
 
-                    {/* Bottom: NCLEX types */}
-                    <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                      <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-3 flex items-center gap-2">
-                        <span className="w-1.5 h-3 bg-purple-500 rounded-full" />
-                        {module.difficulty === 'exam' ? 'Study Methods' : 'NCLEX Question Types'}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {module.nclexQuestionTypes.map((type, i) => (
-                          <span
-                            key={i}
-                            className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs px-3 py-1 rounded-md"
-                          >
-                            {type}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
+        {/* Inquiry Form at the bottom (Proper Page Feeling) */}
+        <section className="pt-8">
+          <NursingRegistrationForm initialCountry="USA" />
+        </section>
 
         {/* Footer info text */}
-        <footer className="text-center mt-12 pt-8 border-t border-gold-metallic/20 text-xs md:text-sm text-white/50 space-y-2">
+        <footer className="text-center pt-8 border-t border-gold-metallic/20 text-xs md:text-sm text-white/50 space-y-2">
           <p>
             NCLEX-RN Master Syllabus &nbsp;·&nbsp; <strong className="text-gold-metallic">Next Generation NCLEX (NGN) Aligned</strong> &nbsp;·&nbsp; All modules mapped to NCSBN Test Plan
           </p>

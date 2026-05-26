@@ -406,25 +406,115 @@ export default function NclexSyllabusPage() {
       <HexagonBackground />
 
       <style dangerouslySetInnerHTML={{ __html: `
-        /* local styles for nclex page */
-        .nclex-badge-foundation { background: rgba(34, 168, 90, 0.08); color: #16a34a; border: 1px solid rgba(34, 168, 90, 0.2); }
-        .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.12); color: #047857; border: 1px solid rgba(26, 107, 58, 0.25); }
-        .nclex-badge-advanced { background: rgba(212, 160, 23, 0.1); color: #d97706; border: 1px solid rgba(212, 160, 23, 0.2); }
-        .nclex-badge-exam { background: rgba(139, 92, 246, 0.08); color: #7c3aed; border: 1px solid rgba(139, 92, 246, 0.2); }
+        /* theme-aware description overlays */
+        .nclex-intro-text { color: #2a241d; }
+        body.theme-dark .nclex-intro-text { color: rgba(255, 255, 255, 0.85); }
 
-        body.theme-dark .nclex-badge-foundation { background: rgba(34, 168, 90, 0.18); color: #86efac; border-color: rgba(34, 168, 90, 0.3); }
-        body.theme-dark .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.22); color: #6ee7a0; border-color: rgba(26, 107, 58, 0.35); }
-        body.theme-dark .nclex-badge-advanced { background: rgba(212, 160, 23, 0.18); color: #f59e0b; border-color: rgba(212, 160, 23, 0.3); }
-        body.theme-dark .nclex-badge-exam { background: rgba(139, 92, 246, 0.18); color: #c084fc; border-color: rgba(139, 92, 246, 0.3); }
+        .nclex-subtitle { color: rgba(42, 36, 29, 0.8); }
+        body.theme-dark .nclex-subtitle { color: rgba(255, 255, 255, 0.75); }
+
+        /* active filter buttons contrast correction */
+        .nclex-filter-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0.875rem;
+          border-radius: 0.5rem;
+          font-size: 0.875rem;
+          font-weight: 600;
+          border: 1px solid rgba(201, 169, 97, 0.4);
+          transition: all 0.25s ease;
+        }
+
+        .nclex-filter-btn.active {
+          background-color: rgba(201, 169, 97, 0.15);
+          border-color: #c9a961;
+          color: #6e531d;
+        }
+        body.theme-dark .nclex-filter-btn.active {
+          background-color: rgba(201, 169, 97, 0.25);
+          border-color: #ffd54f;
+          color: #ffd54f;
+        }
+
+        .nclex-filter-btn.inactive {
+          background-color: transparent;
+          color: #554433;
+        }
+        .nclex-filter-btn.inactive:hover {
+          border-color: rgba(201, 169, 97, 0.7);
+          color: #0f0c14;
+        }
+        body.theme-dark .nclex-filter-btn.inactive {
+          color: rgba(255, 255, 255, 0.7);
+        }
+        body.theme-dark .nclex-filter-btn.inactive:hover {
+          border-color: rgba(255, 255, 255, 0.5);
+          color: #ffffff;
+        }
 
         .dot-foundation { background-color: #22c55e; }
         .dot-intermediate { background-color: #10b981; }
         .dot-advanced { background-color: #f59e0b; }
         .dot-exam { background-color: #8b5cf6; }
 
+        /* expand / collapse links styling */
+        .nclex-control-btn { color: #6e531d; transition: color 0.2s ease; }
+        .nclex-control-btn:hover { color: #b8860b; text-decoration: underline; }
+        body.theme-dark .nclex-control-btn { color: #c9a961; }
+        body.theme-dark .nclex-control-btn:hover { color: #ffd54f; }
+
+        /* tags and badges styling inside card */
+        .nclex-card-title { color: #0f0c14 !important; }
+        body.theme-dark .nclex-card-title { color: #ffffff !important; }
+
+        .nclex-tag-weeks {
+          background-color: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          color: #047857 !important;
+        }
+        body.theme-dark .nclex-tag-weeks {
+          background-color: rgba(16, 185, 129, 0.15);
+          border-color: rgba(16, 185, 129, 0.4);
+          color: #a7f3d0 !important;
+        }
+
+        .nclex-tag-priority {
+          background-color: rgba(245, 158, 11, 0.08);
+          border: 1px solid rgba(245, 158, 11, 0.25);
+          color: #b45309 !important;
+        }
+        body.theme-dark .nclex-tag-priority {
+          background-color: rgba(245, 158, 11, 0.15);
+          border-color: rgba(245, 158, 11, 0.4);
+          color: #fde68a !important;
+        }
+
+        .nclex-tag-weight {
+          background-color: rgba(13, 148, 136, 0.08);
+          border: 1px solid rgba(13, 148, 136, 0.25);
+          color: #0f766e !important;
+        }
+        body.theme-dark .nclex-tag-weight {
+          background-color: rgba(13, 148, 136, 0.15);
+          border-color: rgba(13, 148, 136, 0.4);
+          color: #99f6e4 !important;
+        }
+
+        .nclex-badge-foundation { background: rgba(34, 168, 90, 0.08); color: #16a34a !important; border: 1px solid rgba(34, 168, 90, 0.2); }
+        .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.12); color: #047857 !important; border: 1px solid rgba(26, 107, 58, 0.25); }
+        .nclex-badge-advanced { background: rgba(212, 160, 23, 0.1); color: #d97706 !important; border: 1px solid rgba(212, 160, 23, 0.2); }
+        .nclex-badge-exam { background: rgba(139, 92, 246, 0.08); color: #7c3aed !important; border: 1px solid rgba(139, 92, 246, 0.2); }
+
+        body.theme-dark .nclex-badge-foundation { background: rgba(34, 168, 90, 0.18); color: #86efac !important; border-color: rgba(34, 168, 90, 0.3); }
+        body.theme-dark .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.22); color: #6ee7a0 !important; border-color: rgba(26, 107, 58, 0.35); }
+        body.theme-dark .nclex-badge-advanced { background: rgba(212, 160, 23, 0.18); color: #f59e0b !important; border-color: rgba(212, 160, 23, 0.3); }
+        body.theme-dark .nclex-badge-exam { background: rgba(139, 92, 246, 0.18); color: #c084fc !important; border-color: rgba(139, 92, 246, 0.3); }
+
+        /* local dynamic section content styling */
         .nclex-section-box {
-          background: rgba(0, 0, 0, 0.015);
-          border: 1px solid rgba(53, 6, 62, 0.06);
+          background: rgba(0, 0, 0, 0.02);
+          border: 1px solid rgba(53, 6, 62, 0.08);
         }
         body.theme-dark .nclex-section-box {
           background: rgba(255, 255, 255, 0.03);
@@ -434,25 +524,60 @@ export default function NclexSyllabusPage() {
         .nclex-decision-item {
           background: rgba(212, 160, 23, 0.05);
           border: 1px solid rgba(212, 160, 23, 0.18);
-          color: #78350f;
+          color: #78350f !important;
         }
         body.theme-dark .nclex-decision-item {
           background: rgba(212, 160, 23, 0.08);
           border: 1px solid rgba(212, 160, 23, 0.25);
-          color: #fde68a;
+          color: #fde68a !important;
         }
 
+        .nclex-obj-item {
+          color: #2a241d !important;
+        }
+        body.theme-dark .nclex-obj-item {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .nclex-qtype-badge {
+          background-color: rgba(16, 185, 129, 0.06);
+          border: 1px solid rgba(16, 185, 129, 0.15);
+          color: #065f46 !important;
+        }
+        body.theme-dark .nclex-qtype-badge {
+          background-color: rgba(16, 185, 129, 0.12);
+          border-color: rgba(16, 185, 129, 0.3);
+          color: #a7f3d0 !important;
+        }
+
+        /* proper expanding box styles */
         .nclex-module-card {
-          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+          border-color: rgba(201, 169, 97, 0.3) !important;
         }
         .nclex-module-card:hover {
           transform: translateY(-2px);
-          border-color: rgba(201, 169, 97, 0.6) !important;
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+          border-color: rgba(201, 169, 97, 0.55) !important;
+          box-shadow: 0 6px 20px rgba(53, 6, 62, 0.05);
         }
-        body.theme-dark .nclex-module-card:hover {
-          border-color: rgba(201, 169, 97, 0.5) !important;
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+
+        /* open state highlighting styles */
+        .nclex-module-card.open {
+          border-color: #c9a961 !important;
+          box-shadow: 0 10px 30px rgba(201, 169, 97, 0.14) !important;
+          background-color: #fffdf4 !important;
+        }
+        body.theme-dark .nclex-module-card.open {
+          background-color: rgba(10, 36, 24, 0.85) !important;
+          border-color: #c9a961 !important;
+          box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35) !important;
+        }
+        
+        .nclex-module-card .arrow-icon {
+          transition: transform 0.3s ease;
+        }
+        .nclex-module-card.open .arrow-icon {
+          transform: rotate(180deg);
         }
       `}} />
 
@@ -483,18 +608,18 @@ export default function NclexSyllabusPage() {
           />
         </div>
 
-        {/* Detailed Intro Section (Proper Page Feeling) */}
+        {/* Detailed Intro Section */}
         <section className="grid lg:grid-cols-2 gap-8 items-stretch">
-          {/* Card 1: Benchmark */}
+          {/* Card 1 */}
           <div className="glass-card dark-container rounded-2xl p-6 md:p-8 flex flex-col justify-between border border-gold-metallic/30">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
                 NCLEX-RN: The Global Nursing Benchmark
               </h2>
-              <p className="text-base leading-relaxed text-white/90">
+              <p className="nclex-intro-text text-base leading-relaxed">
                 The National Council Licensure Examination for Registered Nurses (NCLEX-RN) is the comprehensive testing benchmark used by regulatory boards in the <strong>United States, Canada, and Australia</strong> to certify that candidates possess the clinical competence and critical reasoning needed to practice safely as entry-level nurses.
               </p>
-              <p className="text-base leading-relaxed text-white/90">
+              <p className="nclex-intro-text text-base leading-relaxed">
                 GCMA supports overseas qualified nurses by offering structured guidance and curriculum resources, helping you align your training with these stringent regulatory assessments.
               </p>
             </div>
@@ -502,22 +627,22 @@ export default function NclexSyllabusPage() {
               <span className="text-xs uppercase tracking-wider text-gold-metallic font-semibold block">
                 Primary Destinations Covered
               </span>
-              <span className="text-sm text-white/70 block mt-1">
+              <span className="text-sm text-gold-metallic/80 block mt-1">
                 United States (NCSBN) · Canada (Regulatory Bodies) · Australia (AHPRA / NMBA)
               </span>
             </div>
           </div>
 
-          {/* Card 2: NGN standard */}
+          {/* Card 2 */}
           <div className="glass-card dark-container rounded-2xl p-6 md:p-8 flex flex-col justify-between border border-gold-metallic/30">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-bold text-gold-metallic">
                 Next Generation NCLEX (NGN) Model
               </h2>
-              <p className="text-base leading-relaxed text-white/90">
+              <p className="nclex-intro-text text-base leading-relaxed">
                 The updated Next Generation NCLEX (NGN) exam system centers heavily around the <strong>NCSBN Clinical Judgment Measurement Model (NCJMM)</strong>. This framework is designed to measure your cognitive ability to make safe, expert decisions during complex patient care.
               </p>
-              <p className="text-base leading-relaxed text-white/90">
+              <p className="nclex-intro-text text-base leading-relaxed">
                 Rather than simple recall questions, candidates are presented with unfolding case studies and interactive item types (bowtie, trend, matrix grids) that assess your ability to recognize cues, prioritize hypotheses, and take clinical action.
               </p>
             </div>
@@ -525,7 +650,7 @@ export default function NclexSyllabusPage() {
               <span className="text-xs uppercase tracking-wider text-gold-metallic font-semibold block">
                 Core Cognitive Operations Tested
               </span>
-              <span className="text-sm text-white/70 block mt-1">
+              <span className="text-sm text-gold-metallic/80 block mt-1">
                 Recognize Cues · Analyze Cues · Prioritize Hypotheses · Take Action · Evaluate Outcomes
               </span>
             </div>
@@ -542,12 +667,12 @@ export default function NclexSyllabusPage() {
           ].map((stat, i) => (
             <div key={i} className="glass-card dark-container rounded-xl p-4 text-center border border-gold-metallic/20">
               <span className="block text-3xl md:text-4xl font-bold text-gold-metallic">{stat.num}</span>
-              <span className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider font-semibold block mt-1">{stat.label}</span>
+              <span className="text-[10px] md:text-xs text-gold-metallic/80 uppercase tracking-wider font-semibold block mt-1">{stat.label}</span>
             </div>
           ))}
         </section>
 
-        {/* Core Syllabus Areas (Showcase Cards with Images!) */}
+        {/* Core Syllabus Areas */}
         <section>
           <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic text-center mb-8">
             Curriculum Core Pillars
@@ -558,7 +683,7 @@ export default function NclexSyllabusPage() {
               imageAlt="Care Management"
               eyebrow="Syllabus Pillar 1"
               title="Management of Care"
-              tagline="Supervision & Legal Frameworks"
+              tagline="Supervision & Legal Scope"
               description="Learn delegation rules (RN vs LPN vs UAP), nursing advocacy, patient rights, legal liability, and priority frameworks (Maslow, ABCs) for nursing boards."
               theme="dark"
             />
@@ -595,17 +720,17 @@ export default function NclexSyllabusPage() {
         {/* Interactive Syllabus Accordions Section */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] dark:text-gold-metallic">
               Explore the 15 Modules
             </h2>
-            <p className="text-sm md:text-base text-white/80 mt-2">
+            <p className="nclex-subtitle text-sm md:text-base mt-2">
               Select difficulty tiers to filter the modules or toggle individual tabs to view comprehensive learning objectives, lesson decisions, and NGN question types.
             </p>
           </div>
 
           {/* Filters and Controls */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4">
-            {/* Legend and Filter Buttons */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-b border-gold-metallic/20 pb-4">
+            {/* Filter Buttons */}
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { id: 'all', label: 'All Modules', dot: null },
@@ -613,35 +738,28 @@ export default function NclexSyllabusPage() {
                 { id: 'intermediate', label: 'Intermediate', dot: 'dot-intermediate' },
                 { id: 'advanced', label: 'Advanced', dot: 'dot-advanced' },
                 { id: 'exam', label: 'Exam Prep', dot: 'dot-exam' },
-              ].map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all border ${
-                    activeFilter === filter.id
-                      ? 'bg-gold-metallic/20 border-gold-metallic text-gold-bright'
-                      : 'bg-transparent border-gold-metallic/25 hover:border-gold-metallic/50 text-white/70 hover:text-white'
-                  }`}
-                >
-                  {filter.dot && <span className={`w-2.5 h-2.5 rounded-full ${filter.dot}`} />}
-                  {filter.label}
-                </button>
-              ))}
+              ].map((filter) => {
+                const isActive = activeFilter === filter.id
+                return (
+                  <button
+                    key={filter.id}
+                    onClick={() => setActiveFilter(filter.id)}
+                    className={`nclex-filter-btn ${isActive ? 'active' : 'inactive'}`}
+                  >
+                    {filter.dot && <span className={`w-2.5 h-2.5 rounded-full ${filter.dot}`} />}
+                    {filter.label}
+                  </button>
+                )
+              })}
             </div>
 
             {/* Expand/Collapse All */}
             <div className="flex items-center gap-2 self-end sm:self-auto font-medium">
-              <button
-                onClick={expandAll}
-                className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
-              >
+              <button onClick={expandAll} className="nclex-control-btn text-xs font-semibold">
                 Expand All
               </button>
-              <span className="text-white/30 text-xs">|</span>
-              <button
-                onClick={collapseAll}
-                className="text-xs font-semibold text-gold-metallic hover:text-gold-bright transition-colors hover:underline"
-              >
+              <span className="text-gold-metallic/30 text-xs">|</span>
+              <button onClick={collapseAll} className="nclex-control-btn text-xs font-semibold">
                 Collapse All
               </button>
             </div>
@@ -655,7 +773,9 @@ export default function NclexSyllabusPage() {
               return (
                 <div
                   key={module.id}
-                  className="glass-card dark-container rounded-2xl overflow-hidden nclex-module-card border border-gold-metallic/30"
+                  className={`glass-card dark-container rounded-2xl overflow-hidden nclex-module-card border ${
+                    isOpen ? 'open' : ''
+                  }`}
                 >
                   {/* Header */}
                   <div
@@ -669,17 +789,17 @@ export default function NclexSyllabusPage() {
 
                     {/* Title & Tags */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg md:text-xl font-bold text-white leading-tight mb-1.5 pr-2">
+                      <h3 className="nclex-card-title text-lg md:text-xl font-bold leading-tight mb-1.5 pr-2">
                         {module.title}
                       </h3>
                       <div className="flex flex-wrap gap-1.5">
-                        <span className="inline-block bg-green-500/10 border border-green-500/25 text-emerald-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                        <span className="nclex-tag-weeks inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
                           {module.weeks}
                         </span>
-                        <span className="inline-block bg-amber-500/10 border border-amber-500/25 text-amber-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                        <span className="nclex-tag-priority inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
                           {module.priority}
                         </span>
-                        <span className="inline-block bg-teal-500/10 border border-teal-500/25 text-teal-300 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                        <span className="nclex-tag-weight inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
                           {module.weight}
                         </span>
                       </div>
@@ -687,26 +807,28 @@ export default function NclexSyllabusPage() {
 
                     {/* Right: Badge + Chevron */}
                     <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className={`text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
+                      <span className={`text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
                         {module.difficultyLabel}
                       </span>
                       <svg
-                        className={`w-5 h-5 text-gold-metallic transition-transform duration-300 ${
-                          isOpen ? 'rotate-180' : ''
-                        }`}
+                        className="arrow-icon w-5 h-5 text-gold-metallic"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        strokeWidth={2}
+                        strokeWidth={2.5}
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
                   </div>
 
-                  {/* Body details */}
-                  {isOpen && (
-                    <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6 animate-fadeIn">
+                  {/* Body details with smooth transition height container */}
+                  <div
+                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                      isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                    }`}
+                  >
+                    <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         {/* Left: Objectives */}
                         <div className="nclex-section-box rounded-xl p-4 md:p-5">
@@ -716,7 +838,7 @@ export default function NclexSyllabusPage() {
                           </h4>
                           <ul className="space-y-3">
                             {module.learningObjectives.map((obj, i) => (
-                              <li key={i} className="text-xs md:text-sm text-white/90 leading-relaxed pl-4 relative">
+                              <li key={i} className="nclex-obj-item text-xs md:text-sm leading-relaxed pl-4 relative">
                                 <span className="absolute left-0 text-emerald-500 font-bold font-sans">›</span>
                                 {obj}
                               </li>
@@ -751,7 +873,7 @@ export default function NclexSyllabusPage() {
                           {module.nclexQuestionTypes.map((type, i) => (
                             <span
                               key={i}
-                              className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs px-3 py-1 rounded-md"
+                              className="nclex-qtype-badge text-xs px-3 py-1 rounded-md"
                             >
                               {type}
                             </span>
@@ -759,14 +881,14 @@ export default function NclexSyllabusPage() {
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               )
             })}
           </div>
         </section>
 
-        {/* Inquiry Form at the bottom (Proper Page Feeling) */}
+        {/* Inquiry Form at the bottom */}
         <section className="pt-8">
           <NursingRegistrationForm initialCountry="USA" />
         </section>

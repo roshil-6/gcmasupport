@@ -377,6 +377,7 @@ const SYLLABUS_DATA: SyllabusModule[] = [
 export default function NclexSyllabusPage() {
   const [expandedModules, setExpandedModules] = useState<Record<number, boolean>>({})
   const [activeFilter, setActiveFilter] = useState<string>('all')
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   const toggleModule = (id: number) => {
     setExpandedModules((prev) => ({
@@ -397,9 +398,13 @@ export default function NclexSyllabusPage() {
     setExpandedModules({})
   }
 
-  const filteredModules = activeFilter === 'all'
-    ? SYLLABUS_DATA
-    : SYLLABUS_DATA.filter((m) => m.difficulty === activeFilter)
+  const filteredModules = SYLLABUS_DATA.filter((module) => {
+    const matchesFilter = activeFilter === 'all' || module.difficulty === activeFilter
+    const matchesSearch =
+      module.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      module.learningObjectives.some((obj) => obj.toLowerCase().includes(searchTerm.toLowerCase()))
+    return matchesFilter && matchesSearch
+  })
 
   return (
     <main className="relative min-h-screen pb-16">
@@ -407,177 +412,456 @@ export default function NclexSyllabusPage() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         /* theme-aware description overlays */
-        .nclex-intro-text { color: #2a241d; }
+        .nclex-intro-text { color: #2c251b; }
         body.theme-dark .nclex-intro-text { color: rgba(255, 255, 255, 0.85); }
 
-        .nclex-subtitle { color: rgba(42, 36, 29, 0.8); }
+        .nclex-subtitle { color: rgba(44, 37, 27, 0.8); }
         body.theme-dark .nclex-subtitle { color: rgba(255, 255, 255, 0.75); }
 
-        /* active filter buttons contrast correction */
-        .nclex-filter-btn {
+        /* Top badge prefix for the modules header */
+        .nclex-curriculum-badge {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #c9a961;
+          display: inline-block;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Premium Segmented filter bar layout */
+        .nclex-filter-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+        }
+        @media (min-width: 1024px) {
+          .nclex-filter-wrapper {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+
+        .nclex-filter-bar {
+          background-color: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(201, 169, 97, 0.25);
+          box-shadow: 0 4px 20px rgba(42, 36, 29, 0.04);
+          padding: 0.3rem;
+          border-radius: 100px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.25rem;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body.theme-dark .nclex-filter-bar {
+          background-color: rgba(10, 36, 24, 0.65);
+          border-color: rgba(201, 169, 97, 0.2);
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .nclex-filter-item {
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          padding: 0.55rem 1.1rem;
+          border-radius: 100px;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          color: #5c4720;
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 0.875rem;
-          border-radius: 0.5rem;
-          font-size: 0.875rem;
-          font-weight: 600;
-          border: 1px solid rgba(201, 169, 97, 0.4);
-          transition: all 0.25s ease;
+          gap: 0.4rem;
+          cursor: pointer;
+        }
+        body.theme-dark .nclex-filter-item {
+          color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .nclex-filter-item.active {
+          background: linear-gradient(135deg, #ffd54f, #c9a961);
+          color: #1a1200 !important;
+          box-shadow: 0 4px 12px rgba(201, 169, 97, 0.35);
+        }
+        body.theme-dark .nclex-filter-item.active {
+          background: linear-gradient(135deg, #ffe082, #d4af37);
+          color: #05140b !important;
+          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .nclex-filter-btn.active {
-          background-color: rgba(201, 169, 97, 0.15);
-          border-color: #c9a961;
-          color: #6e531d;
+        .nclex-filter-item.inactive:hover {
+          background-color: rgba(201, 169, 97, 0.12);
+          color: #b8860b;
         }
-        body.theme-dark .nclex-filter-btn.active {
-          background-color: rgba(201, 169, 97, 0.25);
-          border-color: #ffd54f;
-          color: #ffd54f;
-        }
-
-        .nclex-filter-btn.inactive {
-          background-color: transparent;
-          color: #554433;
-        }
-        .nclex-filter-btn.inactive:hover {
-          border-color: rgba(201, 169, 97, 0.7);
-          color: #0f0c14;
-        }
-        body.theme-dark .nclex-filter-btn.inactive {
-          color: rgba(255, 255, 255, 0.7);
-        }
-        body.theme-dark .nclex-filter-btn.inactive:hover {
-          border-color: rgba(255, 255, 255, 0.5);
+        body.theme-dark .nclex-filter-item.inactive:hover {
+          background-color: rgba(255, 255, 255, 0.05);
           color: #ffffff;
         }
 
-        .dot-foundation { background-color: #22c55e; }
-        .dot-intermediate { background-color: #10b981; }
-        .dot-advanced { background-color: #f59e0b; }
-        .dot-exam { background-color: #8b5cf6; }
+        .dot-foundation { background-color: #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.6); }
+        .dot-intermediate { background-color: #06b6d4; box-shadow: 0 0 6px rgba(6, 182, 212, 0.6); }
+        .dot-advanced { background-color: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.6); }
+        .dot-exam { background-color: #8b5cf6; box-shadow: 0 0 6px rgba(139, 92, 246, 0.6); }
 
-        /* expand / collapse links styling */
-        .nclex-control-btn { color: #6e531d; transition: color 0.2s ease; }
-        .nclex-control-btn:hover { color: #b8860b; text-decoration: underline; }
+        /* Search input bar styling */
+        .nclex-search-wrapper input {
+          border: 1px solid rgba(201, 169, 97, 0.25);
+          background-color: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          box-shadow: 0 4px 20px rgba(42, 36, 29, 0.04);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          border-radius: 100px;
+          color: #2c251b;
+        }
+        .nclex-search-wrapper input:focus {
+          border-color: #c9a961;
+          box-shadow: 0 4px 20px rgba(201, 169, 97, 0.25);
+          background-color: #ffffff;
+        }
+        body.theme-dark .nclex-search-wrapper input {
+          border-color: rgba(201, 169, 97, 0.15);
+          background-color: rgba(10, 36, 24, 0.65);
+          color: #ffffff;
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .nclex-search-wrapper input:focus {
+          border-color: #ffe082;
+          box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+          background-color: rgba(10, 36, 24, 0.85);
+        }
+
+        /* expand / collapse controls links styling */
+        .nclex-control-btn { 
+          color: #6e531d; 
+          transition: all 0.2s ease; 
+          position: relative;
+        }
+        .nclex-control-btn::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 1px;
+          bottom: -1px;
+          left: 0;
+          background-color: #b8860b;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+        .nclex-control-btn:hover::after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
+        .nclex-control-btn:hover { color: #b8860b; }
         body.theme-dark .nclex-control-btn { color: #c9a961; }
+        body.theme-dark .nclex-control-btn::after { background-color: #ffd54f; }
         body.theme-dark .nclex-control-btn:hover { color: #ffd54f; }
 
-        /* tags and badges styling inside card */
-        .nclex-card-title { color: #0f0c14 !important; }
-        body.theme-dark .nclex-card-title { color: #ffffff !important; }
+        /* Premium Cards Design */
+        .nclex-module-card {
+          position: relative;
+          background-color: rgba(255, 255, 255, 0.75) !important;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(201, 169, 97, 0.22) !important;
+          box-shadow: 0 4px 20px rgba(42, 36, 29, 0.03);
+          border-radius: 20px;
+          overflow: hidden;
+          padding-left: 6px; /* Offset for left accent bar */
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nclex-module-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(201, 169, 97, 0.5) !important;
+          box-shadow: 0 16px 40px rgba(201, 169, 97, 0.15);
+        }
+        body.theme-dark .nclex-module-card {
+          background-color: rgba(12, 34, 23, 0.45) !important;
+          border-color: rgba(201, 169, 97, 0.15) !important;
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .nclex-module-card:hover {
+          border-color: rgba(201, 169, 97, 0.4) !important;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+        }
 
-        .nclex-tag-weeks {
+        /* Open State Cards Highlight styling */
+        .nclex-module-card.open {
+          border-color: #c9a961 !important;
+          box-shadow: 0 20px 45px rgba(201, 169, 97, 0.18);
+          background-color: #ffffff !important;
+        }
+        body.theme-dark .nclex-module-card.open {
+          background-color: rgba(10, 36, 24, 0.85) !important;
+          border-color: #ffd54f !important;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Colored Left Accent Bars */
+        .nclex-card-accent {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 6px;
+          transition: all 0.3s ease;
+        }
+        .accent-foundation { background: linear-gradient(to bottom, #10b981, #059669); }
+        .accent-intermediate { background: linear-gradient(to bottom, #06b6d4, #0891b2); }
+        .accent-advanced { background: linear-gradient(to bottom, #f59e0b, #d97706); }
+        .accent-exam { background: linear-gradient(to bottom, #8b5cf6, #7c3aed); }
+
+        /* Watch-face inspired Number emblem */
+        .nclex-num-emblem {
+          background: linear-gradient(135deg, #ffd97d, #c9a961);
+          color: #35063e;
+          border: 2px solid rgba(201, 169, 97, 0.4);
+          box-shadow: 0 4px 10px rgba(201, 169, 97, 0.15);
+          text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        body.theme-dark .nclex-num-emblem {
+          background: linear-gradient(135deg, #ffd97d, #d4af37);
+          color: #0b2f1f;
+          border-color: rgba(212, 175, 55, 0.35);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .nclex-module-card:hover .nclex-num-emblem {
+          transform: scale(1.06);
+          box-shadow: 0 6px 15px rgba(201, 169, 97, 0.3);
+        }
+        body.theme-dark .nclex-module-card:hover .nclex-num-emblem {
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.45);
+        }
+
+        .nclex-card-title {
+          font-family: var(--font-display), Georgia, serif;
+          color: #2c251b !important;
+          transition: color 0.3s ease;
+        }
+        body.theme-dark .nclex-card-title {
+          color: #ffffff !important;
+        }
+
+        /* Metadata Pill Badges */
+        .nclex-meta-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #605244;
+          background-color: rgba(201, 169, 97, 0.08);
+          border: 1px solid rgba(201, 169, 97, 0.15);
+          padding: 0.2rem 0.65rem;
+          border-radius: 100px;
+          transition: all 0.3s ease;
+        }
+        body.theme-dark .nclex-meta-item {
+          color: rgba(255, 255, 255, 0.85);
+          background-color: rgba(255, 255, 255, 0.04);
+          border-color: rgba(255, 255, 255, 0.08);
+        }
+        .nclex-module-card:hover .nclex-meta-item {
+          border-color: rgba(201, 169, 97, 0.3);
+          background-color: rgba(201, 169, 97, 0.12);
+        }
+        body.theme-dark .nclex-module-card:hover .nclex-meta-item {
+          border-color: rgba(255, 255, 255, 0.15);
+          background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Capsule badges for difficulty labels */
+        .nclex-badge-foundation {
           background-color: rgba(16, 185, 129, 0.08);
           border: 1px solid rgba(16, 185, 129, 0.25);
-          color: #047857 !important;
-        }
-        body.theme-dark .nclex-tag-weeks {
-          background-color: rgba(16, 185, 129, 0.15);
-          border-color: rgba(16, 185, 129, 0.4);
-          color: #a7f3d0 !important;
-        }
-
-        .nclex-tag-priority {
-          background-color: rgba(245, 158, 11, 0.08);
-          border: 1px solid rgba(245, 158, 11, 0.25);
-          color: #b45309 !important;
-        }
-        body.theme-dark .nclex-tag-priority {
-          background-color: rgba(245, 158, 11, 0.15);
-          border-color: rgba(245, 158, 11, 0.4);
-          color: #fde68a !important;
-        }
-
-        .nclex-tag-weight {
-          background-color: rgba(13, 148, 136, 0.08);
-          border: 1px solid rgba(13, 148, 136, 0.25);
-          color: #0f766e !important;
-        }
-        body.theme-dark .nclex-tag-weight {
-          background-color: rgba(13, 148, 136, 0.15);
-          border-color: rgba(13, 148, 136, 0.4);
-          color: #99f6e4 !important;
-        }
-
-        .nclex-badge-foundation { background: rgba(34, 168, 90, 0.08); color: #16a34a !important; border: 1px solid rgba(34, 168, 90, 0.2); }
-        .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.12); color: #047857 !important; border: 1px solid rgba(26, 107, 58, 0.25); }
-        .nclex-badge-advanced { background: rgba(212, 160, 23, 0.1); color: #d97706 !important; border: 1px solid rgba(212, 160, 23, 0.2); }
-        .nclex-badge-exam { background: rgba(139, 92, 246, 0.08); color: #7c3aed !important; border: 1px solid rgba(139, 92, 246, 0.2); }
-
-        body.theme-dark .nclex-badge-foundation { background: rgba(34, 168, 90, 0.18); color: #86efac !important; border-color: rgba(34, 168, 90, 0.3); }
-        body.theme-dark .nclex-badge-intermediate { background: rgba(26, 107, 58, 0.22); color: #6ee7a0 !important; border-color: rgba(26, 107, 58, 0.35); }
-        body.theme-dark .nclex-badge-advanced { background: rgba(212, 160, 23, 0.18); color: #f59e0b !important; border-color: rgba(212, 160, 23, 0.3); }
-        body.theme-dark .nclex-badge-exam { background: rgba(139, 92, 246, 0.18); color: #c084fc !important; border-color: rgba(139, 92, 246, 0.3); }
-
-        /* local dynamic section content styling */
-        .nclex-section-box {
-          background: rgba(0, 0, 0, 0.02);
-          border: 1px solid rgba(53, 6, 62, 0.08);
-        }
-        body.theme-dark .nclex-section-box {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .nclex-decision-item {
-          background: rgba(212, 160, 23, 0.05);
-          border: 1px solid rgba(212, 160, 23, 0.18);
-          color: #78350f !important;
-        }
-        body.theme-dark .nclex-decision-item {
-          background: rgba(212, 160, 23, 0.08);
-          border: 1px solid rgba(212, 160, 23, 0.25);
-          color: #fde68a !important;
-        }
-
-        .nclex-obj-item {
-          color: #2a241d !important;
-        }
-        body.theme-dark .nclex-obj-item {
-          color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        .nclex-qtype-badge {
-          background-color: rgba(16, 185, 129, 0.06);
-          border: 1px solid rgba(16, 185, 129, 0.15);
           color: #065f46 !important;
         }
-        body.theme-dark .nclex-qtype-badge {
-          background-color: rgba(16, 185, 129, 0.12);
+        body.theme-dark .nclex-badge-foundation {
+          background-color: rgba(16, 185, 129, 0.18);
           border-color: rgba(16, 185, 129, 0.3);
           color: #a7f3d0 !important;
         }
 
-        /* proper expanding box styles */
-        .nclex-module-card {
-          transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
-          border-color: rgba(201, 169, 97, 0.3) !important;
+        .nclex-badge-intermediate {
+          background-color: rgba(6, 182, 212, 0.08);
+          border: 1px solid rgba(6, 182, 212, 0.25);
+          color: #0e7490 !important;
         }
-        .nclex-module-card:hover {
-          transform: translateY(-2px);
-          border-color: rgba(201, 169, 97, 0.55) !important;
-          box-shadow: 0 6px 20px rgba(53, 6, 62, 0.05);
+        body.theme-dark .nclex-badge-intermediate {
+          background-color: rgba(6, 182, 212, 0.18);
+          border-color: rgba(6, 182, 212, 0.3);
+          color: #cffafe !important;
         }
 
-        /* open state highlighting styles */
-        .nclex-module-card.open {
-          border-color: #c9a961 !important;
-          box-shadow: 0 10px 30px rgba(201, 169, 97, 0.14) !important;
-          background-color: #fffdf4 !important;
+        .nclex-badge-advanced {
+          background-color: rgba(245, 158, 11, 0.08);
+          border: 1px solid rgba(245, 158, 11, 0.25);
+          color: #b45309 !important;
         }
-        body.theme-dark .nclex-module-card.open {
-          background-color: rgba(10, 36, 24, 0.85) !important;
-          border-color: #c9a961 !important;
-          box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35) !important;
+        body.theme-dark .nclex-badge-advanced {
+          background-color: rgba(245, 158, 11, 0.18);
+          border-color: rgba(245, 158, 11, 0.3);
+          color: #fef3c7 !important;
         }
-        
-        .nclex-module-card .arrow-icon {
-          transition: transform 0.3s ease;
+
+        .nclex-badge-exam {
+          background-color: rgba(139, 92, 246, 0.08);
+          border: 1px solid rgba(139, 92, 246, 0.25);
+          color: #6d28d9 !important;
+        }
+        body.theme-dark .nclex-badge-exam {
+          background-color: rgba(139, 92, 246, 0.18);
+          border-color: rgba(139, 92, 246, 0.3);
+          color: #ede9fe !important;
+        }
+
+        /* Chevron Circle */
+        .arrow-circle {
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+          border: 1px solid rgba(201, 169, 97, 0.25);
+          background-color: rgba(255, 255, 255, 0.8);
+        }
+        body.theme-dark .arrow-circle {
+          border-color: rgba(255, 255, 255, 0.15);
+          background-color: rgba(255, 255, 255, 0.04);
+        }
+        .nclex-module-card:hover .arrow-circle {
+          border-color: rgba(201, 169, 97, 0.5);
+          background-color: rgba(201, 169, 97, 0.08);
+          transform: scale(1.05);
+        }
+        body.theme-dark .nclex-module-card:hover .arrow-circle {
+          border-color: rgba(255, 255, 255, 0.3);
+          background-color: rgba(255, 255, 255, 0.08);
+        }
+        .nclex-module-card.open .arrow-circle {
+          background-color: #c9a961;
+          border-color: #c9a961;
+        }
+        body.theme-dark .nclex-module-card.open .arrow-circle {
+          background-color: #ffd54f;
+          border-color: #ffd54f;
+        }
+        .arrow-icon {
+          transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+          color: #c9a961;
+        }
+        body.theme-dark .arrow-icon {
+          color: #ffd54f;
         }
         .nclex-module-card.open .arrow-icon {
           transform: rotate(180deg);
+          color: #ffffff;
+        }
+        body.theme-dark .nclex-module-card.open .arrow-icon {
+          color: #0a2418;
+        }
+
+        /* Inner Section Containers */
+        .nclex-section-box {
+          background-color: rgba(255, 255, 255, 0.45);
+          border: 1px solid rgba(201, 169, 97, 0.18);
+          box-shadow: inset 0 2px 8px rgba(201, 169, 97, 0.02);
+          transition: all 0.3s ease;
+        }
+        body.theme-dark .nclex-section-box {
+          background-color: rgba(255, 255, 255, 0.015);
+          border-color: rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nclex-module-card:hover .nclex-section-box {
+          border-color: rgba(201, 169, 97, 0.28);
+        }
+        body.theme-dark .nclex-module-card:hover .nclex-section-box {
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Learning Objectives Details */
+        .nclex-obj-item {
+          color: #3d3429 !important;
+          transition: transform 0.2s ease, color 0.2s ease;
+        }
+        body.theme-dark .nclex-obj-item {
+          color: rgba(255, 255, 255, 0.92) !important;
+        }
+        .nclex-obj-item:hover {
+          transform: translateX(3px);
+          color: #1a1200 !important;
+        }
+        body.theme-dark .nclex-obj-item:hover {
+          color: #ffffff !important;
+        }
+
+        /* Check Circle Indicator */
+        .nclex-check-circle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 1.15rem;
+          height: 1.15rem;
+          border-radius: 50%;
+          background-color: rgba(16, 185, 129, 0.12);
+          color: #10b981;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
+        }
+        .nclex-obj-item:hover .nclex-check-circle {
+          background-color: #10b981;
+          color: #ffffff;
+          transform: scale(1.1);
+        }
+
+        /* Lesson Decisions items styling */
+        .nclex-decision-item {
+          background-color: rgba(201, 169, 97, 0.04);
+          border-left: 3.5px solid #c9a961;
+          color: #5c4314 !important;
+          transition: all 0.3s ease;
+        }
+        body.theme-dark .nclex-decision-item {
+          background-color: rgba(255, 255, 255, 0.025);
+          border-left-color: #ffd54f;
+          color: rgba(255, 255, 255, 0.85) !important;
+        }
+        .nclex-decision-item:hover {
+          background-color: rgba(201, 169, 97, 0.08);
+          border-left-width: 5px;
+          transform: translateX(2.5px);
+        }
+        body.theme-dark .nclex-decision-item:hover {
+          background-color: rgba(255, 255, 255, 0.045);
+        }
+
+        /* NCLEX Question Type Tag badges */
+        .nclex-qtype-badge {
+          background-color: #ffffff;
+          border: 1px solid rgba(201, 169, 97, 0.25);
+          color: #5c4314 !important;
+          font-weight: 600;
+          box-shadow: 0 2px 6px rgba(42, 36, 29, 0.02);
+          transition: all 0.25s ease;
+        }
+        body.theme-dark .nclex-qtype-badge {
+          background-color: rgba(255, 255, 255, 0.04);
+          border-color: rgba(255, 255, 255, 0.08);
+          color: rgba(255, 255, 255, 0.9) !important;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+        .nclex-qtype-badge:hover {
+          border-color: #c9a961;
+          color: #1a1200 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(201, 169, 97, 0.15);
+        }
+        body.theme-dark .nclex-qtype-badge:hover {
+          border-color: #ffd54f;
+          color: #ffffff !important;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
       `}} />
 
@@ -720,46 +1004,65 @@ export default function NclexSyllabusPage() {
         {/* Interactive Syllabus Accordions Section */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto">
+            <span className="nclex-curriculum-badge">Curriculum Modules</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#6e531d] dark:text-gold-metallic">
               Explore the 15 Modules
             </h2>
-            <p className="nclex-subtitle text-sm md:text-base mt-2">
-              Select difficulty tiers to filter the modules or toggle individual tabs to view comprehensive learning objectives, lesson decisions, and NGN question types.
+            <p className="nclex-subtitle text-sm md:text-base mt-2 font-medium">
+              Select difficulty tiers to filter the modules or search objectives to view comprehensive plans, clinical decisions, and NGN testing rules.
             </p>
           </div>
 
-          {/* Filters and Controls */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-b border-gold-metallic/20 pb-4">
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap items-center gap-2">
-              {[
-                { id: 'all', label: 'All Modules', dot: null },
-                { id: 'foundation', label: 'Foundation', dot: 'dot-foundation' },
-                { id: 'intermediate', label: 'Intermediate', dot: 'dot-intermediate' },
-                { id: 'advanced', label: 'Advanced', dot: 'dot-advanced' },
-                { id: 'exam', label: 'Exam Prep', dot: 'dot-exam' },
-              ].map((filter) => {
-                const isActive = activeFilter === filter.id
-                return (
-                  <button
-                    key={filter.id}
-                    onClick={() => setActiveFilter(filter.id)}
-                    className={`nclex-filter-btn ${isActive ? 'active' : 'inactive'}`}
-                  >
-                    {filter.dot && <span className={`w-2.5 h-2.5 rounded-full ${filter.dot}`} />}
-                    {filter.label}
-                  </button>
-                )
-              })}
+          {/* Filters, Search & Controls Board */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pt-4 border-b border-gold-metallic/25 pb-6">
+            <div className="nclex-filter-wrapper flex-1">
+              {/* Segmented Control Bar (Filters) */}
+              <div className="nclex-filter-bar">
+                {[
+                  { id: 'all', label: 'All Modules', dot: null },
+                  { id: 'foundation', label: 'Foundation', dot: 'dot-foundation' },
+                  { id: 'intermediate', label: 'Intermediate', dot: 'dot-intermediate' },
+                  { id: 'advanced', label: 'Advanced', dot: 'dot-advanced' },
+                  { id: 'exam', label: 'Exam Prep', dot: 'dot-exam' },
+                ].map((filter) => {
+                  const isActive = activeFilter === filter.id
+                  return (
+                    <button
+                      key={filter.id}
+                      onClick={() => setActiveFilter(filter.id)}
+                      className={`nclex-filter-item ${isActive ? 'active' : 'inactive'}`}
+                    >
+                      {filter.dot && <span className={`w-2 h-2 rounded-full ${filter.dot}`} />}
+                      {filter.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Keyword Search Input */}
+              <div className="nclex-search-wrapper relative w-full sm:max-w-xs">
+                <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg className="h-4 w-4 text-gold-metallic/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  placeholder="Search objectives..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 outline-none text-sm font-semibold shadow-sm"
+                />
+              </div>
             </div>
 
             {/* Expand/Collapse All */}
-            <div className="flex items-center gap-2 self-end sm:self-auto font-medium">
-              <button onClick={expandAll} className="nclex-control-btn text-xs font-semibold">
+            <div className="flex items-center gap-3 self-end lg:self-auto font-medium">
+              <button onClick={expandAll} className="nclex-control-btn text-xs font-semibold uppercase tracking-wider">
                 Expand All
               </button>
               <span className="text-gold-metallic/30 text-xs">|</span>
-              <button onClick={collapseAll} className="nclex-control-btn text-xs font-semibold">
+              <button onClick={collapseAll} className="nclex-control-btn text-xs font-semibold uppercase tracking-wider">
                 Collapse All
               </button>
             </div>
@@ -767,124 +1070,157 @@ export default function NclexSyllabusPage() {
 
           {/* Modules Accordions */}
           <div className="space-y-4">
-            {filteredModules.map((module) => {
-              const isOpen = !!expandedModules[module.id]
+            {filteredModules.length > 0 ? (
+              filteredModules.map((module) => {
+                const isOpen = !!expandedModules[module.id]
 
-              return (
-                <div
-                  key={module.id}
-                  className={`glass-card dark-container rounded-2xl overflow-hidden nclex-module-card border ${
-                    isOpen ? 'open' : ''
-                  }`}
-                >
-                  {/* Header */}
+                return (
                   <div
-                    onClick={() => toggleModule(module.id)}
-                    className="flex items-center gap-4 p-5 cursor-pointer user-select-none hover:bg-gold-metallic/5 transition-colors"
+                    key={module.id}
+                    className={`nclex-module-card rounded-2xl border ${
+                      isOpen ? 'open' : ''
+                    }`}
                   >
-                    {/* Module Number Block */}
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-sm flex-shrink-0 bg-gradient-to-br ${module.gradientClass}`}>
-                      {module.id < 10 ? `0${module.id}` : module.id}
-                    </div>
+                    {/* Left Colored Accent Indicator */}
+                    <div className={`nclex-card-accent accent-${module.difficulty}`} />
 
-                    {/* Title & Tags */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="nclex-card-title text-lg md:text-xl font-bold leading-tight mb-1.5 pr-2">
-                        {module.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-1.5">
-                        <span className="nclex-tag-weeks inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          {module.weeks}
+                    {/* Header */}
+                    <div
+                      onClick={() => toggleModule(module.id)}
+                      className="flex items-center gap-4 p-5 cursor-pointer user-select-none hover:bg-gold-metallic/5 transition-colors relative z-10"
+                    >
+                      {/* Module Number Block (Emblem) */}
+                      <div className="nclex-num-emblem w-12 h-12 rounded-full flex items-center justify-center font-extrabold text-base flex-shrink-0">
+                        {module.id < 10 ? `0${module.id}` : module.id}
+                      </div>
+
+                      {/* Title & Metadata row */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="nclex-card-title text-xl font-bold leading-snug mb-1">
+                          {module.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-x-3 gap-y-1.5 mt-1">
+                          <span className="nclex-meta-item">
+                            <svg className="w-3.5 h-3.5 text-gold-metallic" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {module.weeks}
+                          </span>
+                          <span className="nclex-meta-item">
+                            <svg className="w-3.5 h-3.5 text-gold-metallic" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                            </svg>
+                            {module.priority}
+                          </span>
+                          <span className="nclex-meta-item">
+                            <svg className="w-3.5 h-3.5 text-gold-metallic" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                            </svg>
+                            {module.weight}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Right: Badge + Chevron Circle */}
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        <span className={`inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full ${
+                            module.difficulty === 'foundation' ? 'bg-emerald-500 shadow-[0_0_4px_#10b981]' :
+                            module.difficulty === 'intermediate' ? 'bg-cyan-500 shadow-[0_0_4px_#06b6d4]' :
+                            module.difficulty === 'advanced' ? 'bg-amber-500 shadow-[0_0_4px_#f59e0b]' :
+                            'bg-purple-500 shadow-[0_0_4px_#8b5cf6]'
+                          }`} />
+                          {module.difficultyLabel}
                         </span>
-                        <span className="nclex-tag-priority inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          {module.priority}
-                        </span>
-                        <span className="nclex-tag-weight inline-block text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          {module.weight}
-                        </span>
+                        <div className="arrow-circle w-8 h-8 rounded-full flex items-center justify-center">
+                          <svg
+                            className="arrow-icon w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            strokeWidth={3}
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Right: Badge + Chevron */}
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className={`text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider nclex-badge-${module.difficulty}`}>
-                        {module.difficultyLabel}
-                      </span>
-                      <svg
-                        className="arrow-icon w-5 h-5 text-gold-metallic"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
+                    {/* Body details with smooth transition height container */}
+                    <div
+                      className={`transition-all duration-300 ease-in-out overflow-hidden relative z-10 ${
+                        isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                      }`}
+                    >
+                      <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          {/* Left: Objectives */}
+                          <div className="nclex-section-box rounded-xl p-4 md:p-5">
+                            <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
+                              <span className="w-1.5 h-3 bg-emerald-500 rounded-full" />
+                              Learning Objectives
+                            </h4>
+                            <ul className="space-y-3">
+                              {module.learningObjectives.map((obj, i) => (
+                                <li key={i} className="nclex-obj-item text-xs md:text-sm leading-relaxed flex items-start gap-2.5">
+                                  <span className="nclex-check-circle">
+                                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={4.5}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  </span>
+                                  <span>{obj}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
 
-                  {/* Body details with smooth transition height container */}
-                  <div
-                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                      isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
-                    }`}
-                  >
-                    <div className="border-t border-gold-metallic/15 p-5 md:p-6 space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        {/* Left: Objectives */}
-                        <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                          <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
-                            <span className="w-1.5 h-3 bg-emerald-500 rounded-full" />
-                            Learning Objectives
-                          </h4>
-                          <ul className="space-y-3">
-                            {module.learningObjectives.map((obj, i) => (
-                              <li key={i} className="nclex-obj-item text-xs md:text-sm leading-relaxed pl-4 relative">
-                                <span className="absolute left-0 text-emerald-500 font-bold font-sans">›</span>
-                                {obj}
-                              </li>
-                            ))}
-                          </ul>
+                          {/* Right: Decisions */}
+                          <div className="nclex-section-box rounded-xl p-4 md:p-5">
+                            <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
+                              <span className="w-1.5 h-3 bg-amber-500 rounded-full" />
+                              Lesson Decisions
+                            </h4>
+                            <div className="space-y-3">
+                              {module.lessonDecisions.map((decision, i) => (
+                                <div key={i} className="nclex-decision-item flex items-start gap-2.5 p-3 rounded-lg text-xs md:text-sm leading-relaxed font-medium">
+                                  <span className="text-sm mt-0.5 flex-shrink-0">{decision.icon}</span>
+                                  <span>{decision.text}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
 
-                        {/* Right: Decisions */}
+                        {/* Bottom: NCLEX types */}
                         <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                          <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-4 flex items-center gap-2">
-                            <span className="w-1.5 h-3 bg-amber-500 rounded-full" />
-                            Lesson Decisions
+                          <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span className="w-1.5 h-3 bg-purple-500 rounded-full" />
+                            {module.difficulty === 'exam' ? 'Study Methods' : 'NCLEX Question Types'}
                           </h4>
-                          <div className="space-y-3">
-                            {module.lessonDecisions.map((decision, i) => (
-                              <div key={i} className="nclex-decision-item flex items-start gap-2.5 p-3 rounded-lg text-xs md:text-sm leading-relaxed">
-                                <span className="text-sm mt-0.5 flex-shrink-0">{decision.icon}</span>
-                                <span>{decision.text}</span>
-                              </div>
+                          <div className="flex flex-wrap gap-2">
+                            {module.nclexQuestionTypes.map((type, i) => (
+                              <span
+                                key={i}
+                                className="nclex-qtype-badge text-xs px-3 py-1.5 rounded-lg border inline-flex items-center gap-1.5"
+                              >
+                                <span className="w-1 h-1 rounded-full bg-gold-metallic/80" />
+                                {type}
+                              </span>
                             ))}
                           </div>
                         </div>
                       </div>
-
-                      {/* Bottom: NCLEX types */}
-                      <div className="nclex-section-box rounded-xl p-4 md:p-5">
-                        <h4 className="text-xs md:text-sm font-bold text-gold-metallic uppercase tracking-wider mb-3 flex items-center gap-2">
-                          <span className="w-1.5 h-3 bg-purple-500 rounded-full" />
-                          {module.difficulty === 'exam' ? 'Study Methods' : 'NCLEX Question Types'}
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {module.nclexQuestionTypes.map((type, i) => (
-                            <span
-                              key={i}
-                              className="nclex-qtype-badge text-xs px-3 py-1 rounded-md"
-                            >
-                              {type}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })
+            ) : (
+              <div className="text-center p-8 bg-white/70 dark:bg-black/25 border border-gold-metallic/30 rounded-2xl">
+                <p className="text-gold-metallic font-semibold text-base">
+                  No modules match your current filter or keyword. Try resetting your query.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 

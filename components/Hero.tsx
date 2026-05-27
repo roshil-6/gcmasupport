@@ -6,6 +6,9 @@ import HeroMobileParticles from '@/components/HeroMobileParticles'
 import HexagonBackground from '@/components/HexagonBackground'
 
 const desktopHeroImageCandidates = [
+  '/home/gcma-hero-white.png',
+  '/home/gcma-hero-poster-first-green.png',
+  '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',
   '/home/gcma-hero-poster.jpg?v=2',
   '/logo_statue.png',
@@ -14,6 +17,9 @@ const desktopHeroImageCandidates = [
 ]
 
 const mobileHeroImageCandidates = [
+  '/home/gcma-hero-white.png',
+  '/home/gcma-hero-poster-first-green.png',
+  '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',
   '/home/gcma-hero-green-statue-cropped.jpg?v=10',
   '/logo_statue.png',
@@ -21,8 +27,6 @@ const mobileHeroImageCandidates = [
   '/hero-background.jpeg',
   '/home/belief-statement.jpg',
 ]
-
-const desktopHeroTexture = '/home/gcma-hero-banner.jpg?v=3'
 
 type PrimaryNavLink = { href: string; label: string; compactLabel?: string }
 
@@ -333,14 +337,17 @@ export default function Hero() {
         <>
           {/* Desktop: hero image covering full viewport and blended with theme backgrounds */}
           <div className="absolute inset-0 z-0 hidden overflow-hidden md:block">
-            <div className="absolute inset-0 bg-[#0b2f1f]" aria-hidden />
+            <div className="absolute inset-0 bg-[#f9f6ef]" aria-hidden />
             <img
-              src={desktopHeroTexture}
+              src={desktopHeroImage}
               alt="GCMA Hero"
               className="absolute left-0 top-0 h-full w-full object-cover"
               loading="eager"
               fetchPriority="high"
               decoding="async"
+              onError={() => {
+                setDesktopHeroImageIndex((current) => current + 1)
+              }}
             />
 
 
@@ -388,7 +395,7 @@ export default function Hero() {
 
           <div className="relative flex flex-col md:hidden">
           {/* Top section: Full-width GCMA banner, clears fixed nav */}
-            <div className="relative bg-[#0b2f1f]" style={{ paddingTop: '60px' }}>
+            <div className="relative bg-[#f9f6ef]" style={{ paddingTop: '60px' }}>
               <img
                 src={mobileHeroImage}
                 alt="GCMA hero poster"

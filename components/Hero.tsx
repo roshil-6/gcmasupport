@@ -6,7 +6,7 @@ import HeroMobileParticles from '@/components/HeroMobileParticles'
 import HexagonBackground from '@/components/HexagonBackground'
 
 const desktopHeroImageCandidates = [
-  '/home/gcma-hero-white.png',
+  '/home/gcma-hero-white.jpg',
   '/home/gcma-hero-poster-first-green.png',
   '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',
@@ -17,7 +17,7 @@ const desktopHeroImageCandidates = [
 ]
 
 const mobileHeroImageCandidates = [
-  '/home/gcma-hero-white.png',
+  '/home/gcma-hero-white.jpg',
   '/home/gcma-hero-poster-first-green.png',
   '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',

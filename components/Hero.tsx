@@ -342,6 +342,7 @@ export default function Hero() {
               src={desktopHeroImage}
               alt="GCMA Hero"
               className="absolute left-0 top-0 h-full w-full object-cover"
+              style={{ objectPosition: 'center 100px' }}
               loading="eager"
               fetchPriority="high"
               decoding="async"

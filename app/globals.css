@@ -1071,12 +1071,11 @@ select.form-input:focus {
 }
 
 .section-reveal {
-  animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 1;
+  transform: none;
 }
 
 main > section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 640px;
   scroll-margin-top: 1.5rem;
 }
 

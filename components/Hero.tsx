@@ -351,6 +351,7 @@ export default function Hero() {
                 setDesktopHeroImageIndex((current) => current + 1)
               }}
             />
+            <HeroMobileParticles className="z-[12]" />
 
 
 
@@ -410,6 +411,7 @@ export default function Hero() {
                   setMobileHeroImageIndex((current) => current + 1)
                 }}
               />
+              <HeroMobileParticles className="z-[2]" />
             </div>
 
             {/* Bottom section: Theme-aware background and text colors */}

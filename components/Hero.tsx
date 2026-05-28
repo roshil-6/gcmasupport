@@ -6,7 +6,7 @@ import HeroMobileParticles from '@/components/HeroMobileParticles'
 import HexagonBackground from '@/components/HexagonBackground'
 
 const desktopHeroImageCandidates = [
-  '/home/gcma-hero-white.jpg',
+  '/home/gcma-hero-white.jpg?v=11',
   '/home/gcma-hero-poster-first-green.png',
   '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',
@@ -17,7 +17,7 @@ const desktopHeroImageCandidates = [
 ]
 
 const mobileHeroImageCandidates = [
-  '/home/gcma-hero-white.jpg',
+  '/home/gcma-hero-white.jpg?v=11',
   '/home/gcma-hero-poster-first-green.png',
   '/home/gcma-hero-poster-first.jpg',
   '/home/gcma-hero-banner.jpg?v=3',
@@ -27,6 +27,7 @@ const mobileHeroImageCandidates = [
   '/hero-background.jpeg',
   '/home/belief-statement.jpg',
 ]
+
 
 type PrimaryNavLink = { href: string; label: string; compactLabel?: string }
 
@@ -337,12 +338,12 @@ export default function Hero() {
         <>
           {/* Desktop: hero image covering full viewport and blended with theme backgrounds */}
           <div className="absolute inset-0 z-0 hidden overflow-hidden md:block">
-            <div className="absolute inset-0 bg-[#f9f6ef]" aria-hidden />
+            <div className="absolute inset-0 bg-[#ffffff]" aria-hidden />
             <img
               src={desktopHeroImage}
               alt="GCMA Hero"
-              className="absolute left-0 top-0 h-full w-full object-cover"
-              style={{ objectPosition: 'center 100px' }}
+              className="absolute left-0 top-0 h-full w-full object-contain"
+              style={{ objectPosition: 'center top' }}
               loading="eager"
               fetchPriority="high"
               decoding="async"
@@ -396,12 +397,12 @@ export default function Hero() {
 
           <div className="relative flex flex-col md:hidden">
           {/* Top section: Full-width GCMA banner, clears fixed nav */}
-            <div className="relative bg-[#f9f6ef]" style={{ paddingTop: '60px' }}>
+            <div className="relative bg-[#ffffff]" style={{ paddingTop: '60px' }}>
               <img
                 src={mobileHeroImage}
                 alt="GCMA hero poster"
                 className="w-full block"
-                style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '220px' }}
+                style={{ objectFit: 'contain', objectPosition: 'center', width: '100%', height: '220px' }}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"

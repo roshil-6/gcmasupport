@@ -7,12 +7,12 @@
   --gold-bright: #d4af37;
   --black-deep: #333333;
   --black-glass: rgba(51, 51, 51, 0.72);
-  --light-bg: #eaf2ec;
-  --light-bg-mid: #dbe8df;
+  --light-bg: #ffffff;
+  --light-bg-mid: #fafafa;
   --light-text: #1f1b2d;
   --light-card: rgba(255, 255, 255, 0.75);
   --light-card-border: rgba(53, 6, 62, 0.15);
-  --light-input: #e2ede5;
+  --light-input: #f3f4f6;
   --light-input-border: rgba(53, 6, 62, 0.25);
   --light-placeholder: rgba(53, 6, 62, 0.5);
   --hero-blend-color: #0b2f1f;
@@ -68,7 +68,7 @@ body.theme-light {
     var(--light-bg) 0%,
     var(--light-bg-mid) 22%,
     var(--light-bg) 55%,
-    #eaf2ec 100%
+    var(--light-bg) 100%
   );
   color: var(--light-text);
 }
@@ -1465,21 +1465,7 @@ body.theme-light .form-sheet.dark-container .form-sheet-description {
   padding-bottom: 0.55rem;
 }
 
-/* Global overrides to map creamy colors (#f9f2e7 and #f9f6ef) to pale green (#eaf2ec) */
-body.theme-light .bg-\[#f9f2e7\],
-body.theme-light .bg-\[#f9f6ef\],
-body.theme-light [class*="bg-[#f9f2e7]"],
-body.theme-light [class*="bg-[#f9f6ef]"] {
-  background-color: #eaf2ec !important;
-}
 
-body.theme-light .bg-\[#f9f2e7\]\/95 {
-  background-color: rgba(234, 242, 236, 0.95) !important;
-}
-
-body.theme-light .bg-\[#f9f2e7\]\/90 {
-  background-color: rgba(234, 242, 236, 0.90) !important;
-}
 
 /* Protect hero overlay text from light-theme dark-color overrides */
 .hero-desktop-content .text-white,

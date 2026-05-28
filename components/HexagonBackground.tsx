@@ -9,7 +9,7 @@ interface HexCell {
   targetOpacity: number
 }
 
-export default function HexagonBackground({ className = "fixed inset-0", zIndex = 21 }: { className?: string; zIndex?: number }) {
+export default function HexagonBackground({ className = "fixed inset-0", zIndex = 9999 }: { className?: string; zIndex?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mousePosRef = useRef({ x: -1000, y: -1000 })
   const gridCellsRef = useRef<HexCell[]>([])
@@ -144,6 +144,13 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       const width = window.innerWidth
       const height = window.innerHeight
       ctx.clearRect(0, 0, width, height)
+
+      // DEBUG: Render a red rectangle in the top-left to check visibility
+      ctx.fillStyle = 'rgba(255, 0, 0, 0.4)'
+      ctx.fillRect(20, 20, 150, 150)
+      ctx.font = '16px Arial'
+      ctx.fillStyle = 'white'
+      ctx.fillText('Canvas Active', 30, 100)
 
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y

@@ -65,7 +65,7 @@ const nursingLinks = [
 ]
 
 const navLinkClass =
-  'shrink-0 whitespace-nowrap rounded-md px-1.5 py-1.5 text-xs font-semibold text-gold transition-colors hover:text-gold-metallic hover:underline hover:decoration-gold-metallic/90 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold/50 sm:px-2 sm:py-1.5 sm:text-sm lg:px-2.5 lg:py-2 lg:text-base'
+  'shrink-0 whitespace-nowrap rounded-md px-1.5 py-1.5 text-sm font-bold text-[#6e531d] transition-colors hover:text-gold-rich hover:underline hover:decoration-gold-rich/90 hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6e531d]/50 sm:px-2.5 sm:py-2 sm:text-base lg:px-3 lg:py-2 lg:text-[1.125rem]'
 
 const mobileNavLinkClass =
   'block rounded-lg border border-gold-rich/30 px-4 py-3 text-sm font-semibold text-gold-rich transition-colors hover:bg-gold-rich/10'

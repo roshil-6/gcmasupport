@@ -39,6 +39,8 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
     const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
+    let loggedFirstRender = false
+
     isMobileRef.current =
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
       window.innerWidth < 768
@@ -57,7 +59,7 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       
       const cells: HexCell[] = []
       const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.08 : 0.06
+      const baseOpacity = isLight ? 0.15 : 0.12
       
       for (let r = -1; r <= rows; r++) {
         const y = r * h_dist
@@ -87,6 +89,7 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
       initializeField()
+      console.log(`[HexagonBackground] Canvas sized to ${width}x${height} (DPR ${dpr}), cells: ${gridCellsRef.current.length}`)
       wakeUp()
     }
 
@@ -102,17 +105,17 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       ctx.closePath()
 
       const isLight = isLightThemeRef.current
-      const strokeRgb = isLight ? '201, 169, 97' : '212, 175, 55' // Better gold colors
+      const strokeRgb = isLight ? '184, 134, 11' : '212, 175, 55' // Goldenrod / Gold
       ctx.strokeStyle = `rgba(${strokeRgb}, ${opacity})`
       
       // Slightly thicker lines for active/glowing hexagons
-      const baseOpacity = isLight ? 0.08 : 0.06
+      const baseOpacity = isLight ? 0.15 : 0.12
       if (opacity > baseOpacity + 0.01) {
         ctx.lineWidth = isLight 
-          ? 1.5 + (opacity - baseOpacity) * 2.5 
-          : 1.0 + (opacity - baseOpacity) * 3.0
+          ? 1.75 + (opacity - baseOpacity) * 3.0 
+          : 1.25 + (opacity - baseOpacity) * 3.5
       } else {
-        ctx.lineWidth = isLight ? 1.25 : 1.0
+        ctx.lineWidth = isLight ? 1.5 : 1.25
       }
 
       ctx.stroke()
@@ -124,6 +127,11 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       if (!isVisibleRef.current) {
         isAnimatingRef.current = false
         return
+      }
+
+      if (!loggedFirstRender) {
+        console.log(`[HexagonBackground] Rendering first frame with ${gridCellsRef.current.length} cells`)
+        loggedFirstRender = true
       }
 
       const minFrameGap = reduceMotionRef.current ? 0 : 24 // throttle to ~40fps for perfect smoothness/battery
@@ -143,8 +151,8 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
       const maxDistanceSq = maxDistance * maxDistance
       
       const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.08 : 0.06
-      const maxGlowOpacity = isLight ? 0.35 : 0.45
+      const baseOpacity = isLight ? 0.15 : 0.12
+      const maxGlowOpacity = isLight ? 0.45 : 0.55
 
       let needsMoreFrames = false
 
@@ -231,7 +239,15 @@ export default function HexagonBackground({ className = "fixed inset-0", zIndex 
     <canvas
       ref={canvasRef}
       className={`pointer-events-none ${className}`}
-      style={{ background: 'transparent', zIndex }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        background: 'transparent',
+        zIndex,
+      }}
       aria-hidden="true"
     />
   )

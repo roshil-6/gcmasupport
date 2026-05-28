@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import FloatingActions from '@/components/FloatingActions'
+import HexagonBackground from '@/components/HexagonBackground'
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -63,6 +64,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <HexagonBackground />
         {children}
         <FloatingActions />
       </body>

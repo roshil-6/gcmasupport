@@ -7,7 +7,6 @@ import CoreServicesSection from '@/components/CoreServicesSection'
 import { webPageJsonLd } from '@/lib/seo-jsonld'
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 
-import HexagonBackground from '@/components/HexagonBackground'
 const StudyAbroadSection = dynamic(() => import('@/components/StudyAbroadSection'))
 const BeliefStatementSection = dynamic(() => import('@/components/BeliefStatementSection'))
 const WeListenSection = dynamic(() => import('@/components/WeListenSection'))
@@ -24,7 +23,6 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       <JsonLd data={homeWebPage} />
-      <HexagonBackground />
       <Hero />
       <HomeSeoIntro />
       <CoreServicesSection />

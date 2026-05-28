@@ -50,6 +50,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Ensure page content sits above the hexagonal background canvas (z-index: 1) */
+main {
+  position: relative;
+  z-index: 2;
+}
+
 h1,
 h2,
 h3,

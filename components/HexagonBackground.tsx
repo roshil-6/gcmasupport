@@ -1,261 +1,149 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
-interface HexCell {
-  x: number
-  y: number
-  currentOpacity: number
-  targetOpacity: number
-}
-
-export default function HexagonBackground({ className = "fixed inset-0", zIndex = 9999 }: { className?: string; zIndex?: number }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const mousePosRef = useRef({ x: -1000, y: -1000 })
-  const gridCellsRef = useRef<HexCell[]>([])
-  const isMobileRef = useRef(false)
-  const isLightThemeRef = useRef(true)
-  const reduceMotionRef = useRef(false)
-  const isVisibleRef = useRef(true)
-  const animationFrameRef = useRef<number | null>(null)
-  const lastFrameTimeRef = useRef(0)
-  const isAnimatingRef = useRef(false)
-
+export default function HexagonBackground() {
   useEffect(() => {
-    const updateTheme = () => {
-      isLightThemeRef.current = document.body.classList.contains('theme-light')
-    }
-    updateTheme()
+    // ── Pure vanilla JS ─────────────────────────────────────────────────────
+    // Create and append canvas directly – bypasses ALL React / portal issues.
+    const canvas = document.createElement('canvas')
+    Object.assign(canvas.style, {
+      position:      'fixed',
+      top:           '0',
+      left:          '0',
+      width:         '100vw',
+      height:        '100vh',
+      zIndex:        '1',   // sits above body bg, below all page content (main is z-index: 2)
+      pointerEvents: 'none',
+      background:    'transparent',
+      display:       'block',
+    })
+    canvas.setAttribute('aria-hidden', 'true')
+    // Insert BEFORE React's root so all page content paints on top of canvas
+    document.body.insertBefore(canvas, document.body.firstChild)
 
-    const observer = new MutationObserver(updateTheme)
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
-    return () => observer.disconnect()
-  }, [])
+    const ctx = canvas.getContext('2d', { alpha: true })!
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    // ── State ────────────────────────────────────────────────────────────────
+    const R       = 28          // hex circumradius (center → vertex)
+    const hexW    = Math.sqrt(3) * R  // pointy-top: width between parallel sides
+    const hexH    = 1.5 * R          // row spacing (center-to-center vertically)
 
-    const ctx = canvas.getContext('2d', { alpha: true })
-    if (!ctx) return
+    let mouse  = { x: -9999, y: -9999 }
+    let cells: Array<{ x: number; y: number; cur: number; tgt: number }> = []
+    let rafId  = 0
+    let alive  = true
 
-    let loggedFirstRender = false
-
-    isMobileRef.current =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-      window.innerWidth < 768
-    reduceMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    const R = 32 // Hexagon radius
-    const w = Math.sqrt(3) * R // Horizontal spacing
-    const h_dist = 1.5 * R // Vertical spacing
-
-    const initializeField = () => {
-      const width = window.innerWidth
-      const height = window.innerHeight
-      
-      const cols = Math.ceil(width / w) + 1
-      const rows = Math.ceil(height / h_dist) + 1
-      
-      const cells: HexCell[] = []
-      const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.15 : 0.12
-      
+    // ── Build grid ───────────────────────────────────────────────────────────
+    const buildGrid = () => {
+      const cols = Math.ceil(window.innerWidth  / hexW) + 3
+      const rows = Math.ceil(window.innerHeight / hexH) + 3
+      const light = document.body.classList.contains('theme-light')
+      const base  = light ? 0.12 : 0.08
+      cells = []
       for (let r = -1; r <= rows; r++) {
-        const y = r * h_dist
-        const xOffset = r % 2 === 1 ? w / 2 : 0
+        const y    = r * hexH
+        const xOff = (r % 2 + 2) % 2 === 1 ? hexW / 2 : 0
         for (let c = -1; c <= cols; c++) {
-          const x = c * w + xOffset
-          cells.push({
-            x,
-            y,
-            currentOpacity: baseOpacity,
-            targetOpacity: baseOpacity,
-          })
+          const x = c * hexW + xOff
+          cells.push({ x, y, cur: base, tgt: base })
         }
       }
-      
-      gridCellsRef.current = cells
     }
 
-    const resizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-      const width = window.innerWidth
-      const height = window.innerHeight
-
-      canvas.width = width * dpr
-      canvas.height = height * dpr
+    // ── Resize ───────────────────────────────────────────────────────────────
+    const resize = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 2)
+      const W   = innerWidth
+      const H   = innerHeight
+      canvas.width  = W * dpr
+      canvas.height = H * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      canvas.style.width = `${width}px`
-      canvas.style.height = `${height}px`
-      initializeField()
-      console.log(`[HexagonBackground] Canvas sized to ${width}x${height} (DPR ${dpr}), cells: ${gridCellsRef.current.length}`)
-      wakeUp()
+      buildGrid()
+      schedule()
     }
 
-    const drawHexagon = (x: number, y: number, opacity: number) => {
+    // ── Draw one hexagon ─────────────────────────────────────────────────────
+    const drawHex = (x: number, y: number, opacity: number) => {
       ctx.beginPath()
-      for (let i = 0; i < 6; i += 1) {
-        const angle = (Math.PI / 3) * i
-        const hx = x + R * Math.cos(angle)
-        const hy = y + R * Math.sin(angle)
-        if (i === 0) ctx.moveTo(hx, hy)
-        else ctx.lineTo(hx, hy)
+      for (let i = 0; i < 6; i++) {
+        const a  = (Math.PI / 3) * i
+        const px = x + R * Math.cos(a)
+        const py = y + R * Math.sin(a)
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py)
       }
       ctx.closePath()
 
-      const isLight = isLightThemeRef.current
-      const strokeRgb = isLight ? '184, 134, 11' : '212, 175, 55' // Goldenrod / Gold
-      ctx.strokeStyle = `rgba(${strokeRgb}, ${opacity})`
-      
-      // Slightly thicker lines for active/glowing hexagons
-      const baseOpacity = isLight ? 0.15 : 0.12
-      if (opacity > baseOpacity + 0.01) {
-        ctx.lineWidth = isLight 
-          ? 1.75 + (opacity - baseOpacity) * 3.0 
-          : 1.25 + (opacity - baseOpacity) * 3.5
-      } else {
-        ctx.lineWidth = isLight ? 1.5 : 1.25
-      }
-
+      const light = document.body.classList.contains('theme-light')
+      // Gold on light bg, bright gold on dark bg
+      const [r, g, b] = light ? [180, 120, 0] : [212, 175, 55]
+      ctx.strokeStyle = `rgba(${r},${g},${b},${opacity})`
+      ctx.lineWidth   = light
+        ? 1.8 + (opacity - 0.40) * 3
+        : 1.4 + (opacity - 0.25) * 3
       ctx.stroke()
     }
 
-    const render = (timestamp: number) => {
-      animationFrameRef.current = null
+    // ── Render loop ──────────────────────────────────────────────────────────
+    const render = () => {
+      rafId = 0
+      if (!alive) return
 
-      if (!isVisibleRef.current) {
-        isAnimatingRef.current = false
-        return
-      }
+      ctx.clearRect(0, 0, innerWidth, innerHeight)
 
-      if (!loggedFirstRender) {
-        console.log(`[HexagonBackground] Rendering first frame with ${gridCellsRef.current.length} cells`)
-        loggedFirstRender = true
-      }
+      const light   = document.body.classList.contains('theme-light')
+      const base    = light ? 0.12 : 0.08
+      const peak    = light ? 0.42 : 0.48
+      const maxD    = 220
+      const maxDSq  = maxD * maxD
+      let   dirty   = false
 
-      const minFrameGap = reduceMotionRef.current ? 0 : 24 // throttle to ~40fps for perfect smoothness/battery
-      if (minFrameGap > 0 && timestamp - lastFrameTimeRef.current < minFrameGap) {
-        animationFrameRef.current = window.requestAnimationFrame(render)
-        return
-      }
-      lastFrameTimeRef.current = timestamp
+      cells.forEach(cell => {
+        const dx  = mouse.x - cell.x
+        const dy  = mouse.y - cell.y
+        const dSq = dx * dx + dy * dy
+        const tgt = dSq < maxDSq
+          ? base + (peak - base) * Math.pow(1 - Math.sqrt(dSq) / maxD, 1.5)
+          : base
 
-      const width = window.innerWidth
-      const height = window.innerHeight
-      ctx.clearRect(0, 0, width, height)
+        const diff = tgt - cell.cur
+        if (Math.abs(diff) > 0.001) { cell.cur += diff * 0.12; dirty = true }
+        else cell.cur = tgt
 
-      // DEBUG: Render a red rectangle in the top-left to check visibility
-      ctx.fillStyle = 'rgba(255, 0, 0, 0.4)'
-      ctx.fillRect(20, 20, 150, 150)
-      ctx.font = '16px Arial'
-      ctx.fillStyle = 'white'
-      ctx.fillText('Canvas Active', 30, 100)
-
-      const mouseX = mousePosRef.current.x
-      const mouseY = mousePosRef.current.y
-      const maxDistance = isMobileRef.current ? 120 : 180
-      const maxDistanceSq = maxDistance * maxDistance
-      
-      const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.15 : 0.12
-      const maxGlowOpacity = isLight ? 0.45 : 0.55
-
-      let needsMoreFrames = false
-
-      gridCellsRef.current.forEach((cell) => {
-        const dx = mouseX - cell.x
-        const dy = mouseY - cell.y
-        const distSq = dx * dx + dy * dy
-
-        let targetOpacity = baseOpacity
-        if (distSq < maxDistanceSq) {
-          const dist = Math.sqrt(distSq)
-          const influence = 1.0 - dist / maxDistance
-          targetOpacity = baseOpacity + (maxGlowOpacity - baseOpacity) * Math.pow(influence, 1.5)
-        }
-
-        // LERP opacity
-        const diff = targetOpacity - cell.currentOpacity
-        if (Math.abs(diff) > 0.001) {
-          cell.currentOpacity += diff * 0.08
-          needsMoreFrames = true
-        } else {
-          cell.currentOpacity = targetOpacity
-        }
-
-        drawHexagon(cell.x, cell.y, cell.currentOpacity)
+        drawHex(cell.x, cell.y, cell.cur)
       })
 
-      if (needsMoreFrames || mousePosRef.current.x !== -1000) {
-        isAnimatingRef.current = true
-        animationFrameRef.current = window.requestAnimationFrame(render)
-      } else {
-        isAnimatingRef.current = false
-      }
+      if (dirty || mouse.x !== -9999) schedule()
     }
 
-    const wakeUp = () => {
-      if (!isAnimatingRef.current) {
-        isAnimatingRef.current = true
-        animationFrameRef.current = window.requestAnimationFrame(render)
-      }
-    }
+    const schedule = () => { if (!rafId && alive) rafId = requestAnimationFrame(render) }
 
-    const handleVisibility = () => {
-      isVisibleRef.current = document.visibilityState === 'visible'
-      if (isVisibleRef.current) wakeUp()
-    }
+    // ── Event listeners ───────────────────────────────────────────────────────
+    const onMove  = (e: PointerEvent) => { mouse = { x: e.clientX, y: e.clientY }; schedule() }
+    const onLeave = ()                 => { mouse = { x: -9999, y: -9999 };        schedule() }
+    const onVis   = ()                 => { if (document.visibilityState === 'visible') schedule() }
+    const onResize = ()                => resize()
 
-    const handlePointerEvent = (x: number, y: number) => {
-      mousePosRef.current = { x, y }
-      wakeUp()
-    }
+    window.addEventListener('resize',       onResize)
+    window.addEventListener('pointermove',  onMove,   { passive: true })
+    window.addEventListener('pointerdown',  onMove,   { passive: true })
+    document.addEventListener('pointerleave', onLeave)
+    document.addEventListener('visibilitychange', onVis)
 
-    const handlePointerLeave = () => {
-      mousePosRef.current = { x: -1000, y: -1000 }
-      wakeUp()
-    }
+    resize() // initial setup + first frame
 
-    resizeCanvas()
-
-    const onResize = () => resizeCanvas()
-    const onPointerMove = (event: PointerEvent) => {
-      handlePointerEvent(event.clientX, event.clientY)
-    }
-
-    window.addEventListener('resize', onResize)
-    window.addEventListener('pointermove', onPointerMove, { passive: true })
-    window.addEventListener('pointerdown', onPointerMove, { passive: true })
-    window.addEventListener('pointerleave', handlePointerLeave)
-    document.addEventListener('visibilitychange', handleVisibility)
-
+    // ── Cleanup ───────────────────────────────────────────────────────────────
     return () => {
-      window.removeEventListener('resize', onResize)
-      window.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('pointerdown', onPointerMove)
-      window.removeEventListener('pointerleave', handlePointerLeave)
-      document.removeEventListener('visibilitychange', handleVisibility)
-      if (animationFrameRef.current) {
-        window.cancelAnimationFrame(animationFrameRef.current)
-      }
+      alive = false
+      if (rafId) cancelAnimationFrame(rafId)
+      window.removeEventListener('resize',        onResize)
+      window.removeEventListener('pointermove',   onMove)
+      window.removeEventListener('pointerdown',   onMove)
+      document.removeEventListener('pointerleave', onLeave)
+      document.removeEventListener('visibilitychange', onVis)
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas)
     }
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={`pointer-events-none ${className}`}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        background: 'transparent',
-        zIndex,
-      }}
-      aria-hidden="true"
-    />
-  )
+  return null // Canvas lives entirely in the DOM, not in React's vdom
 }

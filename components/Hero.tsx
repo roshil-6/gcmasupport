@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import HeroMobileParticles from '@/components/HeroMobileParticles'
-import HexagonBackground from '@/components/HexagonBackground'
 
 const desktopHeroImageCandidates = [
   '/home/gcma-hero-white.jpg?v=11',

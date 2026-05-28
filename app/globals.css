@@ -653,30 +653,6 @@ body.theme-light .rounded-2xl.bg-\[\#333333\]\/70 span {
   color: #ffffff !important;
 }
 
-body.theme-light .bg-\[\#333333\]\/80 .text-white,
-body.theme-light .bg-\[\#333333\]\/80 .text-gray-300,
-body.theme-light .bg-\[\#333333\]\/80 .text-gray-200,
-body.theme-light .bg-\[\#333333\]\/80 p,
-body.theme-light .bg-\[\#333333\]\/80 span,
-body.theme-light .bg-\[\#333333\]\/30 .text-white,
-body.theme-light .bg-\[\#333333\]\/30 .text-gray-300,
-body.theme-light .bg-\[\#333333\]\/30 .text-gray-200,
-body.theme-light .bg-\[\#333333\]\/30 p,
-body.theme-light .bg-\[\#333333\]\/30 span,
-body.theme-light .bg-\[\#333333\]\/30 div,
-body.theme-light .bg-\[\#333333\]\/30 li,
-body.theme-light .bg-\[\#333333\]\/30 label {
-  color: #2a241d !important;
-}
-
-body.theme-light .bg-\[\#333333\]\/30 h1,
-body.theme-light .bg-\[\#333333\]\/30 h2,
-body.theme-light .bg-\[\#333333\]\/30 h3,
-body.theme-light .bg-\[\#333333\]\/30 h4,
-body.theme-light .bg-\[\#333333\]\/30 h5,
-body.theme-light .bg-\[\#333333\]\/30 h6 {
-  color: #6e531d !important;
-}
 
 body.theme-light [class*='bg-[#333333]'] .text-white,
 body.theme-light [class*='bg-[#333333]'] p,
@@ -721,6 +697,32 @@ body.theme-light [class*='bg-[#333333]'] .text-on-dark,
 body.theme-light [class*='from-[#333333]'] .text-on-dark,
 body.theme-light [class*='to-[#333333]'] .text-on-dark {
   color: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* Specific overrides for 30% and 80% opacity which have bright backgrounds in light theme */
+body.theme-light .bg-\[\#333333\]\/80 .text-white,
+body.theme-light .bg-\[\#333333\]\/80 .text-gray-300,
+body.theme-light .bg-\[\#333333\]\/80 .text-gray-200,
+body.theme-light .bg-\[\#333333\]\/80 p,
+body.theme-light .bg-\[\#333333\]\/80 span,
+body.theme-light .bg-\[\#333333\]\/30 .text-white,
+body.theme-light .bg-\[\#333333\]\/30 .text-gray-300,
+body.theme-light .bg-\[\#333333\]\/30 .text-gray-200,
+body.theme-light .bg-\[\#333333\]\/30 p,
+body.theme-light .bg-\[\#333333\]\/30 span,
+body.theme-light .bg-\[\#333333\]\/30 div,
+body.theme-light .bg-\[\#333333\]\/30 li,
+body.theme-light .bg-\[\#333333\]\/30 label {
+  color: #2a241d !important;
+}
+
+body.theme-light .bg-\[\#333333\]\/30 h1,
+body.theme-light .bg-\[\#333333\]\/30 h2,
+body.theme-light .bg-\[\#333333\]\/30 h3,
+body.theme-light .bg-\[\#333333\]\/30 h4,
+body.theme-light .bg-\[\#333333\]\/30 h5,
+body.theme-light .bg-\[\#333333\]\/30 h6 {
+  color: #6e531d !important;
 }
 
 body.theme-light [class*='bg-[#333333]'] .text-gold-metallic,

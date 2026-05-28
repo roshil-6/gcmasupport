@@ -60,13 +60,13 @@ export default function AboutGCMSection() {
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-[#333333]/30 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Our Authority</h4>
-                <p className="text-white">
+                <p>
                   GCMA authorizes the National Human Rights and Humanitarian Federation (NHRF) to report migration-related scams and fraudulent practices as a community welfare venture. This initiative aims to prevent individuals from falling prey to unethical agents, false promises, and illegal migration pathways while promoting transparency and responsible practices.
                 </p>
               </div>
               <div className="bg-[#333333]/30 rounded-xl p-6 border border-gold-metallic/30">
                 <h4 className="text-xl font-semibold text-gold-metallic mb-3">Our Principles</h4>
-                <p className="text-white">
+                <p>
                   Our work is grounded in the principles of dignity, fairness, accountability, and public awareness. We focus on education, guidance, and advocacy to help people pursue safe, legal, and informed migration pathways, recognizing migration as a legitimate aspiration and a potential force for positive social and economic development.
                 </p>
               </div>
@@ -74,10 +74,10 @@ export default function AboutGCMSection() {
 
             <div className="bg-gradient-to-r from-gold-metallic/10 to-gold-metallic/5 rounded-xl p-6 border border-gold-metallic/30">
               <h4 className="text-xl font-semibold text-gold-metallic mb-3">Our Impact</h4>
-              <p className="text-white mb-4">
+              <p className="mb-4">
                 Through our comprehensive programs, we have helped thousands of individuals navigate the complexities of migration, provided educational support to underprivileged students, and offered medical assistance to those in need. Our commitment extends beyond services—we build communities, foster understanding, and create pathways for positive change.
               </p>
-              <ul className="space-y-2 text-white">
+              <ul className="space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-gold-metallic mt-1">✓</span>
                   <span>Migration awareness and scam prevention initiatives</span>

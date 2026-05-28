@@ -1,0 +1,23 @@
+import json
+
+log_file = r"C:\Users\Abhinand Antony\.gemini\antigravity\brain\5b09cc32-a542-4cdd-ae91-672e35f96f9c\.system_generated\logs\transcript.jsonl"
+
+with open(log_file, "r", encoding="utf-8") as f:
+    for line in f:
+        try:
+            data = json.loads(line)
+            step = data.get("step_index")
+            if step and step >= 1540:
+                tool_calls = data.get("tool_calls", [])
+                for tc in tool_calls:
+                    name = tc.get("name")
+                    if name == "run_command":
+                        cmd = tc.get("args", {}).get("CommandLine") or tc.get("args", {}).get("commandLine") or ""
+                        if "python" in cmd or "image" in cmd or "blend" in cmd:
+                            print(f"Step {step}: run_command: {cmd}")
+                    elif name == "write_to_file":
+                        target = tc.get("args", {}).get("TargetFile") or ""
+                        if "py" in target:
+                            print(f"Step {step}: write_to_file: {target}")
+        except Exception:
+            pass

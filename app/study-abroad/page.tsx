@@ -9,9 +9,7 @@ import ShowcaseCard from '@/components/ShowcaseCard'
 import { thankYouSearchPath } from '@/lib/thank-you-path'
 import { useScrollInvalidFieldIntoView } from '@/lib/use-scroll-invalid-into-view'
 
-const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
-  ssr: false,
-})
+import HexagonBackground from '@/components/HexagonBackground'
 
 const studyCountries = [
   {

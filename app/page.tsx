@@ -7,9 +7,7 @@ import CoreServicesSection from '@/components/CoreServicesSection'
 import { webPageJsonLd } from '@/lib/seo-jsonld'
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 
-const HexagonBackground = dynamic(() => import('@/components/HexagonBackground'), {
-  ssr: false,
-})
+import HexagonBackground from '@/components/HexagonBackground'
 const StudyAbroadSection = dynamic(() => import('@/components/StudyAbroadSection'))
 const BeliefStatementSection = dynamic(() => import('@/components/BeliefStatementSection'))
 const WeListenSection = dynamic(() => import('@/components/WeListenSection'))

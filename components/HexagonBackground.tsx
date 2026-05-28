@@ -9,7 +9,7 @@ interface HexCell {
   targetOpacity: number
 }
 
-export default function HexagonBackground({ className = "fixed inset-0 z-0" }: { className?: string }) {
+export default function HexagonBackground({ className = "fixed inset-0", zIndex = 21 }: { className?: string; zIndex?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mousePosRef = useRef({ x: -1000, y: -1000 })
   const gridCellsRef = useRef<HexCell[]>([])
@@ -57,7 +57,7 @@ export default function HexagonBackground({ className = "fixed inset-0 z-0" }: {
       
       const cells: HexCell[] = []
       const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.04 : 0.03
+      const baseOpacity = isLight ? 0.08 : 0.06
       
       for (let r = -1; r <= rows; r++) {
         const y = r * h_dist
@@ -102,17 +102,17 @@ export default function HexagonBackground({ className = "fixed inset-0 z-0" }: {
       ctx.closePath()
 
       const isLight = isLightThemeRef.current
-      const strokeRgb = isLight ? '164, 119, 35' : '201, 169, 97' // Gold colors
+      const strokeRgb = isLight ? '201, 169, 97' : '212, 175, 55' // Better gold colors
       ctx.strokeStyle = `rgba(${strokeRgb}, ${opacity})`
       
       // Slightly thicker lines for active/glowing hexagons
-      const baseOpacity = isLight ? 0.04 : 0.03
+      const baseOpacity = isLight ? 0.08 : 0.06
       if (opacity > baseOpacity + 0.01) {
         ctx.lineWidth = isLight 
-          ? 1.0 + (opacity - baseOpacity) * 1.5 
-          : 0.75 + (opacity - baseOpacity) * 2.0
+          ? 1.5 + (opacity - baseOpacity) * 2.5 
+          : 1.0 + (opacity - baseOpacity) * 3.0
       } else {
-        ctx.lineWidth = isLight ? 1.0 : 0.75
+        ctx.lineWidth = isLight ? 1.25 : 1.0
       }
 
       ctx.stroke()
@@ -143,8 +143,8 @@ export default function HexagonBackground({ className = "fixed inset-0 z-0" }: {
       const maxDistanceSq = maxDistance * maxDistance
       
       const isLight = isLightThemeRef.current
-      const baseOpacity = isLight ? 0.04 : 0.03
-      const maxGlowOpacity = isLight ? 0.22 : 0.35
+      const baseOpacity = isLight ? 0.08 : 0.06
+      const maxGlowOpacity = isLight ? 0.35 : 0.45
 
       let needsMoreFrames = false
 
@@ -231,7 +231,7 @@ export default function HexagonBackground({ className = "fixed inset-0 z-0" }: {
     <canvas
       ref={canvasRef}
       className={`pointer-events-none ${className}`}
-      style={{ background: 'transparent' }}
+      style={{ background: 'transparent', zIndex }}
       aria-hidden="true"
     />
   )

@@ -416,9 +416,9 @@ export default function Hero() {
             {/* Bottom section: Theme-aware background and text colors */}
             <div className="px-6 pb-6 pt-6 mobile-hero-text-container">
               <div className="mx-auto max-w-md space-y-4 text-center">
-                <h1 className="text-4xl font-extrabold tracking-widest mobile-hero-title">
+                <h2 className="text-4xl font-extrabold tracking-widest mobile-hero-title">
                   GCMA
-                </h1>
+                </h2>
                 <p className="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase mobile-hero-subtitle">
                   Global Council for Migration Awareness & Social Welfare
                 </p>

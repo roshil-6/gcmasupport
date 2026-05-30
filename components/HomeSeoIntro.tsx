@@ -123,7 +123,7 @@ export default function HomeSeoIntro() {
                 id="gcma-home-intro"
                 className="text-[1.65rem] font-bold leading-snug text-[#222222] sm:text-2xl md:text-3xl"
               >
-                Global Council for Migration Awareness and Social Welfare (GCMA)
+                Global Council for Migration Awareness & Social Welfare (GCMA): Ethical Migration & Humanitarian Support
               </h1>
               <div className="h-px w-16 bg-gradient-to-r from-[#b79b5f] to-transparent" />
             </div>

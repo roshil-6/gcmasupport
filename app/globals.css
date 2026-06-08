@@ -982,7 +982,9 @@ body.theme-light .btn-gold-outline {
   transition: all 0.3s ease;
 }
 
-body.theme-light .form-input {
+body.theme-light .form-input,
+body.theme-light [class*='bg-black'] .glass-card .form-input,
+body.theme-light .dark-container.glass-card .form-input {
   background: var(--light-input) !important;
   border: 1px solid var(--light-input-border) !important;
   color: #1a1a1a !important;

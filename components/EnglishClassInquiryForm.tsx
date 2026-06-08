@@ -60,7 +60,7 @@ export default function EnglishClassInquiryForm({
       {subline ? <p className="mb-6 text-sm text-[#4a4238] md:text-base">{subline}</p> : null}
 
       {error ? (
-        <p className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 py-3 text-center text-sm text-red-200">
+        <p className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 py-3 text-center text-sm text-red-600">
           {error}
         </p>
       ) : null}

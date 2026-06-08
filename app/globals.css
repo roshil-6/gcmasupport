@@ -384,18 +384,7 @@ body.theme-light [class*='bg-black'] .text-gray-400,
 body.theme-light .rounded-2xl.bg-black\/70 .text-white,
 body.theme-light .rounded-2xl.bg-black\/70 h3,
 body.theme-light .rounded-2xl.bg-black\/70 p,
-body.theme-light .rounded-2xl.bg-black\/70 span,
-body.theme-light .glass-card .text-white,
-body.theme-light .glass-card .text-gray-300,
-body.theme-light .glass-card .text-gray-200,
-body.theme-light .glass-card .text-gray-400,
-body.theme-light .glass-card p,
-body.theme-light .glass-card span,
-body.theme-light .glass-card div,
-body.theme-light .glass-card h1,
-body.theme-light .glass-card h2,
-body.theme-light .glass-card h3,
-body.theme-light .glass-card h4 {
+body.theme-light .rounded-2xl.bg-black\/70 span {
   color: #ffffff !important;
 }
 
@@ -522,7 +511,7 @@ body.theme-light .bg-black\/30 span {
   }
 }
 
-/* DEFAULT: Glass cards have dark background, so text should be WHITE (for dark theme) */
+/* DEFAULT: Glass cards have dark background, so text should be WHITE (for dark theme only) */
 body.theme-dark .glass-card p,
 body.theme-dark .glass-card span,
 body.theme-dark .glass-card div,
@@ -535,21 +524,27 @@ body.theme-dark .glass-card h6,
 body.theme-dark .glass-card li,
 body.theme-dark .glass-card .text-white,
 body.theme-dark .glass-card .text-gray-300,
-body.theme-dark .glass-card .text-gray-200,
-.glass-card p,
-.glass-card span,
-.glass-card div,
-.glass-card h1,
-.glass-card h2,
-.glass-card h3,
-.glass-card h4,
-.glass-card h5,
-.glass-card h6,
-.glass-card li,
-.glass-card .text-white,
-.glass-card .text-gray-300,
-.glass-card .text-gray-200 {
+body.theme-dark .glass-card .text-gray-200 {
   color: #ffffff !important;
+}
+
+/* Unthemed (no body class): also white */
+:not(body.theme-light) .glass-card p,
+:not(body.theme-light) .glass-card span,
+:not(body.theme-light) .glass-card li {
+  color: #ffffff !important;
+}
+
+/* LIGHT THEME: glass-card gets a white background so text must be dark */
+body.theme-light .glass-card p,
+body.theme-light .glass-card span,
+body.theme-light .glass-card div,
+body.theme-light .glass-card li,
+body.theme-light .glass-card label,
+body.theme-light .glass-card input,
+body.theme-light .glass-card textarea,
+body.theme-light .glass-card select {
+  color: #1a1a1a !important;
 }
 
 /* Exception: gold text should stay gold */

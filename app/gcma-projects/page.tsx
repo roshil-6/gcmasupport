@@ -2,6 +2,7 @@
 
 import HexagonBackground from '@/components/HexagonBackground'
 import AswasabhavanVisitPhoto from '@/components/AswasabhavanVisitPhoto'
+import DeivadanGallery from '@/components/DeivadanGallery'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
@@ -162,6 +163,42 @@ export default function GCMAProjectsPage() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Featured project story 2: Deivadan Old Age Home Visit */}
+          <div className="mt-12 overflow-hidden rounded-2xl border border-gold-metallic/35 bg-white shadow-xl">
+            <p className="bg-[#f9f2e7] px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-[#35063e] md:px-6">
+              Social Service Initiative
+            </p>
+            <div className="flex flex-col items-center bg-[#ece8df] px-4 py-6 md:px-8 md:py-8">
+              <DeivadanGallery />
+            </div>
+            <article className="space-y-4 px-5 py-8 text-[#333333] md:px-10 md:py-10 md:text-lg leading-relaxed">
+              <h2 className="text-xl font-bold text-[#35063e] md:text-2xl leading-snug">
+                Project: Deivadan Old Age Home – Bringing Comfort to the Residing Mothers, Pala
+              </h2>
+              <p>
+                As part of its commitment to social responsibility and compassionate community service, GCMA recently undertook a meaningful social service initiative at Deivadan Old Age Home, Pala.
+              </p>
+              <p>
+                During our interaction with the elderly mothers residing at the home, we learned about their need for comfortable and suitable beds. Responding to their request, GCMA took the initiative to provide beds for the mothers, helping to improve their comfort, rest, and overall well-being.
+              </p>
+              <p>
+                For many elderly people, a comfortable bed is more than just a basic necessity—it is an important part of maintaining dignity, health, and quality of life. The initiative was therefore undertaken with the sincere intention of making their daily lives a little more comfortable and bringing a sense of care and belonging.
+              </p>
+              <p>
+                The GCMA team was grateful for the opportunity to spend time with the mothers and to listen to their needs. Their warmth, smiles, and blessings made the occasion especially meaningful for everyone involved.
+              </p>
+              <p>
+                This initiative reflects GCMA’s belief that true social service begins with understanding people’s needs and responding with compassion and action. Small acts of kindness can make a significant difference in the lives of those who need care and support.
+              </p>
+              <p>
+                GCMA remains committed to continuing such initiatives and contributing positively to society by reaching out to communities and individuals in need.
+              </p>
+              <p className="font-medium text-[#35063e]">
+                Together, let us continue to serve, care, and make a difference—one compassionate step at a time.
+              </p>
+            </article>
           </div>
         </div>
       </section>

@@ -128,6 +128,7 @@ export default function CharitySupportPage() {
                   alt="Connect with us"
                   fill
                   className="object-cover"
+                  priority
                 />
                 <div className="absolute top-4 right-4 w-12 h-12 bg-[#6e531d]/20 border border-[#6e531d]/50 rounded-full flex items-center justify-center backdrop-blur-sm">
                   <span className="text-[#6e531d] text-2xl font-bold">?</span>
@@ -315,6 +316,88 @@ export default function CharitySupportPage() {
                     <EducationForm onClose={() => setActiveForm(null)} />
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+
+          {/* Recent Impact Section */}
+          <div className="mb-12 mt-16">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-gold-metallic mb-4">
+                Recent Impact
+              </h2>
+              <p className="text-lg text-white max-w-2xl mx-auto font-medium">
+                Real stories of how your support and our Charity & Social Service Initiative are making a difference.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Case 1: Aadvik */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gold-metallic/30 flex flex-col">
+                <div className="relative h-[400px] w-full">
+                  <Image src="/charity-support/aadvik.jpg" alt="Aadvik A S" fill className="object-cover object-top" />
+                  <div className="absolute top-4 left-4 bg-gold-metallic text-black text-sm font-bold px-3 py-1 rounded-full shadow-md">
+                    Medical Assistance
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-bold text-[#6e531d] mb-2">Financial Assistance for Medical Treatment</h3>
+                  <div className="flex flex-wrap items-center gap-2 mb-4 text-[#4a4238] font-semibold">
+                    <span className="bg-[#f9f2e7] px-3 py-1 rounded-lg text-sm border border-[#6e531d]/20">AADVIK A S, 4 Years Old</span>
+                    <span className="bg-[#f9f2e7] px-3 py-1 rounded-lg text-sm border border-[#6e531d]/20">Amrita Hospital, Ernakulam</span>
+                  </div>
+                  <div className="space-y-4 text-[#2a241d] leading-relaxed text-sm mb-6 flex-1">
+                    <p>
+                      As part of our Charity & Social Service Initiative, financial assistance was provided to AADVIK A S, a 4-year-old girl, who was admitted to Amrita Hospital, Ernakulam, for medical treatment.
+                    </p>
+                    <p>
+                      Following a request and supporting documents received from her mother, Sandra, the patient's treatment details were duly verified with the hospital through the PRO of Amrita Hospital, with assistance from Surumi, a journalist with Mathrubhumi News.
+                    </p>
+                    <p>
+                      After completing the necessary verification process and confirming the authenticity of the case, an amount of <strong>₹35,880</strong> (Thirty-Five Thousand Eight Hundred and Eighty Indian Rupees) was sanctioned and issued towards the patient's medical treatment.
+                    </p>
+                    <p>
+                      This assistance reflects our continued commitment to supporting individuals and families facing financial difficulties in accessing essential medical care. We sincerely appreciate everyone who contributed to the verification process and helped ensure that the assistance reached the beneficiary in need.
+                    </p>
+                  </div>
+                  <div className="pt-5 border-t border-[#6e531d]/20 mt-auto">
+                    <p className="text-[#6e531d] font-bold text-xl">Amount Sanctioned: ₹35,880</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Case 2: Gopika */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gold-metallic/30 flex flex-col">
+                <div className="relative h-[400px] w-full bg-gray-100">
+                  <Image src="/charity-support/gopika.jpg" alt="Gopika" fill className="object-cover object-top" />
+                  <div className="absolute top-4 left-4 bg-gold-metallic text-black text-sm font-bold px-3 py-1 rounded-full shadow-md">
+                    Medical Assistance
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-bold text-[#6e531d] mb-2">Financial Assistance for Medical Treatment</h3>
+                  <div className="flex flex-wrap items-center gap-2 mb-4 text-[#4a4238] font-semibold">
+                    <span className="bg-[#f9f2e7] px-3 py-1 rounded-lg text-sm border border-[#6e531d]/20">Gopika, 16 Years Old</span>
+                    <span className="bg-[#f9f2e7] px-3 py-1 rounded-lg text-sm border border-[#6e531d]/20">Lissie Hospital, Ernakulam</span>
+                  </div>
+                  <div className="space-y-4 text-[#2a241d] leading-relaxed text-sm mb-6 flex-1">
+                    <p>
+                      As part of our Charity & Social Service Initiative, financial assistance was provided to Gopika, a 16-year-old girl, who was admitted to Lissie Hospital, Ernakulam, for medical treatment.
+                    </p>
+                    <p>
+                      The case came to our attention through information received from social media influencer Kadal Lomban. Following the information received, the patient's treatment details were verified with the hospital through the PRO of Lissie Hospital, with assistance from Surumi, a journalist with Mathrubhumi News.
+                    </p>
+                    <p>
+                      After completing the necessary verification process and confirming the authenticity of the case, an amount of <strong>₹88,500</strong> (Eighty-Eight Thousand Five Hundred Indian Rupees) was sanctioned and issued towards the girl's medical treatment.
+                    </p>
+                    <p>
+                      This initiative reflects our commitment to supporting individuals and families facing financial difficulties in accessing essential medical care. We are grateful to everyone who contributed to the verification process and helped ensure that the assistance reached the beneficiary in need.
+                    </p>
+                  </div>
+                  <div className="pt-5 border-t border-[#6e531d]/20 mt-auto">
+                    <p className="text-[#6e531d] font-bold text-xl">Amount Sanctioned: ₹88,500</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

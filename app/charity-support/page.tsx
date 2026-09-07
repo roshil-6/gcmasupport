@@ -335,7 +335,8 @@ export default function CharitySupportPage() {
               {/* Case 1: Aadvik */}
               <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gold-metallic/30 flex flex-col">
                 <div className="relative h-[400px] w-full">
-                  <Image src="/charity-support/aadvik.jpg" alt="Aadvik A S" fill className="object-cover object-top" />
+                  {/* TODO: Replace 'healthcare.jpg' with 'aadvik.jpg' once the image is saved to the public/charity-support folder */}
+                  <Image src="/charity-support/healthcare.jpg" alt="Aadvik A S" fill className="object-cover object-top" />
                   <div className="absolute top-4 left-4 bg-gold-metallic text-black text-sm font-bold px-3 py-1 rounded-full shadow-md">
                     Medical Assistance
                   </div>
@@ -369,7 +370,8 @@ export default function CharitySupportPage() {
               {/* Case 2: Gopika */}
               <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gold-metallic/30 flex flex-col">
                 <div className="relative h-[400px] w-full bg-gray-100">
-                  <Image src="/charity-support/gopika.jpg" alt="Gopika" fill className="object-cover object-top" />
+                  {/* TODO: Replace 'healthcare.jpg' with 'gopika.jpg' once the image is saved to the public/charity-support folder */}
+                  <Image src="/charity-support/healthcare.jpg" alt="Gopika" fill className="object-cover object-top" />
                   <div className="absolute top-4 left-4 bg-gold-metallic text-black text-sm font-bold px-3 py-1 rounded-full shadow-md">
                     Medical Assistance
                   </div>

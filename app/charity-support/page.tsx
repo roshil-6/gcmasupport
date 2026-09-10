@@ -349,7 +349,7 @@ export default function CharitySupportPage() {
                   </div>
                   <div className="space-y-4 text-[#2a241d] leading-relaxed text-sm mb-6 flex-1">
                     <p>
-                      As part of our Charity & Social Service Initiative, financial assistance was provided to AADVIK A S, a 4-year-old girl, who was admitted to Amrita Hospital, Ernakulam, for medical treatment.
+                      As part of our Charity & Social Service Initiative, financial assistance was provided to AADVIK A S, a 4-year-old boy, who was admitted to Amrita Hospital, Ernakulam, for medical treatment.
                     </p>
                     <p>
                       Following a request and supporting documents received from her mother, Sandra, the patient's treatment details were duly verified with the hospital through the PRO of Amrita Hospital, with assistance from Surumi, a journalist with Mathrubhumi News.
